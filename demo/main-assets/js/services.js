@@ -708,7 +708,7 @@ function login() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>شما با موفقیت وارد سایت شده اید</span>";
-        window.location.replace("https://daroocard.com/all/main-index.html");
+        window.location.replace("https://daroocard.com/main-index.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
