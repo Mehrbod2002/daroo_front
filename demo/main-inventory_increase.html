@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> دارو کارت | افزایش موجودی </title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="main-assets/css/plans-pages-style.css">
+    <link rel="shortcut icon" href="assets/img/daroo-card.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container-fluid d-flex flex-column justify-content-between align-items-center">
+        <button class="menu-toggler border-0 bg-transparent" data-bs-toggle="offcanvas" data-bs-target="#menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" fill="#2dacdf" class="bi bi-list" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+            </svg>
+        </button>
+        <section class="offcanvas offcanvas-start menu my-sm-1 overflow-hidden" id="menu">
+            <div class="offcanvas-header text-light">
+                <div class="d-flex align-items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                    </svg>
+                    <h5 class="offcanvas-title ms-2 text-light"> خوش آمدید جکسون! </h5>
+                </div>
+                <button class="btn-close" data-bs-target="#menu" data-bs-toggle="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body d-flex flex-column justify-content-between mx-auto">
+                <nav>
+                    <ul class="nav">
+                        <li class="nav-item"> <a class="nav-link" href="main-profile.html"> پروفایل </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="main-reports.html"> گزارشات </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="main-wallet.html"> کیف پول </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="main-daroo-cards.html"> کارت ها </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="main-facilities.html"> تسهیلات </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="main-reception-requests.html"> پذیرش / دریافت </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="https://daroocard.ir/dc/index.html" target="_blank"> دارو کارت </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="main-support.html"> تیکت / پشتیبانی </a> </li>
+                        <li class="nav-item"> <a class="nav-link" href="https://daroocard.ir/Help%20Daroocard.pdf"> قوانین و ضوابط </a> </li>
+                    </ul>
+                </nav>
+                <button onclick="logout()" class="btn btn-danger mx-auto p-2" style="width: max-content;"> خروج از حساب کاربری </button>
+            </div>
+        </section>
+        <section class="modal fade" id="rules">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-fullscreen-sm-down">
+                <div class="modal-content">
+                    <div class="modal-header text-white shadow">
+                        <h3 class="d-flex justify-content-start text-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-layout-text-sidebar" viewBox="0 0 16 16">
+                                <path d="M3.5 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM3 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm12-1v14h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 0H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h9V1z"/>
+                            </svg>
+                            <span class="fw-bold lh-base ms-3"> قوانین و شرایط </span>
+                        </h3>
+                        <button class="btn btn-close" data-bs-dismiss="modal" data-bs-target="#rules"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                    </div>
+                    <div class="modal-footer bg-secondary-subtle shadow">
+                        <button class="btn text-white px-3" data-bs-dismiss="modal" data-bs-target="#rules"> بستن </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="modal fade" id="guide">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-fullscreen-sm-down">
+                <div class="modal-content">
+                    <div class="modal-header text-white shadow">
+                        <h3 class="d-flex justify-content-start text-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-layout-text-sidebar" viewBox="0 0 16 16">
+                                <path d="M3.5 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM3 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm.5 2.5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5z"/>
+                                <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm12-1v14h2a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1h-2zm-1 0H2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h9V1z"/>
+                            </svg>
+                            <span class="fw-bold lh-base ms-3"> راهنما </span>
+                        </h3>
+                        <button class="btn btn-close" data-bs-dismiss="modal" data-bs-target="#guide"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                        <p>لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                    </div>
+                    <div class="modal-footer bg-secondary-subtle shadow">
+                        <button class="btn text-white px-3" data-bs-dismiss="modal" data-bs-target="#guide"> بستن </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <header class="w-100 text-center py-3">
+            <a href="main-index.html" class="logo d-inline-block">
+                <img src="assets/img/daroo-card.gif" alt="daroo-card">
+            </a>
+        </header>
+        <main class="rounded-4 pb-4 mb-5 text-center overflow-hidden shadow-lg">
+            <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary"> افزایش موجودی </h1>
+            <form action="" method="POST" name="inventory-increase-form" class="w-100 px-4 mt-3 text-end">
+                <section class="w-100 d-flex flex-column justify-content-between choice">
+                    <section class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3">
+                        <div class="form-check form-label d-flex justify-content-sm-end justify-content-start mb-sm-0 mb-2 active">
+                            <input type="radio" class="form-check-input me-3" id="wallet-number-radio" name="radio" checked onchange="changeOption(this, 'choice')">
+                            <label for="wallet-number-radio" class="form-check-label text-sm-end text-start pe-3"> شماره ی کیف پول </label>
+                        </div>
+                        <div class="left-group w-100 d-flex">
+                            <input type="text" class="form-control text-end me-2" id="wallet-number" autofocus="autofocus">
+                            <button type="button" onclick="" style="width: max-content !important" title="اسکن QR Code" class="btn btn-light h-100">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-qr-code-scan" viewBox="0 0 16 16">
+                                    <path d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0v-3Zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5ZM.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5ZM4 4h1v1H4V4Z"/>
+                                    <path d="M7 2H2v5h5V2ZM3 3h3v3H3V3Zm2 8H4v1h1v-1Z"/>
+                                    <path d="M7 9H2v5h5V9Zm-4 1h3v3H3v-3Zm8-6h1v1h-1V4Z"/>
+                                    <path d="M9 2h5v5H9V2Zm1 1v3h3V3h-3ZM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8H8Zm2 2H9V9h1v1Zm4 2h-1v1h-2v1h3v-2Zm-4 2v-1H8v1h2Z"/>
+                                    <path d="M12 9h2V8h-2v1Z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </section>
+                    <section class="card-number-section d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3">
+                        <div class="form-check form-label d-flex justify-content-sm-end justify-content-start mb-sm-0 mb-2 disabled">
+                            <input type="radio" class="form-check-input me-3" id="card-numbers-radio" name="radio" onchange="changeOption(this, 'choice')">
+                            <label for="card-numbers-radio" class="form-check-label text-sm-end text-start pe-3"> شماره ی دارو کارت </label>
+                        </div>
+                        <div class="card-numbers d-flex justify-content-between align-items-center" id="card-numbers" dir="ltr">
+                            <input type="number" minlength="4" maxlength="4" min="0" max="9999" autofocus="autofocus" class="form-control text-center ms-2">
+                            <input type="number" minlength="4" maxlength="4" min="0" max="9999" autofocus="autofocus" class="form-control text-center ms-2">
+                            <input type="number" minlength="4" maxlength="4" min="0" max="9999" autofocus="autofocus" class="form-control text-center ms-2">
+                            <input type="number" minlength="4" maxlength="4" min="0" max="9999" autofocus="autofocus" class="form-control text-center">
+                        </div>
+                    </section>
+                </section>
+                <section class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3">
+                    <label for="amount" class="form-label text-sm-end text-start pe-3"> مبلغ (به ریال) </label>
+                    <input type="text" class="form-control text-end" id="amount">
+                </section>
+                <section class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3">
+                    <label for="owner-name" class="form-label text-sm-end text-start pe-3"> نام و نام خانوادگی دارنده کارت </label>
+                    <input type="text" class="form-control" id="owner-name">
+                </section>
+                <section class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3">
+                    <label for="depositor-name" class="form-label text-sm-end text-start pe-3"> نام و نام خانوادگی واریز کننده </label>
+                    <input type="text" class="form-control" id="depositor-name">
+                </section>
+                <section class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3">
+                    <label for="mobile" class="form-label text-sm-end text-start pe-3"> تلفن همراه </label>
+                    <input type="tel" min="0" max="99999999999" maxlength="11" class="form-control" id="mobile">
+                </section>
+                <section class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-4">
+                    <label for="description" class="form-label text-sm-end text-start pe-3"> توضیحات </label>
+                    <textarea class="form-control" id="description"></textarea>
+                </section>
+                <div class="form-bottom-links ms-auto d-flex justify-content-between align-items-start">
+                    <section class="form-check mb-4 ms-2 text-start">
+                        <input type="checkbox" class="form-check-input" id="accept">
+                        <label for="accept" class="form-check-label"> <a class="links" data-bs-target="#rules" data-bs-toggle="modal">قوانین و شرایط</a> را می پذیرم. </label>
+                    </section>
+                    <a class="links fw-bolder" data-bs-target="#guide" data-bs-toggle="modal">راهنما</a>
+                </div>
+                <input type="submit" value="ارسال درخواست" class="btn btn-light">
+                <p class="form-text text-danger text-center fw-bolder" id="errors"></p>
+            </form>
+        </main>
+        <footer class="info text-center mb-2">
+            <span> 021-91002044 </span> <br>
+            <span> کپی رایت © 2023 <strong> <a style="color: rgba(var(--dark-blue-color), 1) !important; text-decoration: none !important;" href="https://trustseal.enamad.ir/?id=198390&code=xNNRRYtOuvxEZEJLUVaj"> آبتین سلامت ایرانیان </a> </strong> تمامی حقوق محفوظ است </span>
+        </footer>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="main-assets/js/services.js"></script>
+</body>
+</html>

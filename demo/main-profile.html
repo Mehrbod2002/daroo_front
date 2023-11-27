@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>دارو کارت | پروفایل</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="main-assets/css/plans-pages-style.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/daroo-card.png"
+      type="image/x-icon"
+    />
+    <style>
+      main {
+        width: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="container-fluid d-flex flex-column justify-content-between align-items-center"
+    >
+      <button
+        class="menu-toggler border-0 bg-transparent"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="43"
+          height="43"
+          fill="#2dacdf"
+          class="bi bi-list"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          />
+        </svg>
+      </button>
+      <section
+        class="offcanvas offcanvas-start menu my-sm-1 overflow-hidden"
+        id="menu"
+      >
+        <div class="offcanvas-header text-light">
+          <div class="d-flex align-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="white"
+              class="bi bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+              />
+            </svg>
+            <h5 class="offcanvas-title ms-2 text-light">خوش آمدید جکسون!</h5>
+          </div>
+          <button
+            class="btn-close"
+            data-bs-target="#menu"
+            data-bs-toggle="offcanvas"
+          ></button>
+        </div>
+        <div
+          class="offcanvas-body d-flex flex-column justify-content-between mx-auto"
+        >
+          <nav>
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="main-profile.html"> پروفایل </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-reports.html"> گزارشات </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-wallet.html"> کیف پول </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-daroo-cards.html"> کارت ها </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-facilities.html"> تسهیلات </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-reception-requests.html">
+                  پذیرش / دریافت
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://daroocard.ir/dc/index.html"
+                  target="_blank"
+                >
+                  دارو کارت
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-support.html">
+                  تیکت / پشتیبانی
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://daroocard.ir/Help%20Daroocard.pdf"
+                >
+                  قوانین و ضوابط
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <button class="btn btn-danger mx-auto p-2" style="width: max-content">
+            خروج از حساب کاربری
+          </button>
+        </div>
+      </section>
+      <header class="w-100 text-center py-3">
+        <a href="main-index.html" class="logo d-inline-block">
+          <img src="assets/img/daroo-card.gif" alt="daroo-card" />
+        </a>
+      </header>
+      <main class="rounded-4 pb-4 mb-5 text-center overflow-hidden shadow-lg">
+        <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary">
+          پروفایل
+        </h1>
+        <form
+          type="profile"
+          method="POST"
+          name="profile-form"
+          class="w-100 px-4 mt-3 text-end"
+        >
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+          >
+            <label
+              for="user-type"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              نقش کاربر
+            </label>
+            <select class="left-group form-select" id="user-type">
+              <option selected>کاربر عادی</option>
+              <option>مراکز (پذیرنده)</option>
+            </select>
+          </section>
+
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label for="name" class="form-label text-sm-end text-start pe-3">
+              نام و نام خانوادگی
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              value="جکسون عزیزی"
+            />
+          </section>
+
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label
+              for="national-code"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              کد ملی
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="national-code"
+              value="1234567890"
+              dir="ltr"
+              disabled
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label for="mobile" class="form-label text-sm-end text-start pe-3">
+              تلفن همراه
+            </label>
+            <input
+              type="tel"
+              min="0"
+              max="99999999999"
+              maxlength="11"
+              class="form-control"
+              id="mobile"
+              value="09123456780"
+              dir="ltr"
+              disabled
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label for="phone" class="form-label text-sm-end text-start pe-3">
+              تلفن ثابت
+            </label>
+            <input
+              type="tel"
+              min="0"
+              max="99999999999"
+              maxlength="11"
+              class="form-control"
+              id="phone"
+              value="03112345678"
+              dir="ltr"
+              disabled
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label for="address" class="form-label text-sm-end text-start pe-3">
+              آدرس
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="address"
+              value="تهران، سعادت آباد"
+            />
+          </section>
+
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label for="shaba" class="form-label text-sm-end text-start pe-3">
+              شماره شبا
+            </label>
+            <div class="left-group d-flex w-100">
+              <input
+                type="text"
+                pattern="\d*"
+                maxlength="24"
+                class="form-control rounded-end-0"
+                id="shaba"
+                dir="ltr"
+                value="983247538783287638760923"
+              />
+              <span class="fs-5 bg-secondary-subtle px-2 rounded-end pt-2"
+                >IR</span
+              >
+            </div>
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label
+              for="card-number"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              شماره کارت
+            </label>
+            <input
+              type="text"
+              pattern="\d*"
+              maxlength="16"
+              class="form-control"
+              id="card-number"
+              value="3984590234533499"
+              dir="ltr"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label
+              for="account-number"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              شماره حساب
+            </label>
+            <input
+              type="text"
+              pattern="\d*"
+              maxlength="24"
+              class="form-control"
+              id="account-number"
+              value="32452345808"
+              dir="ltr"
+            />
+          </section>
+
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label
+              for="username"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              نام کاربری
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="username"
+              value="jackson"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label
+              for="password"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              رمز عبور
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              value="sjdhf234"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type1"
+          >
+            <label
+              for="confirm-password"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              تایید رمز عبور
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              id="confirm-password"
+              value=""
+              disabled
+            />
+          </section>
+          <!-- +++++++++++++ -->
+
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="office-name2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              نام مرکز
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="office-name2"
+              value="داروخانه ی دکتر عزیزی"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label for="name2" class="form-label text-sm-end text-start pe-3">
+              نام و نام خانوادگی
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="name2"
+              value="جکسون عزیزی"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="user-position2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              سمت نماینده
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="user-position2"
+              value="مدیر"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="national-code2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              کد ملی
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="national-code2"
+              value="1234567890"
+              dir="ltr"
+              disabled
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label for="mobile2" class="form-label text-sm-end text-start pe-3">
+              تلفن همراه
+            </label>
+            <input
+              type="tel"
+              min="0"
+              max="99999999999"
+              maxlength="11"
+              class="form-control"
+              id="mobile2"
+              value="09123456780"
+              dir="ltr"
+              disabled
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label for="phone2" class="form-label text-sm-end text-start pe-3">
+              تلفن ثابت
+            </label>
+            <input
+              type="tel"
+              min="0"
+              max="99999999999"
+              maxlength="11"
+              class="form-control"
+              id="phone2"
+              value="03112345678"
+              dir="ltr"
+              disabled
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="address2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              آدرس
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="address2"
+              value="تهران، سعادت آباد"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="postal-code2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              کد پستی
+            </label>
+            <input
+              type="text"
+              pattern="\d*"
+              maxlength="10"
+              class="form-control"
+              id="postal-code2"
+              value="1234567890"
+              dir="ltr"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="office-type2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              نوع مرکز
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="office-type2"
+              value="داروخانه"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="office-code2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              کد مرکز
+            </label>
+            <input
+              type="text"
+              pattern="\d*"
+              class="form-control"
+              id="office-code2"
+              value="1402346"
+              dir="ltr"
+              disabled
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label for="shaba2" class="form-label text-sm-end text-start pe-3">
+              شماره شبا
+            </label>
+            <div class="left-group d-flex w-100">
+              <input
+                type="text"
+                pattern="\d*"
+                maxlength="24"
+                class="form-control rounded-end-0"
+                id="shaba2"
+                dir="ltr"
+                value="983247538783287638760923"
+              />
+              <span class="fs-5 bg-secondary-subtle px-2 rounded-end pt-2"
+                >IR</span
+              >
+            </div>
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="card-number2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              شماره کارت
+            </label>
+            <input
+              type="text"
+              pattern="\d*"
+              maxlength="16"
+              class="form-control"
+              id="card-number2"
+              value="3984590234533499"
+              dir="ltr"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="account-number2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              شماره حساب
+            </label>
+            <input
+              type="text"
+              pattern="\d*"
+              maxlength="24"
+              class="form-control"
+              id="account-number2"
+              value="32452345808"
+              dir="ltr"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="tracking-code2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              کد رهگیری/کداقتصادی
+            </label>
+            <input
+              type="text"
+              pattern="\d*"
+              class="form-control"
+              id="tracking-code2"
+              value="34533499"
+              dir="ltr"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="username2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              نام کاربری
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="username2"
+              value="jackson"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="password2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              رمز عبور
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              id="password2"
+              value="sjdhf234"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 d-none type2"
+          >
+            <label
+              for="confirm-password2"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              تایید رمز عبور
+            </label>
+            <input
+              type="password"
+              class="form-control"
+              id="confirm-password2"
+              value=""
+              disabled
+            />
+          </section>
+          <!-- +++++++++++++++ -->
+          <input type="submit" value="ویرایش اطلاعات" class="btn btn-light" />
+          <p
+            class="form-text text-danger text-center fw-bolder mb-5"
+            id="errors"
+          ></p>
+
+          <hr />
+          <section class="text-center">
+            <span class="fw-bold"> اسناد: </span>
+            <a href="#" class="fw-bold" id="documents">
+              جهت دانلود اسناد کلیک کنید.
+            </a>
+          </section>
+          <hr />
+          <section class="digital-sign">
+            <p class="form-text text-info-emphasis text-center fw-bold mb-2">
+              برای ساخت امضای دیجیتال بر روی دکمه ی زیر کلیک کنید. شما می توانید
+              امضای دیجیتال را همیشه اینجا ببینید یا دوباره بسازید.
+            </p>
+            <button
+              class="btn btn-light d-flex flex-column align-items-center pt-3 mb-3 mx-auto"
+              type="button"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="40"
+                height="40"
+                fill="currentColor"
+                class="bi bi-qr-code"
+                viewBox="0 0 16 16"
+              >
+                <path d="M2 2h2v2H2V2Z" />
+                <path d="M6 0v6H0V0h6ZM5 1H1v4h4V1ZM4 12H2v2h2v-2Z" />
+                <path d="M6 10v6H0v-6h6Zm-5 1v4h4v-4H1Zm11-9h2v2h-2V2Z" />
+                <path
+                  d="M10 0v6h6V0h-6Zm5 1v4h-4V1h4ZM8 1V0h1v2H8v2H7V1h1Zm0 5V4h1v2H8ZM6 8V7h1V6h1v2h1V7h5v1h-4v1H7V8H6Zm0 0v1H2V8H1v1H0V7h3v1h3Zm10 1h-1V7h1v2Zm-1 0h-1v2h2v-1h-1V9Zm-4 0h2v1h-1v1h-1V9Zm2 3v-1h-1v1h-1v1H9v1h3v-2h1Zm0 0h3v1h-2v1h-1v-2Zm-4-1v1h1v-2H7v1h2Z"
+                />
+                <path d="M7 12h1v3h4v1H7v-4Zm9 2v2h-3v-1h2v-1h1Z" />
+              </svg>
+              <span class="mt-2"> Generate </span>
+            </button>
+            <div class="input-group justify-content-center">
+              <input
+                type="text"
+                class="input-group-text rounded-end-0 rounded-start-3 border border-dark"
+                value="ساخته نشده"
+                readonly
+              />
+              <button
+                class="btn btn-secondary rounded-start-0 rounded-end-3 border border-dark mt-sm-0 mt-2"
+                type="button"
+                disabled
+              >
+                کپی
+              </button>
+            </div>
+          </section>
+        </form>
+      </main>
+      <footer class="info text-center mb-2">
+        <span> 021-91002044 </span> <br />
+        <span>
+          کپی رایت © 2023
+          <strong>
+            <a
+              style="
+                color: rgba(var(--dark-blue-color), 1) !important;
+                text-decoration: none !important;
+              "
+              href="https://trustseal.enamad.ir/?id=198390&code=xNNRRYtOuvxEZEJLUVaj"
+            >
+              آبتین سلامت ایرانیان
+            </a>
+          </strong>
+          تمامی حقوق محفوظ است
+        </span>
+      </footer>
+      <div class="messagewrapper">
+        <div>
+          <div class="messageBox">
+            <p></p>
+            <button class="messageBtn btn btn-success">تایید</button>
+          </div>
+        </div>
+      </div>
+      <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="mask"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="main-assets/js/services.js"></script>
+  </body>
+</html>

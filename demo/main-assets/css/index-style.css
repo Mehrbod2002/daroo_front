@@ -1,0 +1,215 @@
+/* General Styles */
+@font-face {
+    src: url('../../assets/fonts/Vazir.ttf');
+    font-family: Vazir;
+}
+
+*{
+    font-family: Vazir, sans-serif;
+    font-size: 14px;
+    --bg-color: 209, 237, 255; /* #d1edff */
+    --blue-color: 45, 172, 223;
+    --dark-blue-color: 7, 116, 195;
+}
+
+body{
+    background: url("../../assets/img/background.png");
+    background-size: 200px;
+    overflow-x: hidden;
+}
+
+body .container-fluid{
+    min-width: 100vw;
+    min-height: 100vh;
+    width: 100%;
+    height: 100%;
+    padding-top: 8vh;
+    background: radial-gradient(circle, rgba(var(--bg-color), 0.3) 10%, rgba(var(--bg-color), 0.5) 30%, rgba(var(--bg-color), 0.7) 50%, rgba(var(--bg-color), 0.9) 60%, rgba(var(--bg-color), 1));
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+address{
+    margin-bottom: 0;
+}
+
+@keyframes startPageAnim {
+    from {
+        transform: translateY(300px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Menu Styles */
+.menu-toggler{
+    position: absolute;
+    top: 35px;
+    right: 35px;
+    z-index: 9999998;
+}
+
+.menu{
+    width: 20% !important;
+    background-color: #b2cee1;
+    border: 2px solid rgba(var(--dark-blue-color)) !important;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    z-index: 9999999;
+}
+
+.menu .offcanvas-header{
+    background-color: rgba(var(--dark-blue-color), 1);
+    border-bottom: 2px solid rgba(var(--dark-blue-color));
+}
+
+.menu .nav .nav-item{
+    position: relative;
+    width: 95%;
+    border-radius: 15px 5px 5px 15px;
+    transition: all 0.2s ease-in-out;
+    background-color: rgba(var(--dark-blue-color), 0.75);
+    margin-bottom: 10px;
+}
+
+.menu .nav .nav-item:hover{
+    background-color: rgba(var(--dark-blue-color), 0.9);
+    width: 100%;
+}
+
+.menu .nav .nav-item:active{
+    background-color: rgba(var(--dark-blue-color), 1);
+}
+
+.menu .nav .nav-link{
+    font-size: 17px;
+    color: white;
+}
+
+.menu .nav .nav-link::before{
+    content: '●';
+}
+
+/* Main Content Styles */
+.content{
+    transform: translateY(300px);
+    opacity: 0;
+    animation: startPageAnim 1s ease-in-out 1 forwards;
+}
+
+.logo img[alt=daroo-card]{
+    width: 180px;
+}
+
+/* Call To Action Button (Signin to daroo-payk) Styles */
+.cta{
+    width: max-content;
+    max-width: 95%;
+    margin: 20px auto 60px;
+    background-color: rgba(var(--blue-color), 1);
+    box-shadow: 0 0 6px 1px rgba(34, 34, 34, 0.5);
+    transition: .3s ease-in-out;
+}
+
+.cta:hover{
+    transform: scale(1.08);
+}
+
+.cta img, .cta svg{
+    width: 50px;
+    height: auto;
+    padding: 5px;
+    border-left: 1px dashed #333;
+}
+
+.cta span{
+    margin: 10px 35px;
+    color: white;
+    font-size: 13pt;
+    font-weight: 500;
+}
+
+/* Bottom Boxes Styles */
+.items{
+    width: 98% !important;
+}
+
+.item{
+    width: 128px;
+    height: 110px;
+    background-color: rgba(157, 219, 243, 0.8);
+    margin: 10px 10px;
+    box-shadow: 0 0 4px 1px rgba(34, 34, 34, 0.5);
+    transition: .2s ease-in-out;
+}
+
+.item a{
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+}
+
+.item:hover{
+    background-color: rgb(135, 208, 236);
+}
+
+.item span{
+    font-weight: 700;
+    color: rgba(var(--dark-blue-color));
+}
+
+.item img{
+    width: 60%;
+}
+
+/* Bottom Information Styles */
+.info{
+    width: 98%;
+    height: 100%;
+    font-size: 10pt;
+    transform: translateY(300px);
+    opacity: 0;
+    animation: startPageAnim 1s ease-in-out 1 forwards;
+}
+
+/* Responsive */
+@media only screen and (max-width: 1200px){
+    .menu{
+        width: 25% !important;
+    }
+}
+
+@media only screen and (max-width: 992px){
+    .menu{
+        width: 32% !important;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .menu{
+        width: 40% !important;
+    }
+}
+
+@media only screen and (max-width: 576px){
+    .menu{
+        width: 100% !important;
+    }
+    .menu-toggler svg{
+        width: 35px !important;
+        height: 35px !important;
+    }
+    .logo img[alt=daroo-card]{
+        width: 150px !important;
+    }
+    .cta span{
+        margin-inline: 20px !important;
+        font-size: 12pt !important;
+    }
+}

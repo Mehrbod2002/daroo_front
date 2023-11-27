@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> دارو کارت | ادمین-پذیرندگان </title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="main-assets/css/plans-pages-style.css">
+    <link rel="shortcut icon" href="assets/img/daroo-card.png" type="image/x-icon">
+    <style>
+        main{
+            width: 95% !important;
+        }
+        .table-section{
+            max-height: 1000px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid d-flex flex-column align-items-center">
+        <header class="w-100 text-center py-3">
+            <a href="admin.html" class="logo d-inline-block">
+                <img src="assets/img/daroo-card.gif" alt="daroo-card">
+            </a>
+        </header>
+        <main class="rounded-4 pb-4 mb-5 text-center overflow-hidden shadow-lg">
+            <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary"> ادمین-پذیرندگان </h1>
+            <div class="d-flex justify-content-between px-3 mb-3">
+                <input type="search" placeholder="جستجو در جدول ..." class="searchable form-control" style="width: 200px !important;">
+                <button class="print btn btn-light d-flex align-items-center">
+                    <span class="me-2 text-dark fs-5"> پرینت </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="black" class="bi bi-printer" viewBox="0 0 16 16">
+                        <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
+                        <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"></path>
+                    </svg>
+                </button>
+            </div>
+            <section class="table-section text-center table-responsive mx-3">
+                <table class="table caption-top sortable align-middle" id="reportsTable">
+                    <caption class="text-light fw-bolder fs-5 text-start ps-3"> مشخصات پذیرندگان </caption>
+                    <thead>
+                        <tr>
+                            <th class="sorttable_numeric"> ردیف </th>
+                            <th> نام کابری </th>
+                            <th> رمز عبور </th>
+                            <th> نام مرکز </th>
+                            <th> نوع مرکز </th>
+                            <th class="sorttable_numeric"> کد مرکز </th>
+                            <th> نام و نام خانوادگی </th>
+                            <th> سمت نماینده </th>
+                            <th class="sorttable_numeric"> کد پستی </th>
+                            <th class="sorttable_numeric"> کد ملی </th>
+                            <th class="sorttable_numeric"> تلفن همراه </th>
+                            <th class="sorttable_numeric"> تلفن ثابت </th>
+                            <th> آدرس </th>
+                            <th> کیف پول </th>
+                            <th class="sorttable_numeric"> شماره شبا </th>
+                            <th class="sorttable_numeric"> شماره کارت </th>
+                            <th class="sorttable_numeric"> شماره حساب </th>
+                            <th class="sorttable_numeric"> کد رهگیری/اقتصادی </th>
+                            <th class="sorttable_nosort"> اسناد </th>
+                            <th> امضای دیجیتال </th>
+                            <th> وضعیت </th>
+                            <th class="sorttable_nosort"> عملیات </th>
+                            <th class="sorttable_numeric"> ردیف </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="d-flex justify-content-center align-items-center form-check">
+                                <input type="checkbox" class="form-check-input me-2 border border-dark">
+                                <label class="form-check-label"> 1 </label>
+                            </td>
+                            <td> jackson </td>
+                            <td> jackson2023 </td>
+                            <td> داروخانه دکتر عزیزی </td>
+                            <td> داروخانه </td>
+                            <td> 87326458 </td>
+                            <td> جکسون عزیزی </td>
+                            <td> مدیر </td>
+                            <td> 0987654321 </td>
+                            <td> 1234567890 </td>
+                            <td> 09123456789 </td>
+                            <td> 02112345678 </td>
+                            <td> تهران، سعادت آباد </td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                <span> 2500000 ریال </span>
+                                <button class="btn btn-secondary edit-wallet mx-1"> ویرایش موجودی کیف پول </button>
+                                <button class="btn btn-danger block-wallet mx-1"> مسدودسازی کیف پول </button>
+                            </td>
+                            <td> IR123456789012345678901234 </td>
+                            <td> 1234567890123456 </td>
+                            <td> 12283476454 </td>
+                            <td> 3589375845764 </td>
+                            <td class="d-flex justify-content-center align-items-center" style="width: max-content">
+                                <form action="" method="post" class="d-flex justify-content-center align-items-center me-2 pe-2 border-end border-dark">
+                                    <input type="file" class="form-control me-2" style="width: 200px !important; height: max-content">
+                                    <input type="submit" class="btn btn-info" value="ویرایش اسناد">
+                                </form>
+                                <span> اسناد فعلی: <a href="#" class=""> document.docx </a> </span>
+                            </td>
+                            <td> jsa3745$#$%lsdhf8347 </td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                <span> در انتظار تایید </span>
+                                <button class="btn btn-success mx-1 accept-user"> تایید کاربر </button>
+                                <button class="btn btn-secondary mx-1 eject-user"> عدم تایید کاربر </button>
+                            </td>
+                            <td>
+                                <a href="main-profile.html" target="_blank" class="btn btn-warning"> ویرایش اطلاعات </a>
+                                <a href="main-reports.html" target="_blank" class="btn btn-secondary"> گزارش گیری تراکنش ها </a>
+                                <a href="main-wallet.html" target="_blank" class="btn btn-secondary"> گزارش گیری کیف پول </a>
+                                <a href="main-reception-requests.html" target="_blank" class="btn btn-secondary"> گزارش گیری پذیرش ها </a>
+                                <button class="btn btn-danger mx-1 remove-user"> حذف کاربر </button>
+                            </td>
+                            <td> 1 </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center align-items-center form-check">
+                                <input type="checkbox" class="form-check-input me-2 border border-dark">
+                                <label class="form-check-label"> 1 </label>
+                            </td>
+                            <td> jackson </td>
+                            <td> jackson2023 </td>
+                            <td> داروخانه دکتر عزیزی </td>
+                            <td> داروخانه </td>
+                            <td> 87326458 </td>
+                            <td> جکسون عزیزی </td>
+                            <td> مدیر </td>
+                            <td> 0987654321 </td>
+                            <td> 1234567890 </td>
+                            <td> 09123456789 </td>
+                            <td> 02112345678 </td>
+                            <td> تهران، سعادت آباد </td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                <span> 3500000 ریال </span>
+                                <button class="btn btn-secondary edit-wallet mx-1"> ویرایش موجودی کیف پول </button>
+                                <button class="btn btn-danger block-wallet mx-1"> مسدودسازی کیف پول </button>
+                            </td>
+                            <td> IR123456789012345678901234 </td>
+                            <td> 1234567890123456 </td>
+                            <td> 12283476454 </td>
+                            <td> 3589375845764 </td>
+                            <td class="d-flex justify-content-center align-items-center" style="width: max-content">
+                                <form action="" method="post" class="d-flex justify-content-center align-items-center me-2 pe-2 border-end border-dark">
+                                    <input type="file" class="form-control me-2" style="width: 200px !important; height: max-content">
+                                    <input type="submit" class="btn btn-info" value="ویرایش اسناد">
+                                </form>
+                                <span> اسناد فعلی: <a href="#" class=""> document.docx </a> </span>
+                            </td>
+                            <td> jsa3745$#$%lsdhf8347 </td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                <span> تایید شده </span>
+                                <button class="btn btn-danger mx-1 block-user"> مسدودسازی کاربر </button>
+                            </td>
+                            <td>
+                                <a href="main-profile.html" target="_blank" class="btn btn-warning"> ویرایش اطلاعات </a>
+                                <a href="main-reports.html" target="_blank" class="btn btn-secondary"> گزارش گیری تراکنش ها </a>
+                                <a href="main-wallet.html" target="_blank" class="btn btn-secondary"> گزارش گیری کیف پول </a>
+                                <a href="main-reception-requests.html" target="_blank" class="btn btn-secondary"> گزارش گیری پذیرش ها </a>
+                                <button class="btn btn-danger mx-1 remove-user"> حذف کاربر </button>
+                            </td>
+                            <td> 1 </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center align-items-center form-check">
+                                <input type="checkbox" class="form-check-input me-2 border border-dark">
+                                <label class="form-check-label"> 1 </label>
+                            </td>
+                            <td> jackson </td>
+                            <td> jackson2023 </td>
+                            <td> داروخانه دکتر عزیزی </td>
+                            <td> داروخانه </td>
+                            <td> 87326458 </td>
+                            <td> جکسون عزیزی </td>
+                            <td> مدیر </td>
+                            <td> 0987654321 </td>
+                            <td> 1234567890 </td>
+                            <td> 09123456789 </td>
+                            <td> 02112345678 </td>
+                            <td> تهران، سعادت آباد </td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                <span> 4000000 ریال </span>
+                                <button class="btn btn-secondary edit-wallet mx-1"> ویرایش موجودی کیف پول </button>
+                                <button class="btn btn-danger block-wallet mx-1"> مسدودسازی کیف پول </button>
+                            </td>
+                            <td> IR123456789012345678901234 </td>
+                            <td> 1234567890123456 </td>
+                            <td> 12283476454 </td>
+                            <td> 3589375845764 </td>
+                            <td class="d-flex justify-content-center align-items-center" style="width: max-content">
+                                <form action="" method="post" class="d-flex justify-content-center align-items-center me-2 pe-2 border-end border-dark">
+                                    <input type="file" class="form-control me-2" style="width: 200px !important; height: max-content">
+                                    <input type="submit" class="btn btn-info" value="ویرایش اسناد">
+                                </form>
+                                <span> اسناد فعلی: <a href="#" class=""> document.docx </a> </span>
+                            </td>
+                            <td> jsa3745$#$%lsdhf8347 </td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                <span> رد شده (به علت: صحیح نبودن اطلاعات هویتی) </span>
+                            </td>
+                            <td>
+                                <a href="main-profile.html" target="_blank" class="btn btn-warning"> ویرایش اطلاعات </a>
+                                <a href="main-reports.html" target="_blank" class="btn btn-secondary"> گزارش گیری تراکنش ها </a>
+                                <a href="main-wallet.html" target="_blank" class="btn btn-secondary"> گزارش گیری کیف پول </a>
+                                <a href="main-reception-requests.html" target="_blank" class="btn btn-secondary"> گزارش گیری پذیرش ها </a>
+                                <button class="btn btn-danger mx-1 remove-user"> حذف کاربر </button>
+                            </td>
+                            <td> 1 </td>
+                        </tr>
+                        <tr>
+                            <td class="d-flex justify-content-center align-items-center form-check">
+                                <input type="checkbox" class="form-check-input me-2 border border-dark">
+                                <label class="form-check-label"> 1 </label>
+                            </td>
+                            <td> jackson </td>
+                            <td> jackson2023 </td>
+                            <td> داروخانه دکتر عزیزی </td>
+                            <td> داروخانه </td>
+                            <td> 87326458 </td>
+                            <td> جکسون عزیزی </td>
+                            <td> مدیر </td>
+                            <td> 0987654321 </td>
+                            <td> 1234567890 </td>
+                            <td> 09123456789 </td>
+                            <td> 02112345678 </td>
+                            <td> تهران، سعادت آباد </td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                <span> 0 ریال | مسدود شده (به علت: نقض قوانین) </span>
+                                <button class="btn btn-success unblock-wallet mx-1"> رفع مسدودسازی کیف پول </button>
+                            </td>
+                            <td> IR123456789012345678901234 </td>
+                            <td> 1234567890123456 </td>
+                            <td> 12283476454 </td>
+                            <td> 3589375845764 </td>
+                            <td class="d-flex justify-content-center align-items-center" style="width: max-content">
+                                <form action="" method="post" class="d-flex justify-content-center align-items-center me-2 pe-2 border-end border-dark">
+                                    <input type="file" class="form-control me-2" style="width: 200px !important; height: max-content">
+                                    <input type="submit" class="btn btn-info" value="ویرایش اسناد">
+                                </form>
+                                <span> اسناد فعلی: <a href="#" class=""> document.docx </a> </span>
+                            </td>
+                            <td> jsa3745$#$%lsdhf8347 </td>
+                            <td class="d-flex justify-content-center align-items-center">
+                                <span> مسدود شده (به علت: نقض قوانین) </span>
+                                <button class="btn btn-success mx-1 unblock-user"> رفع مسدودسازی کاربر </button>
+                            </td>
+                            <td>
+                                <a href="main-profile.html" target="_blank" class="btn btn-warning"> ویرایش اطلاعات </a>
+                                <a href="main-reports.html" target="_blank" class="btn btn-secondary"> گزارش گیری تراکنش ها </a>
+                                <a href="main-wallet.html" target="_blank" class="btn btn-secondary"> گزارش گیری کیف پول </a>
+                                <a href="main-reception-requests.html" target="_blank" class="btn btn-secondary"> گزارش گیری پذیرش ها </a>
+                                <button class="btn btn-danger mx-1 remove-user"> حذف کاربر </button>
+                            </td>
+                            <td> 1 </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="main-assets/js/sorttable.js"></script>
+    <script src="main-assets/js/services.js"></script>
+    <script src="main-assets/js/tables.js"></script>
+</body>
+</html>
