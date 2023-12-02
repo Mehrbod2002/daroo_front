@@ -825,7 +825,7 @@ function login() {
         console.log(data.detail);
         window.localStorage.setItem("token", data.detail.token);
         window.location.replace(
-          "http://127.0.0.1:5500/daroo1/all/main-index.html"
+          "https://daroocard.com/main-index.html"
         );
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
