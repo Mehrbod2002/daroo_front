@@ -939,7 +939,7 @@ function logout() {
       if (request.status == 200 || request.status == 201) {
         localStorage.clear();
         window.location.replace(
-          "http://127.0.0.1:5500/daroo1/all/main-index.html"
+          "https://daroocard.com"
         );
       } else {
         $(".messagewrapper").fadeIn();
