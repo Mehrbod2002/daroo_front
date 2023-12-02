@@ -231,6 +231,72 @@ function activeSMS(val) {
     }
   }
 }
+// function activeSMS2(val) {
+//   // Show Message
+
+//   let errstatus = false;
+//   const errors = document.getElementById("errors");
+
+//   const cardNumber = document.querySelectorAll("#mobile");
+//   for (const el of cardNumber) {
+//     if (el.value.length !== 4 || /\D/.test(el.value)) {
+//       errors.innerHTML =
+//         "لطفا شماره ی  تلفن را به درستی (با اعداد انگلیسی) وارد کنید.";
+//       errstatus = false;
+//     } else {
+//       errstatus = true;
+//     }
+//   }
+//   if (errstatus) {
+//     val();
+//   }
+// }
+function smsregister() {
+  var url =
+    urldemo +
+    `/api/register/send/code/?phone_number=${
+      document.getElementById("mobile").value
+    }`;
+  try {
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>کد احراز هویت برای تلفن همراه شما ارسال شد.</span>";
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          msg = msg + `${key} : ${res[key]}<br>`;
+        });
+        if (msg) {
+          const errors = document.getElementById("errors");
+          errors.innerHTML = msg;
+          errors.className = errors.className.replace(
+            "text-success",
+            "text-danger"
+          );
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+    request.open("GET", url);
+
+    request.send();
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 function smsblock() {
   var url = urldemo + `/api/block/send/code/`;
@@ -707,7 +773,7 @@ function register() {
 
         console.log(response);
         $(".messagewrapper").fadeIn();
-        messageBox.innerHTML = `<span class='text-sm text-success'>Your registration was successful</span>`;
+        messageBox.innerHTML = `<span class='text-sm text-success'>ثبت نام شما با موفقیت انجام شد</span>`;
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -758,7 +824,9 @@ function login() {
         var data = JSON.parse(this.responseText);
         console.log(data.detail);
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace("https://daroocard.com/main-index.html");
+        window.location.replace(
+          "http://127.0.0.1:5500/daroo1/all/main-index.html"
+        );
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -870,7 +938,9 @@ function logout() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         localStorage.clear();
-        window.location.replace("https://daroocard.com/main-index.html");
+        window.location.replace(
+          "http://127.0.0.1:5500/daroo1/all/main-index.html"
+        );
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =

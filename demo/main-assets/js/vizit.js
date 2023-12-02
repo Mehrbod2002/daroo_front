@@ -1,4 +1,7 @@
 function getvizit() {
+  const searchparams = new URLSearchParams(window.location.search);
+  var urlpath = searchparams.get("id");
+  var urlpath2 = searchparams.get("centerid");
   var url = urldemo + `/api/vizit/`;
   try {
     const request = new XMLHttpRequest();
@@ -91,7 +94,7 @@ function getvizit() {
 getvizit();
 
 function acceptVisit(val) {
-  var url = urldemo + `/vizit/operation/accept/${val}/`;
+  var url = urldemo + `/api/vizit/operation/accept/${val}/`;
   try {
     const formData = new FormData();
     formData.append("id", val);
@@ -102,6 +105,7 @@ function acceptVisit(val) {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+        window.location.reload();
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
@@ -151,6 +155,7 @@ function sendVisit(val) {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+        window.location.reload();
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);

@@ -5,7 +5,7 @@ function getAdminUser() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
-
+        console.log(response);
         var html = "";
         response.forEach((key, index) => {
           var document = key.docs;
@@ -30,21 +30,19 @@ function getAdminUser() {
           <td>${key.mobile}</td>
           <td>${key.phone}</td>
           <td> ${key.address}</td>
-          <td class="d-flex justify-content-center align-items-center"  id="${
+          <td class="d-flex justify-content-center align-items-center" type="users" id="${
             key.id
           }">
-            <span> ${key.wallet_balance} ریال </span>
+            <span> ${key.wallet_balance}   ریال </span>
             ${
-              key.wallet_blocked
-                ? `<button class='btn btn-success unblock-wallet mx-1'> رفع مسدودسازی کیف پول </button>`
-                : `<button class="btn btn-secondary edit-wallet mx-1">
-            ویرایش موجودی کیف پول
-          </button>
-          <button class="btn btn-danger block-wallet mx-1">
-            مسدودسازی کیف پول
-          </button>`
+              key.wallet_blocked == "TRUE"
+                ? `| مسدود شده (به علت: ${
+                    key.wallet_reason_of_block ? key.wallet_reason_of_block : ""
+                  } )<button class='btn btn-success unblock-wallet mx-1'> رفع مسدودسازی کیف پول </button>`
+                : `<button class="btn btn-secondary edit-wallet mx-1">ویرایش موجودی کیف پول</button>
+                <button class="btn btn-danger block-wallet mx-1"> مسدودسازی کیف پول</button>`
             }
-        
+           
           </td>
           <td>${key.sheba}</td>
           <td>${key.card_number}</td>
@@ -144,7 +142,7 @@ function getAdminUser() {
         const transaction = document.querySelectorAll(".transaction-user");
         for (const el of transaction) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/main-reports.html?id=${el.getAttribute(
+            window.location.href = `http://127.0.0.1:5500/daroo1/all/main-reports.html?id=${el.getAttribute(
               "id"
             )}`;
           });
@@ -152,7 +150,7 @@ function getAdminUser() {
         const wallet = document.querySelectorAll(".wallet-user");
         for (const el of wallet) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/main-wallet.html?id=${el.getAttribute(
+            window.location.href = `http://127.0.0.1:5500/daroo1/all/main-wallet.html?id=${el.getAttribute(
               "id"
             )}`;
           });
@@ -160,7 +158,7 @@ function getAdminUser() {
         const profile = document.querySelectorAll(".profile-user");
         for (const el of profile) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/main-profile.html?id=${el.getAttribute(
+            window.location.href = `http://127.0.0.1:5500/daroo1/all/main-profile.html?id=${el.getAttribute(
               "id"
             )}`;
           });

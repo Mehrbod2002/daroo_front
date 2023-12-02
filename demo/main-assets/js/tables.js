@@ -150,7 +150,11 @@ try {
       });
     }
     function blockbalanceUser(val, el) {
-      var url = urldemo + `/api/admin/users/block/balance/${val}/`;
+      var url =
+        urldemo +
+        `/api/admin/${el.parentElement.getAttribute(
+          "type"
+        )}/block/balance/${val}/`;
       try {
         const formData = new FormData();
         formData.append("id", val);
@@ -204,7 +208,11 @@ try {
       });
     }
     function unblockbalanceUser(val, el) {
-      var url = urldemo + `/api/admin/users/unblock/balance/${val}/`;
+      var url =
+        urldemo +
+        `/api/admin/${el.parentElement.getAttribute(
+          "type"
+        )}/unblock/balance/${val}/`;
       try {
         const formData = new FormData();
         formData.append("id", val);
@@ -482,13 +490,50 @@ try {
     }
     for (const el of document.getElementsByClassName("block-user-final")) {
       el.addEventListener("click", function () {
-        this.parentElement.innerHTML =
-          "<span> مسدود شده (به علت: " +
-          this.parentElement.querySelector("textarea").value +
-          ") </span>" +
-          "<button class='btn btn-success mx-1 unblock-user'> رفع مسدودسازی کاربر </button>";
-        setUnblockUserEvent();
+        blockUser(el.parentElement.getAttribute("id"), el);
       });
+    }
+    function blockUser(val, el) {
+      var url = urldemo + `/api/admin/centers/block/user/${val}/`;
+      try {
+        const formData = new FormData();
+        formData.append(
+          "reason",
+          el.parentElement.querySelector("textarea").value
+        );
+        formData.append("id", val);
+        const request = new XMLHttpRequest();
+        request.onloadend = function () {
+          if (request.status == 200 || request.status == 201) {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+            el.parentElement.innerHTML =
+              "<span> مسدود شده (به علت: " +
+              el.parentElement.querySelector("textarea").value +
+              ") </span>" +
+              "<button class='btn btn-success mx-1 unblock-user'> رفع مسدودسازی کاربر </button>";
+            setUnblockUserEvent();
+          } else {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+          }
+          setTimeout(clearMessageBox, 1000);
+        };
+
+        request.onloadstart = function () {
+          $(".loader").fadeIn();
+        };
+        request.open("PATCH", url);
+        request.setRequestHeader(
+          "Authorization",
+          `Token ${localStorage.getItem("token")}`
+        );
+        request.send(formData);
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 } catch {}
@@ -630,7 +675,7 @@ try {
         var url = urldemo + `/api/admin/requests/delete/`;
         try {
           const formData = new FormData();
-          formData.append("list_id", JSON.stringify(list_id));
+          formData.append("list_id", list_id);
 
           const request = new XMLHttpRequest();
           request.onloadend = function () {
@@ -656,7 +701,7 @@ try {
             "Authorization",
             `Token ${localStorage.getItem("token")}`
           );
-          request.send(formData);
+          request.send(JSON.stringify(formData));
         } catch (error) {
           console.error(error);
         }
