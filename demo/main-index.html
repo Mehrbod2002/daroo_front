@@ -1,138 +1,262 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> دارو کارت </title>
-    <link rel="shortcut icon" href="assets/img/daroo-card.png" type="image/x-icon">
-    <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="main-assets/css/index-style.css">
-</head>
-<body dir="rtl">
-    <div class="container-fluid d-flex flex-column justify-content-between align-items-center">
-        <button class="menu-toggler border-0 bg-transparent" data-bs-toggle="offcanvas" data-bs-target="#menu">
-            <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" fill="#2dacdf" class="bi bi-list" viewBox="0 0 16 16">
-                <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>دارو کارت</title>
+    <link
+      rel="shortcut icon"
+      href="assets/img/daroo-card.png"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="main-assets/css/index-style.css" />
+  </head>
+  <body dir="rtl">
+    <div
+      class="container-fluid d-flex flex-column justify-content-between align-items-center"
+    >
+      <button
+        class="menu-toggler border-0 bg-transparent"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="43"
+          height="43"
+          fill="#2dacdf"
+          class="bi bi-list"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          />
+        </svg>
+      </button>
+      <section
+        class="offcanvas offcanvas-start menu my-sm-1 overflow-hidden"
+        id="menu"
+      >
+        <div class="offcanvas-header text-light">
+          <div class="d-flex align-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="white"
+              class="bi bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+              />
             </svg>
-        </button>
-        <section class="offcanvas offcanvas-start menu my-sm-1 overflow-hidden" id="menu">
-            <div class="offcanvas-header text-light">
-                <div class="d-flex align-items-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" class="bi bi-person-circle" viewBox="0 0 16 16">
-                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                    </svg>
-                    <h5 class="offcanvas-title ms-2 text-light"> خوش آمدید جکسون! </h5>
-                </div>
-                <button class="btn-close" data-bs-target="#menu" data-bs-toggle="offcanvas"></button>
-            </div>
-            <div class="offcanvas-body d-flex flex-column justify-content-between mx-auto">
-                <nav>
-                    <ul class="nav">
-                        <li class="nav-item"> <a class="nav-link" href="main-profile.html"> پروفایل </a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="main-reports.html"> گزارشات </a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="main-wallet.html"> کیف پول </a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="main-daroo-cards.html"> کارت ها </a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="main-facilities.html"> تسهیلات </a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="main-reception-requests.html"> پذیرش / دریافت </a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="https://daroocard.ir/dc/index.html" target="_blank"> دارو کارت </a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="main-support.html"> تیکت / پشتیبانی </a> </li>
-                        <li class="nav-item"> <a class="nav-link" href="https://daroocard.ir/Help%20Daroocard.pdf"> قوانین و ضوابط </a> </li>
-                    </ul>
-                </nav>
+            <h5 class="offcanvas-title ms-2 text-light">
+              خوش آمدید <span id="userName_box" class="text-light"></span> !
+            </h5>
+          </div>
+          <button
+            class="btn-close"
+            data-bs-target="#menu"
+            data-bs-toggle="offcanvas"
+          ></button>
+        </div>
+        <div
+          class="offcanvas-body d-flex flex-column justify-content-between mx-auto"
+        >
+          <nav>
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="main-profile.html"> پروفایل </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-reports.html"> گزارشات </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-wallet.html"> کیف پول </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-daroo-cards.html"> کارت ها </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-facilities.html"> تسهیلات </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-reception-requests.html">
+                  پذیرش / دریافت
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://daroocard.ir/dc/index.html"
+                  target="_blank"
+                >
+                  دارو کارت
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-support.html">
+                  تیکت / پشتیبانی
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="https://daroocard.ir/Help%20Daroocard.pdf"
+                >
+                  قوانین و ضوابط
+                </a>
+              </li>
+            </ul>
+          </nav>
 
-                <button onclick="logout()" class="btn btn-danger mx-auto p-2" style="width: max-content;"> خروج از حساب کاربری </button>
-            </div>
-        </section>
-        <main class="content w-100 h-100 text-center">
-            <!-- Logo -->
-            <a href="" class="logo">
-                <img src="assets/img/daroo-card.gif" alt="daroo-card">
-            </a>
-            <!-- Call-To-Action Button -->
-            <a href="main-signin.html" class="cta d-flex justify-content-between align-items-center rounded-3 px-1">
-                <img src="main-assets/img/daroo-card.png" alt="daroo-card">
-                <span> ورود به دارو کارت </span>
+          <button
+            onclick="logout()"
+            class="btn btn-danger mx-auto p-2"
+            style="width: max-content"
+          >
+            خروج از حساب کاربری
+          </button>
+        </div>
+      </section>
+      <main class="content w-100 h-100 text-center">
+        <!-- Logo -->
+        <a href="" class="logo">
+          <img src="assets/img/daroo-card.gif" alt="daroo-card" />
+        </a>
+        <!-- Call-To-Action Button -->
+        <a
+          href="main-signin.html"
+          class="cta d-flex justify-content-between align-items-center rounded-3 px-1"
+        >
+          <img src="main-assets/img/daroo-card.png" alt="daroo-card" />
+          <span> ورود به دارو کارت </span>
+        </a>
+        <!-- When user logged in : -->
+        <!--            <a href="main-profile.html" class="cta d-flex justify-content-between align-items-center rounded-3 px-1">-->
+        <!--                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#333333" class="bi bi-person-circle" viewBox="0 0 16 16">-->
+        <!--                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>-->
+        <!--                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>-->
+        <!--                </svg>-->
+        <!--                <span> ورود به پروفایل </span>-->
+        <!--            </a>-->
+        <!-- Bottom Boxes -->
+        <section
+          class="items d-flex justify-content-center align-items-center flex-wrap mb-5"
+        >
+          <div class="item rounded-3">
+            <a
+              href="main-signup.html"
+              class="d-flex flex-column justify-content-between align-items-center"
+            >
+              <img src="main-assets/img/signup.png" alt="signup daroo-card" />
+              <span> ثبت نام دارو کارت </span>
             </a>
             <!-- When user logged in : -->
-<!--            <a href="main-profile.html" class="cta d-flex justify-content-between align-items-center rounded-3 px-1">-->
-<!--                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#333333" class="bi bi-person-circle" viewBox="0 0 16 16">-->
-<!--                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>-->
-<!--                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>-->
-<!--                </svg>-->
-<!--                <span> ورود به پروفایل </span>-->
-<!--            </a>-->
-            <!-- Bottom Boxes -->
-            <section class="items d-flex justify-content-center align-items-center flex-wrap mb-5">
-                <div class="item rounded-3">
-                    <a href="main-signup.html" class="d-flex flex-column justify-content-between align-items-center">
-                        <img src="main-assets/img/signup.png" alt="signup daroo-card">
-                        <span> ثبت نام دارو کارت </span>
-                    </a>
-                    <!-- When user logged in : -->
-<!--                    <a href="main-wallet.html" class="d-flex flex-column justify-content-between align-items-center">-->
-<!--                        <img src="main-assets/img/wallet.png" alt="wallet">-->
-<!--                        <span> کیف پول </span>-->
-<!--                    </a>-->
-                </div>
-                <div class="item rounded-3">
-                    <a href="main-issuing-daroo-card.html" class="d-flex flex-column justify-content-between align-items-center">
-                        <img src="main-assets/img/daroo-card.png" alt="issuing daroo-card">
-                        <span> صدور دارو کارت </span>
-                    </a>
-                </div>
-                <div class="item rounded-3">
-                    <a href="main-inventory_increase.html" class="d-flex flex-column justify-content-between align-items-center">
-                        <img src="main-assets/img/inventory-increase.png" alt="inventory increase">
-                        <span> افزایش موجودی </span>
-                    </a>
-                </div>
-                <div class="item rounded-3">
-                    <a href="main-inventory_transfer.html" class="d-flex flex-column justify-content-between align-items-center">
-                        <img src="main-assets/img/inventory-transfer.png" alt="inventory transfer">
-                        <span> انتقال موجودی </span>
-                    </a>
-                </div>
-                <div class="item rounded-3">
-                    <a href="main-blocking.html" class="d-flex flex-column justify-content-between align-items-center">
-                        <img src="main-assets/img/blocking.png" alt="blocking">
-                        <span> مسدود سازی </span>
-                    </a>
-                </div>
-                <div class="item rounded-3">
-                    <a href="main-activation-sms.html" class="d-flex flex-column justify-content-between align-items-center">
-                        <img src="main-assets/img/sms.png" alt="sms">
-                        <span> فعال سازی پیامک </span>
-                    </a>
-                </div>
-            </section>
-        </main>
-        <!-- Bottom Information -->
-        <footer class="info text-center mb-2">
-            <address> تهران، ایران </address>
-            <span> 021-91002044 </span> <br>
-            <span> کپی رایت کپی رایت © 2023 <strong style="color: rgba(var(--dark-blue-color), 1)"> <a href="https://trustseal.enamad.ir/?id=198390&code=xNNRRYtOuvxEZEJLUVaj"> آبتین سلامت ایرانیان </a> </strong> تمامی حقوق محفوظ است </span>
-        </footer>
-        <div class="messagewrapper">
-            <div>
-              <div class="messageBox">
-                <p></p>
-                <button class="messageBtn btn btn-success">تایید</button>
-              </div>
-            </div>
+            <!--                    <a href="main-wallet.html" class="d-flex flex-column justify-content-between align-items-center">-->
+            <!--                        <img src="main-assets/img/wallet.png" alt="wallet">-->
+            <!--                        <span> کیف پول </span>-->
+            <!--                    </a>-->
           </div>
-          <div class="loader">
-            <span></span>
-            <span></span>
-            <span></span>
+          <div class="item rounded-3">
+            <a
+              href="main-issuing-daroo-card.html"
+              class="d-flex flex-column justify-content-between align-items-center"
+            >
+              <img
+                src="main-assets/img/daroo-card.png"
+                alt="issuing daroo-card"
+              />
+              <span> صدور دارو کارت </span>
+            </a>
           </div>
-          <div id="mask"></div>
+          <div class="item rounded-3">
+            <a
+              href="main-inventory_increase.html"
+              class="d-flex flex-column justify-content-between align-items-center"
+            >
+              <img
+                src="main-assets/img/inventory-increase.png"
+                alt="inventory increase"
+              />
+              <span> افزایش موجودی </span>
+            </a>
+          </div>
+          <div class="item rounded-3">
+            <a
+              href="main-inventory_transfer.html"
+              class="d-flex flex-column justify-content-between align-items-center"
+            >
+              <img
+                src="main-assets/img/inventory-transfer.png"
+                alt="inventory transfer"
+              />
+              <span> انتقال موجودی </span>
+            </a>
+          </div>
+          <div class="item rounded-3">
+            <a
+              href="main-blocking.html"
+              class="d-flex flex-column justify-content-between align-items-center"
+            >
+              <img src="main-assets/img/blocking.png" alt="blocking" />
+              <span> مسدود سازی </span>
+            </a>
+          </div>
+          <div class="item rounded-3">
+            <a
+              href="main-activation-sms.html"
+              class="d-flex flex-column justify-content-between align-items-center"
+            >
+              <img src="main-assets/img/sms.png" alt="sms" />
+              <span> فعال سازی پیامک </span>
+            </a>
+          </div>
+        </section>
+      </main>
+      <!-- Bottom Information -->
+      <footer class="info text-center mb-2">
+        <address>تهران، ایران</address>
+        <span> 021-91002044 </span> <br />
+        <span>
+          کپی رایت کپی رایت © 2023
+          <strong style="color: rgba(var(--dark-blue-color), 1)">
+            <a
+              href="https://trustseal.enamad.ir/?id=198390&code=xNNRRYtOuvxEZEJLUVaj"
+            >
+              آبتین سلامت ایرانیان
+            </a>
+          </strong>
+          تمامی حقوق محفوظ است
+        </span>
+      </footer>
+      <div class="messagewrapper">
+        <div>
+          <div class="messageBox">
+            <p></p>
+            <button class="messageBtn btn btn-success">تایید</button>
+          </div>
+        </div>
+      </div>
+      <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="mask"></div>
     </div>
-  
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="main-assets/js/services.js"></script>
-</body>
+  </body>
 </html>

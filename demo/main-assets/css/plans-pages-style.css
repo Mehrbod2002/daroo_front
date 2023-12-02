@@ -21,7 +21,11 @@ body {
   background-size: 200px;
   overflow: auto;
 }
-
+.remove-file {
+  background-color: #dc3545;
+  opacity: 0.9;
+  margin-right: 10px;
+}
 .container-fluid {
   padding: 0 !important;
   min-height: 100vh;

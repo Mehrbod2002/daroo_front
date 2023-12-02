@@ -12,6 +12,54 @@ $(".messageBtn").click(function () {
 function clearMessageBox() {
   $(" .loader ").fadeOut();
 }
+
+function getUser() {
+  var url = urldemo + `/api/user/info/`;
+  try {
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      console.log(request.status);
+      if (request.status == 200 || request.status == 201) {
+        var response = JSON.parse(this.responseText);
+        console.log(response);
+
+        try {
+          document.querySelector("#userName_box").innerHTML =
+            response[0].username;
+        } catch {}
+        try {
+          document.querySelector("section.items.d-flex").classList.add("mt-5");
+          document
+            .querySelector("section.items.d-flex>div:nth-of-type(1)")
+            .classList.add("d-none");
+        } catch {}
+        try {
+          document.querySelector("a.cta.d-flex").classList.add("d-none");
+        } catch {}
+      } else if (request.status == 401) {
+        try {
+          document
+            .querySelector(".menu-toggler.bg-transparent")
+            .classList.add("d-none");
+        } catch {}
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+    request.open("GET", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+    request.send();
+  } catch (error) {
+    console.error(error);
+  }
+}
+getUser();
 // General Form Controls & Other
 const allowedKeys = ["enter", "backspace", "tab"];
 
@@ -185,7 +233,7 @@ function activeSMS(val) {
 }
 
 function smsblock() {
-  var url = urldemo + `/block/send/code/`;
+  var url = urldemo + `/api/block/send/code/`;
   try {
     const formData = new FormData();
     const cardnums = document.querySelectorAll("#card-numbers input");
@@ -238,7 +286,7 @@ function smsblock() {
 }
 
 function forgetsms() {
-  var url = urldemo + `/forget/password/send/code/`;
+  var url = urldemo + `/api/forget/password/send/code/`;
   try {
     const formData = new FormData();
 
@@ -288,7 +336,7 @@ function forgetsms() {
 
 // Validate Form On Submit
 try {
-  document.querySelector("form").addEventListener("submit", function () {
+  document.querySelector("form").addEventListener("submit", function (event) {
     event.preventDefault();
     validate(event);
   });
@@ -498,6 +546,14 @@ function validate(event) {
       forget();
     } else if (act == "visitReq") {
       visitReq();
+    } else if (act == "increase") {
+      increase();
+    } else if (act == "profile") {
+      if (document.getElementById("user-type").selectedIndex === 0) {
+        patchProfile();
+      } else {
+        patchCenterProfile();
+      }
     }
   }
 }
@@ -546,21 +602,18 @@ if (confirmPassword !== undefined) {
 // Control Changing User Type Selection
 try {
   document.getElementById("user-type").selectedIndex = "0";
+  document.getElementById("profile").classList.replace("d-none", "d-block");
   document.getElementById("user-type").addEventListener("change", function () {
-    if (this.selectedIndex === 1) {
-      for (const el of document.querySelectorAll("main form>section.type2")) {
-        el.classList.replace("d-none", "d-flex");
-      }
-      for (const el of document.querySelectorAll("main form>section.type1")) {
-        el.classList.replace("d-flex", "d-none");
-      }
+    if (this.selectedIndex === 0) {
+      document.getElementById("profile").classList.replace("d-none", "d-block");
+      document
+        .getElementById("profile2")
+        .classList.replace("d-block", "d-none");
     } else {
-      for (const el of document.querySelectorAll("main form>section.type2")) {
-        el.classList.replace("d-flex", "d-none");
-      }
-      for (const el of document.querySelectorAll("main form>section.type1")) {
-        el.classList.replace("d-none", "d-flex");
-      }
+      document
+        .getElementById("profile2")
+        .classList.replace("d-none", "d-block");
+      document.getElementById("profile").classList.replace("d-block", "d-none");
     }
   });
 } catch {}
@@ -705,9 +758,6 @@ function login() {
         var data = JSON.parse(this.responseText);
         console.log(data.detail);
         window.localStorage.setItem("token", data.detail.token);
-        $(".messagewrapper").fadeIn();
-        messageBox.innerHTML =
-          "<span class='text-sm text-success'>شما با موفقیت وارد سایت شده اید</span>";
         window.location.replace("https://daroocard.com/main-index.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
@@ -743,6 +793,71 @@ function login() {
     console.error(error);
   }
 }
+function increase() {
+  var url = urldemo + `/api/increase/`;
+  try {
+    const formData = new FormData();
+    const cardnums = document.querySelectorAll("#card-numbers input");
+    var xx = "";
+    for (const el of cardnums) {
+      xx = xx + el.value;
+    }
+    formData.append(
+      "wallet_number",
+      document.getElementById("wallet-number").value
+    );
+    formData.append("daroo_card_number", xx);
+    formData.append("mablagh", document.getElementById("amount").value);
+    formData.append("dscription", document.getElementById("description").value);
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        var data = JSON.parse(this.responseText);
+        console.log(data.detail);
+        window.localStorage.setItem("token", data.detail.token);
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'> ئرخواست شما با موفقیت انجام شد </span>";
+      } else if (request.status == 400) {
+        const res = JSON.parse(request.response);
+        console.log(res);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          console.log(`${res[key]}`);
+          msg = msg + `${res[key]}<br>`;
+        });
+        if (msg) {
+          const errors = document.getElementById("errors");
+          errors.innerHTML = msg;
+          errors.className = errors.className.replace(
+            "text-success",
+            "text-danger"
+          );
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+
+    request.open("POST", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+    request.send(formData);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 // **************************** logout
 
 function logout() {
@@ -755,7 +870,7 @@ function logout() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         localStorage.clear();
-        window.location.replace("https://dwbank.org");
+        window.location.replace("https://daroocard.com/main-index.html");
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -1313,6 +1428,7 @@ function loan() {
     console.error(error);
   }
 }
+
 // **************************** cardInfo
 function cardInfo() {
   const searchParams = new URLSearchParams(window.location.search);
@@ -1538,7 +1654,7 @@ function forget() {
 
 // **************************** transfer
 function transfer() {
-  var url = urldemo + `/transfer/`;
+  var url = urldemo + `/api/transfer/`;
   try {
     const formData = new FormData();
     const cardnums = document.querySelectorAll("#card-numbers input");
