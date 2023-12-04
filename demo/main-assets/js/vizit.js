@@ -33,12 +33,21 @@ function getvizit() {
                 : ""
             }  </td>
             <td> ${key.dsc} </td>
-            <td> <button class="get-report btn btn-secondary p-2"> گزارش درخواست </button> </td>
+            <td> <button class="get-report btn btn-secondary p-2" id="${
+              key.id
+            }"> گزارش درخواست </button> </td>
         </tr>`;
           html = html + item;
         });
         document.querySelector("#reportsTable tbody").innerHTML = html;
         // +++
+        for (const el of document.querySelectorAll(".get-report")) {
+          el.addEventListener("click", function () {
+            window.open(
+              `./main-reception-report.html?q=${el.getAttribute("id")}`
+            );
+          });
+        }
         const accs = document.querySelectorAll(".acceptReqBtn");
         for (const el of accs) {
           el.addEventListener("click", function () {

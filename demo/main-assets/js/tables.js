@@ -39,20 +39,6 @@ function search(element) {
   }
 }
 
-// Set Click Event Function For Get Report Buttons (in reception requests page & facilities requests page)
-try {
-  for (const el of document.querySelectorAll(".get-report")) {
-    el.addEventListener("click", function () {
-      window.open("./main-reception-report.html");
-    });
-  }
-  for (const el of document.querySelectorAll(".get-report2")) {
-    el.addEventListener("click", function () {
-      window.open("./main-facility-report.html");
-    });
-  }
-} catch {}
-
 // Set Click Event Function For Pay Facility & Charge Wallet Buttons (in facilities page)
 try {
   for (const el of document.getElementsByClassName("pay-facility")) {
@@ -713,12 +699,11 @@ try {
     .item(0)
     .addEventListener("click", function () {
       var list_id = {};
-var i = 1
+      var i = 1;
       for (const el of document.querySelectorAll("#lastRequests tbody tr")) {
         if (el.firstElementChild.firstElementChild.checked) {
-         
-          list_id[`key${i}`] = el.getAttribute("id") ;
-          i++
+          list_id[`key${i}`] = el.getAttribute("id");
+          i++;
         }
       }
 

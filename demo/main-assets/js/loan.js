@@ -18,11 +18,16 @@ function getLoan() {
             <td> ${key.description}</td>
             <td>  ${key.state}</td>
             <td>  ${key.installment} </td>
-            <td> <button class="get-report2 btn btn-secondary p-2"> گزارش درخواست </button> </td>
+            <td> <button class="get-report2 btn btn-secondary p-2" id="${key.id}"> گزارش درخواست </button> </td>
         </tr>`;
           html = html + item;
         });
         document.querySelector("#reportsTable tbody").innerHTML = html;
+        for (const el of document.querySelectorAll(".get-report2")) {
+          el.addEventListener("click", function () {
+            window.open(`./main-facility-report.html?q=${el.getAttribute("id")}`);
+          });
+        }
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);

@@ -8,6 +8,7 @@
     <title> دارو کارت | گزارش درخواست تسهیلات </title>
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css">
     <link rel="stylesheet" href="main-assets/css/success-pages-style.css">
+    
     <link rel="shortcut icon" href="assets/img/daroo-card.png" type="image/x-icon">
 </head>
 <body>
@@ -23,35 +24,35 @@
                 <div class="mb-5">
                     <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
                         <span class="label"> نام و نام خانوادگی درخواست دهنده </span>
-                        <span class="value"> جکسون عزیزی </span>
+                        <span class="value valName">  </span>
                     </div>
                     <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
                         <span class="label"> تاریخ درخواست </span>
-                        <span class="value"> 26 آبان 1402 ساعت 15:00 </span>
+                        <span class="value valDtae"></span>
                     </div>
                     <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
                         <span class="label"> نوع وام </span>
-                        <span class="value"> درمانی </span>
+                        <span class="value valType">  </span>
                     </div>
                     <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
                         <span class="label"> مبلغ </span>
-                        <span class="value" dir="ltr"> 35,000,000 ریال </span>
+                        <span class="value " dir="ltr"> <span class="valMablagh"></span> ریال </span>
                     </div>
                     <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
                         <span class="label"> مدت بازپرداخت </span>
-                        <span class="value"> 20 ماه </span>
+                        <span class="value valpayment">   </span>
                     </div>
                     <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
                         <span class="label"> شماره پیگیری </span>
-                        <span class="value" dir="ltr"> 83765832 </span>
+                        <span class="value valTracking" dir="ltr">  </span>
                     </div>
                     <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
                         <span class="label"> وضعیت </span>
-                        <span class="value"> در جریان </span>
+                        <span class="value valStatus">   </span>
                     </div>
                     <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
                         <span class="label"> توضیحات </span>
-                        <span class="value"> افزایش موجودی کارت برای خرید دارو </span>
+                        <span class="value valDsc"> </span>
                     </div>
                 </div>
                 <div class="buttons d-flex flex-sm-row flex-column justify-content-between align-items-center">
@@ -70,10 +71,26 @@
                     </a>
                 </div>
             </section>
+            <div class="messagewrapper">
+                <div>
+                  <div class="messageBox">
+                    <p></p>
+                    <button class="messageBtn btn btn-success">تایید</button>
+                  </div>
+                </div>
+              </div>
+              <div class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div id="mask"></div>
         </main>
     </div>
     <script>
     </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="main-assets/js/services.js"></script>
+        <script src="main-assets/js/loanReport.js"></script>
 </body>
 </html>
