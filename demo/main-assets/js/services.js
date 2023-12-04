@@ -773,7 +773,7 @@ function register() {
         console.log(response);
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML = `<span class='text-sm text-success'>ثبت نام شما با موفقیت انجام شد</span>`;
-        window.location.replace("http://127.0.0.1:5500/main-signin.html");
+        window.location.replace("https://daroocard.com/main-signin.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -824,7 +824,7 @@ function login() {
         var data = JSON.parse(this.responseText);
         console.log(data.detail);
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace("http://127.0.0.1:5500/main-index.html");
+        window.location.replace("https://daroocard.com/main-index.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -944,7 +944,7 @@ function logout() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         localStorage.clear();
-        window.location.replace("http://127.0.0.1:5500/main-index.html");
+        window.location.replace("https://daroocard.com/main-index.html");
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -1353,7 +1353,7 @@ function visitReq() {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
         window.location.replace(
-          "http://127.0.0.1:5500/main-reception-requests.html"
+          "https://daroocard.com/main-reception-requests.html"
         );
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
@@ -1681,7 +1681,7 @@ function forget() {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace("http://127.0.0.1:5500/main-profile.html");
+        window.location.replace("https://daroocard.com/main-profile.html");
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
