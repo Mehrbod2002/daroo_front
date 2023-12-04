@@ -209,27 +209,28 @@ try {
 
 // Activate SMS (Show Message)
 function activeSMS(val) {
-  // Show Message
-  let errstatus = false;
-  const errors = document.getElementById("errors");
-  if (
-    document.querySelectorAll("#card-numbers input.form-control[disabled]")
-      .length === 0
-  ) {
-    const cardNumber = document.querySelectorAll("#card-numbers input");
-    for (const el of cardNumber) {
-      if (el.value.length !== 4 || /\D/.test(el.value)) {
-        errors.innerHTML =
-          "لطفا شماره ی دارو کارت را به درستی (با اعداد انگلیسی) وارد کنید.";
-        errstatus = false;
-      } else {
-        errstatus = true;
-      }
-    }
-    if (errstatus) {
-      val();
-    }
-  }
+  smsblock();
+  // // Show Message
+  // let errstatus = false;
+  // const errors = document.getElementById("errors");
+  // if (
+  //   document.querySelectorAll("#card-numbers input.form-control[disabled]")
+  //     .length === 0
+  // ) {
+  //   const cardNumber = document.querySelectorAll("#card-numbers input");
+  //   for (const el of cardNumber) {
+  //     if (el.value.length !== 4 || /\D/.test(el.value)) {
+  //       errors.innerHTML =
+  //         "لطفا شماره ی دارو کارت را به درستی (با اعداد انگلیسی) وارد کنید.";
+  //       errstatus = false;
+  //     } else {
+  //       errstatus = true;
+  //     }
+  //   }
+  //   if (errstatus) {
+  //     val();
+  //   }
+  // }
 }
 // function activeSMS2(val) {
 //   // Show Message
@@ -299,22 +300,30 @@ function smsregister() {
 }
 
 function smsblock() {
-  var url = urldemo + `/api/block/send/code/`;
-  try {
-    const formData = new FormData();
+  var xx = "";
+  if (document.getElementById("wallet-number-radio").checked) {
+    xx = document.getElementById("wallet-number").value;
+  } else {
     const cardnums = document.querySelectorAll("#card-numbers input");
-    var xx = "";
+
     for (const el of cardnums) {
       xx = xx + el.value;
     }
-    formData.append("number", xx);
+  }
+  console.log(xx);
+  var url = urldemo + `/api/block/send/code/?number=${xx}`;
+  try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>کد احراز هویت برای تلفن همراه شما ارسال شد.</span>";
-      } else if (request.status == 400 || request.status == 403) {
+      } else if (
+        request.status == 400 ||
+        request.status == 403 ||
+        request.status == 404
+      ) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
         let msg = "";
@@ -322,7 +331,7 @@ function smsblock() {
           msg = msg + `${key} : ${res[key]}<br>`;
         });
         if (msg) {
-          const errors = document.getElementById("supportErrors");
+          const errors = document.getElementById("errors");
           errors.innerHTML = msg;
           errors.className = errors.className.replace(
             "text-success",
@@ -340,23 +349,24 @@ function smsblock() {
     request.onloadstart = function () {
       $(".loader").fadeIn();
     };
-    request.open("POST", url);
+    request.open("GET", url);
     request.setRequestHeader(
       "Authorization",
       `Token ${localStorage.getItem("token")}`
     );
-    request.send(formData);
+    request.send();
   } catch (error) {
     console.error(error);
   }
 }
 
 function forgetsms() {
-  var url = urldemo + `/api/forget/password/send/code/`;
+  var url =
+    urldemo +
+    `/api/forget/password/send/code/?phone_number=${
+      document.querySelector("#mobile").value
+    }`;
   try {
-    const formData = new FormData();
-
-    formData.append("phone_number ", document.querySelector("#mobile"));
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
@@ -389,12 +399,9 @@ function forgetsms() {
     request.onloadstart = function () {
       $(".loader").fadeIn();
     };
-    request.open("POST", url);
-    request.setRequestHeader(
-      "Authorization",
-      `Token ${localStorage.getItem("token")}`
-    );
-    request.send(formData);
+    request.open("GET", url);
+
+    request.send();
   } catch (error) {
     console.error(error);
   }
@@ -402,10 +409,12 @@ function forgetsms() {
 
 // Validate Form On Submit
 try {
-  document.querySelector("form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    validate(event);
-  });
+  document
+    .querySelector("form:not(.profileForm)")
+    .addEventListener("submit", function (event) {
+      event.preventDefault();
+      validate(event);
+    });
 } catch {}
 function validate(event) {
   let message = "";
@@ -614,24 +623,10 @@ function validate(event) {
       visitReq();
     } else if (act == "increase") {
       increase();
-    } else if (act == "profile") {
-      if (document.getElementById("user-type").selectedIndex === 0) {
-        patchProfile();
-      } else {
-        patchCenterProfile();
-      }
     }
   }
 }
 
-try {
-  var act = document.querySelector("form").getAttribute("type");
-
-  if (act == "profile") {
-    getCenterProfile();
-    getProfile();
-  }
-} catch {}
 // Print Page
 try {
   document.querySelector(".print").addEventListener("click", function () {
@@ -824,9 +819,7 @@ function login() {
         var data = JSON.parse(this.responseText);
         console.log(data.detail);
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace(
-          "https://daroocard.com/main-index.html"
-        );
+        window.location.replace("https://daroocard.com/main-index.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -865,17 +858,25 @@ function increase() {
   var url = urldemo + `/api/increase/`;
   try {
     const formData = new FormData();
-    const cardnums = document.querySelectorAll("#card-numbers input");
     var xx = "";
-    for (const el of cardnums) {
-      xx = xx + el.value;
+    if (document.getElementById("wallet-number-radio").checked) {
+      formData.append(
+        "wallet_number",
+        document.getElementById("wallet-number").value
+      );
+    } else {
+      const cardnums = document.querySelectorAll("#card-numbers input");
+
+      for (const el of cardnums) {
+        xx = xx + el.value;
+      }
+      formData.append("daroo_card_number", xx);
     }
+
     formData.append(
-      "wallet_number",
-      document.getElementById("wallet-number").value
+      "mablagh",
+      document.getElementById("amount").value.replaceAll(",", "")
     );
-    formData.append("daroo_card_number", xx);
-    formData.append("mablagh", document.getElementById("amount").value);
     formData.append("dscription", document.getElementById("description").value);
     const request = new XMLHttpRequest();
     request.onloadend = function () {
@@ -938,9 +939,7 @@ function logout() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         localStorage.clear();
-        window.location.replace(
-          "https://daroocard.com"
-        );
+        window.location.replace("https://daroocard.com/main-index.html");
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -1022,6 +1021,59 @@ function changePass() {
 }
 
 // **************************** support
+
+function supportfile(event) {
+  event.preventDefault();
+  var url = urldemo + `/api/support/add/doc/`;
+  try {
+    const formData = new FormData();
+    const fileInput = document.getElementById("file");
+    formData.append("document", fileInput.files[0]);
+
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>پیام شما با موفقیت ارسال شد</span>";
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          msg = msg + `${key} : ${res[key]}<br>`;
+        });
+        if (msg) {
+          const errors = document.getElementById("errors");
+          errors.innerHTML = msg;
+          errors.className = errors.className.replace(
+            "text-success",
+            "text-danger"
+          );
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+    request.open("POST", url, true);
+    // request.setRequestHeader("Content-Type", "multipart/form-data");
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+
+    request.send(formData);
+  } catch (error) {
+    console.error(error);
+  }
+}
 function support() {
   var url = urldemo + `/api/support/`;
   try {
@@ -1073,11 +1125,25 @@ function support() {
 }
 
 // **************************** center profile
-function patchCenterProfile() {
-  var url = urldemo + `/api/center/profile/`;
+function patchCenterProfile(event) {
+  event.preventDefault();
+  const searchparams = new URLSearchParams(window.location.search);
+  var urlpath = searchparams.get("userid");
+  var urlpath2 = searchparams.get("centerid");
+  if (urlpath) {
+    var xx = `/api/admin/users/edit/profile/${urlpath}/`;
+  } else if (urlpath2) {
+    var xx = `/api/admin/centers/edit/profile/${urlpath}/`;
+  } else {
+    var xx = `/api/center/profile/${document
+      .querySelector("#profile2")
+      .getAttribute("formid")}/`;
+  }
+  var url = urldemo + xx;
   try {
     const formData = new FormData();
-    formData.append("role", document.getElementById("user-position2").value);
+
+    formData.append("role", document.getElementById("user-type").value);
     formData.append("phone", document.getElementById("phone2").value);
     formData.append(
       "national_id",
@@ -1093,28 +1159,32 @@ function patchCenterProfile() {
       "account_number",
       document.getElementById("account-number2").value
     );
-    formData.append("name", document.getElementById("office-name2").value);
-    // formData.append(
-    //   "pepresentative_position",
-    //   document.getElementById("username").value
-    // );
+    formData.append("name", document.getElementById("name2").value);
     formData.append(
       "postal_code",
       document.getElementById("postal-code2").value
     );
     formData.append(
+      "pepresentative_position",
+      document.getElementById("user-position2").value
+    );
+    formData.append(
+      "center_name",
+      document.getElementById("user-position2").value
+    );
+    formData.append(
       "center_type",
-      document.getElementById("#office-type2").value
+      document.getElementById("office-type2").value
     );
     formData.append(
       "center_code",
-      document.getElementById("center_code").value
+      document.getElementById("office-code2").value
     );
     formData.append(
       "economy_code",
       document.getElementById("tracking-code2").value
     );
-    formData.append("password", document.getElementById("password").value);
+    formData.append("password", document.getElementById("password2").value);
 
     const request = new XMLHttpRequest();
     request.onloadend = function () {
@@ -1123,8 +1193,7 @@ function patchCenterProfile() {
 
         console.log(response);
         $(".messagewrapper").fadeIn();
-        messageBox.innerHTML = `<span class='text-sm text-success'>Your registration was successful</span>`;
-        window.location.replace("https://dwbank.org/act/my-account.html");
+        messageBox.innerHTML = `<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>`;
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -1153,86 +1222,37 @@ function patchCenterProfile() {
     request.onloadstart = function () {
       $(".loader").fadeIn();
     };
-    request.open("POST", url);
-    // request.setRequestHeader("Content-Type", "application/json");
-    // request.setRequestHeader("Access-Control-Allow-Origin", "*");
+    request.open("PATCH", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
     request.send(formData);
   } catch (error) {
     console.error(error);
   }
 }
-function getCenterProfile() {
-  var url = urldemo + `/api/center/profile/`;
-  try {
-    const request = new XMLHttpRequest();
-    request.onloadend = function () {
-      if (request.status == 200 || request.status == 201) {
-        var response = JSON.parse(this.responseText);
 
-        console.log(response[0]);
-        document.querySelector("#user-position2").value = response[0].role;
-        document.querySelector("#phone2").value = response[0].phone;
-        document.querySelector("#national-code2").value =
-          response[0].national_id;
-        document.querySelector("#address2").value = response[0].address;
-        document.querySelector("#shaba2").value = response[0].sheba;
-        document.querySelector("#card-number2").value = response[0].card_number;
-        document.querySelector("#account-number2").value =
-          response[0].account_number;
-        document.querySelector("#office-name2").value = response[0].name;
-        document.querySelector("#mobile2").value = response[0].mobile;
-        document.querySelector("#name2").value = response[0].name;
-        document.querySelector("#username2").value = response[0].username;
-        // document.querySelector("#firstName").value =
-        //   response[0].pepresentative_position;
-        document.querySelector("#postal-code2").value = response[0].postal_code;
-        document.querySelector("#office-type2").value = response[0].center_type;
-        document.querySelector("#office-code2").value = response[0].center_code;
-        document.querySelector("#tracking-code2").value =
-          response[0].economy_code;
-      } else if (request.status == 400) {
-        const res = JSON.parse(request.response);
-        console.log(res);
-        const keys = Object.keys(res);
-        let msg = "";
-        keys.forEach((key, index) => {
-          console.log(`${res[key]}`);
-          msg = msg + `${res[key]}<br>`;
-        });
-        if (msg) {
-          const errors = document.getElementById("errors");
-          errors.innerHTML = msg;
-          errors.className = errors.className.replace(
-            "text-success",
-            "text-danger"
-          );
-        }
-      } else {
-        $(".messagewrapper").fadeIn();
-        messageBox.innerHTML =
-          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
-      }
-      setTimeout(clearMessageBox, 1000);
-    };
-
-    request.onloadstart = function () {
-      $(".loader").fadeIn();
-    };
-    request.open("GET", url);
-    request.setRequestHeader(
-      "Authorization",
-      `Token ${localStorage.getItem("token")}`
-    );
-    request.send();
-  } catch (error) {
-    console.error(error);
+function patchProfile(event) {
+  const searchparams = new URLSearchParams(window.location.search);
+  var urlpath = searchparams.get("userid");
+  var urlpath2 = searchparams.get("centerid");
+  if (urlpath) {
+    var xx = `/api/admin/users/edit/profile/${urlpath}/`;
+  } else if (urlpath2) {
+    var xx = `/api/admin/centers/edit/profile/${urlpath}/`;
+  } else {
+    var xx = `/api/center/profile/${document
+      .querySelector("#profile")
+      .getAttribute("formid")}/`;
   }
-}
-function patchProfile() {
-  var url = urldemo + `/api/profile/`;
+  var url = urldemo + xx;
+  console.log(xx);
+  event.preventDefault();
+
   try {
     const formData = new FormData();
-    formData.append("role", document.getElementById("user-position").value);
+    formData.append("role", document.getElementById("user-type").value);
     formData.append("phone", document.getElementById("phone").value);
     formData.append(
       "national_id",
@@ -1248,23 +1268,9 @@ function patchProfile() {
       "account_number",
       document.getElementById("account-number").value
     );
-    formData.append("name", document.getElementById("office-name").value);
-    formData.append(
-      "postal_code",
-      document.getElementById("postal-code").value
-    );
-    formData.append(
-      "center_type",
-      document.getElementById("#office-type").value
-    );
-    formData.append(
-      "center_code",
-      document.getElementById("center_code").value
-    );
-    formData.append(
-      "economy_code",
-      document.getElementById("tracking-code").value
-    );
+
+    formData.append("name", document.getElementById("name").value);
+
     formData.append("password", document.getElementById("password").value);
 
     const request = new XMLHttpRequest();
@@ -1274,8 +1280,7 @@ function patchProfile() {
 
         console.log(response);
         $(".messagewrapper").fadeIn();
-        messageBox.innerHTML = `<span class='text-sm text-success'>Your registration was successful</span>`;
-        window.location.replace("https://dwbank.org/act/my-account.html");
+        messageBox.innerHTML = `<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>`;
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -1304,69 +1309,12 @@ function patchProfile() {
     request.onloadstart = function () {
       $(".loader").fadeIn();
     };
-    request.open("POST", url);
-    // request.setRequestHeader("Content-Type", "application/json");
-    // request.setRequestHeader("Access-Control-Allow-Origin", "*");
-    request.send(formData);
-  } catch (error) {
-    console.error(error);
-  }
-}
-function getProfile() {
-  var url = urldemo + `/api/profile/`;
-  try {
-    const request = new XMLHttpRequest();
-    request.onloadend = function () {
-      if (request.status == 200 || request.status == 201) {
-        var response = JSON.parse(this.responseText);
-
-        console.log(response[0]);
-        // document.querySelector("#user-position").value = response[0].role;
-        document.querySelector("#phone").value = response[0].phone;
-        document.querySelector("#national-code").value =
-          response[0].national_id;
-        document.querySelector("#address").value = response[0].address;
-        document.querySelector("#shaba").value = response[0].sheba;
-        document.querySelector("#card-number").value = response[0].card_number;
-        document.querySelector("#account-number").value =
-          response[0].account_number;
-        document.querySelector("#name").value = response[0].name;
-        document.querySelector("#mobile").value = response[0].mobile;
-        document.querySelector("#username").value = response[0].username;
-      } else if (request.status == 400) {
-        const res = JSON.parse(request.response);
-        console.log(res);
-        const keys = Object.keys(res);
-        let msg = "";
-        keys.forEach((key, index) => {
-          console.log(`${res[key]}`);
-          msg = msg + `${res[key]}<br>`;
-        });
-        if (msg) {
-          const errors = document.getElementById("errors");
-          errors.innerHTML = msg;
-          errors.className = errors.className.replace(
-            "text-success",
-            "text-danger"
-          );
-        }
-      } else {
-        $(".messagewrapper").fadeIn();
-        messageBox.innerHTML =
-          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
-      }
-      setTimeout(clearMessageBox, 1000);
-    };
-
-    request.onloadstart = function () {
-      $(".loader").fadeIn();
-    };
-    request.open("GET", url);
+    request.open("PATCH", url);
     request.setRequestHeader(
       "Authorization",
       `Token ${localStorage.getItem("token")}`
     );
-    request.send();
+    request.send(formData);
   } catch (error) {
     console.error(error);
   }
@@ -1549,14 +1497,46 @@ function cardInfo() {
     console.error(error);
   }
 }
-
+function changeOption(senderEl, parentClass) {
+  let activeEl;
+  let disableEl;
+  for (const element of document.querySelectorAll(
+    "." + parentClass + " input[type=radio]"
+  )) {
+    if (element.checked) {
+      activeEl = element;
+    } else {
+      disableEl = element;
+    }
+  }
+  activeEl.parentElement.nextElementSibling.removeAttribute("disabled");
+  disableEl.parentElement.nextElementSibling.setAttributeNode(
+    document.createAttribute("disabled")
+  );
+  try {
+    for (const el of activeEl.parentElement.nextElementSibling.children) {
+      el.removeAttribute("disabled");
+    }
+  } catch {}
+  try {
+    for (const el of disableEl.parentElement.nextElementSibling.children) {
+      el.setAttributeNode(document.createAttribute("disabled"));
+    }
+  } catch {}
+}
 // **************************** sms
 function sms() {
-  const cardnums = document.querySelectorAll("#card-numbers input");
   var xx = "";
-  for (const el of cardnums) {
-    xx = xx + el.value;
+  if (document.getElementById("wallet-number-radio").checked) {
+    xx = document.getElementById("wallet-number").value;
+  } else {
+    const cardnums = document.querySelectorAll("#card-numbers input");
+
+    for (const el of cardnums) {
+      xx = xx + el.value;
+    }
   }
+  console.log(xx);
   var url = urldemo + `/api/active/sms/${xx}/`;
   try {
     const formData = new FormData();
@@ -1611,11 +1591,17 @@ function sms() {
 
 // **************************** block
 function block() {
-  const cardnums = document.querySelectorAll("#card-numbers input");
   var xx = "";
-  for (const el of cardnums) {
-    xx = xx + el.value;
+  if (document.getElementById("wallet-number-radio").checked) {
+    xx = document.getElementById("wallet-number").value;
+  } else {
+    const cardnums = document.querySelectorAll("#card-numbers input");
+
+    for (const el of cardnums) {
+      xx = xx + el.value;
+    }
   }
+  console.log(xx);
   var url = urldemo + `/api/block/card/${xx}/`;
   try {
     const formData = new FormData();
@@ -1681,10 +1667,13 @@ function forget() {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
-        console.log(request.response);
+        var data = JSON.parse(this.responseText);
+        console.log(data.detail);
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+        window.localStorage.setItem("token", data.detail.token);
+        window.location.replace("https://daroocard.com/main-profile.html");
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
@@ -1712,10 +1701,7 @@ function forget() {
       $(".loader").fadeIn();
     };
     request.open("POST", url);
-    request.setRequestHeader(
-      "Authorization",
-      `Token ${localStorage.getItem("token")}`
-    );
+
     request.send(formData);
   } catch (error) {
     console.error(error);
@@ -1727,22 +1713,29 @@ function transfer() {
   var url = urldemo + `/api/transfer/`;
   try {
     const formData = new FormData();
-    const cardnums = document.querySelectorAll("#card-numbers input");
     var xx = "";
-    for (const el of cardnums) {
-      xx = xx + el.value;
-    }
-    formData.append(
-      "from_wallet_number",
-      document.getElementById("wallet-number").value
-    );
-    formData.append("from_daroo_card_number", xx);
+    if (document.getElementById("wallet-number-radio").checked) {
+      formData.append(
+        "from_wallet_number",
+        document.getElementById("wallet-number").value
+      );
+    } else {
+      const cardnums = document.querySelectorAll("#card-numbers input");
 
-    formData.append(
-      "to_wallet_number",
-      document.getElementById("target-wallet-number").value
-    );
-    formData.append("sheba", document.getElementById("shaba").value);
+      for (const el of cardnums) {
+        xx = xx + el.value;
+      }
+      formData.append("from_daroo_card_number", xx);
+    }
+    if (document.getElementById("target-wallet-number-radio").checked) {
+      formData.append(
+        "to_wallet_number",
+        document.getElementById("target-wallet-number").value
+      );
+    } else {
+      formData.append("sheba", document.getElementById("shaba").value);
+    }
+
     formData.append(
       "mablagh",
       document.getElementById("amount").value.replaceAll(",", "")

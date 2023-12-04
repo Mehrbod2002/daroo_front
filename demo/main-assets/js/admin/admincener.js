@@ -69,7 +69,7 @@ function getAdminUser() {
               </span>
             </td>
             <td>${key.sign}</td>
-            <td class="d-flex justify-content-center align-items-center" id="${
+            <td type="centers" class="d-flex justify-content-center align-items-center" id="${
               key.id
             }">
             ${
@@ -95,13 +95,14 @@ function getAdminUser() {
             ${
               key.user_is_blocked == true && key.user_is_verified == true
                 ? `  <span> مسدود شده </span>
+                | مسدود شده (به علت: ${key.reason_of_block} )
                 <button class="btn btn-success mx-1 unblock-user" id="${key.id}">
                   رفع مسدودسازی کاربر
                 </button>`
                 : ""
             }
             </td>
-            <td id="${key.id}">
+            <td id="${key.id}" type="centers">
               
             <button  class="btn btn-info profile-user"  id="${key.id}">
             ویرایش اطلاعات
@@ -144,12 +145,7 @@ function getAdminUser() {
             unblockUser(el.getAttribute("id"));
           });
         }
-        const eject = document.querySelectorAll(".eject-user");
-        for (const el of eject) {
-          el.addEventListener("click", function () {
-            ejectUser(el.getAttribute("id"));
-          });
-        }
+
         const accept = document.querySelectorAll(".accept-user");
         for (const el of accept) {
           el.addEventListener("click", function () {
@@ -160,7 +156,7 @@ function getAdminUser() {
         const reception = document.querySelectorAll(".reception-user");
         for (const el of reception) {
           el.addEventListener("click", function () {
-            window.location.href = `http://127.0.0.1:5500/daroo1/all/main-reception-requests.html?centerid=${el.getAttribute(
+            window.location.href = `https://daroocard.com/main-reception-requests.html?centerid=${el.getAttribute(
               "id"
             )}`;
           });
@@ -168,7 +164,7 @@ function getAdminUser() {
         const transaction = document.querySelectorAll(".transaction-user");
         for (const el of transaction) {
           el.addEventListener("click", function () {
-            window.location.href = `http://127.0.0.1:5500/daroo1/all/main-reports.html?centerid=${el.getAttribute(
+            window.location.href = `https://daroocard.com/main-reports.html?centerid=${el.getAttribute(
               "id"
             )}`;
           });
@@ -176,7 +172,7 @@ function getAdminUser() {
         const wallet = document.querySelectorAll(".wallet-user");
         for (const el of wallet) {
           el.addEventListener("click", function () {
-            window.location.href = `http://127.0.0.1:5500/daroo1/all/main-wallet.html?centerid=${el.getAttribute(
+            window.location.href = `https://daroocard.com/main-wallet.html?centerid=${el.getAttribute(
               "id"
             )}`;
           });
@@ -184,7 +180,7 @@ function getAdminUser() {
         const profile = document.querySelectorAll(".profile-user");
         for (const el of profile) {
           el.addEventListener("click", function () {
-            window.location.href = `http://127.0.0.1:5500/daroo1/all/main-profile.html?centerid=${el.getAttribute(
+            window.location.href = `https://daroocard.com/main-profile.html?centerid=${el.getAttribute(
               "id"
             )}`;
           });
@@ -195,6 +191,7 @@ function getAdminUser() {
         setUnblockWalletEvent();
         setRemoveUserEvent();
         setBlockUserEvent();
+        setAcceptEjectUserEvents();
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -271,40 +268,6 @@ function unblockUser(val) {
   }
 }
 
-function ejectUser(val) {
-  var url = urldemo + `/api/admin/centers/unverify/user/${val}/`;
-  try {
-    const formData = new FormData();
-    formData.append("id", val);
-    const request = new XMLHttpRequest();
-    request.onloadend = function () {
-      if (request.status == 200 || request.status == 201) {
-        console.log(request.response);
-        $(".messagewrapper").fadeIn();
-        messageBox.innerHTML =
-          "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
-        getAdminUser();
-      } else {
-        $(".messagewrapper").fadeIn();
-        messageBox.innerHTML =
-          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
-      }
-      setTimeout(clearMessageBox, 1000);
-    };
-
-    request.onloadstart = function () {
-      $(".loader").fadeIn();
-    };
-    request.open("PATCH", url);
-    request.setRequestHeader(
-      "Authorization",
-      `Token ${localStorage.getItem("token")}`
-    );
-    request.send(formData);
-  } catch (error) {
-    console.error(error);
-  }
-}
 function acceptUser(val) {
   var url = urldemo + `/api/admin/centers/verify/user/${val}/`;
   try {
@@ -418,6 +381,17 @@ function editfilefun(val) {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
         getAdminUser();
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          msg = msg + `${key} : ${res[key]}<br>`;
+        });
+        if (msg) {
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
+        }
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =

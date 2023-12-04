@@ -169,6 +169,7 @@
             </label>
             <input type="text" class="form-control" id="title" />
           </section>
+
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
           >
@@ -182,6 +183,30 @@
             ></textarea>
           </section>
           <input type="submit" value="ارسال تیکت" class="btn btn-light" />
+          <p
+            class="form-text text-danger text-center fw-bolder"
+            id="errors"
+          ></p>
+        </form>
+
+        <form
+          type="supportfile"
+          onsubmit="return  supportfile(event)"
+          method="POST"
+          enctype="multipart/form-data"
+          name="supportfile-form"
+          class="w-100 px-4 mt-3 text-end"
+        >
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+          >
+            <label for="file" class="form-label text-sm-end text-start pe-3">
+              سند
+            </label>
+            <input type="file" class="form-control" id="file" />
+          </section>
+
+          <input type="submit" value="ارسال سند" class="btn btn-light" />
           <p
             class="form-text text-danger text-center fw-bolder"
             id="errors"

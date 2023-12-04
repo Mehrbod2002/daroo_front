@@ -148,17 +148,17 @@
               نقش کاربر
             </label>
             <select class="left-group form-select" id="user-type">
-              <option selected>کاربر عادی</option>
-              <option>مراکز (پذیرنده)</option>
+              <option value="REAL" selected>کاربر عادی</option>
+              <option value="CENTER">مراکز (پذیرنده)</option>
             </select>
           </section>
         </div>
         <form
           type="profile"
+          onsubmit="return  patchProfile(event)"
           id="profile"
-          method="POST"
           name="profile-form"
-          class="w-100 px-4 mt-3 text-end d-none"
+          class="w-100 px-4 profileForm mt-3 text-end d-none"
         >
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
@@ -166,12 +166,7 @@
             <label for="name" class="form-label text-sm-end text-start pe-3">
               نام و نام خانوادگی
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="name"
-              value="جکسون عزیزی"
-            />
+            <input type="text" class="form-control" id="name" value="" />
           </section>
 
           <section
@@ -187,7 +182,7 @@
               type="text"
               class="form-control"
               id="national-code"
-              value="1234567890"
+              value=""
               dir="ltr"
               disabled
             />
@@ -205,7 +200,7 @@
               maxlength="11"
               class="form-control"
               id="mobile"
-              value="09123456780"
+              value=""
               dir="ltr"
               disabled
             />
@@ -223,7 +218,7 @@
               maxlength="11"
               class="form-control"
               id="phone"
-              value="03112345678"
+              value=""
               dir="ltr"
               disabled
             />
@@ -234,12 +229,7 @@
             <label for="address" class="form-label text-sm-end text-start pe-3">
               آدرس
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="address"
-              value="تهران، سعادت آباد"
-            />
+            <input type="text" class="form-control" id="address" value="" />
           </section>
 
           <section
@@ -256,7 +246,7 @@
                 class="form-control rounded-end-0"
                 id="shaba"
                 dir="ltr"
-                value="983247538783287638760923"
+                value=""
               />
               <span class="fs-5 bg-secondary-subtle px-2 rounded-end pt-2"
                 >IR</span
@@ -278,7 +268,7 @@
               maxlength="16"
               class="form-control"
               id="card-number"
-              value="3984590234533499"
+              value=""
               dir="ltr"
             />
           </section>
@@ -297,7 +287,7 @@
               maxlength="24"
               class="form-control"
               id="account-number"
-              value="32452345808"
+              value=""
               dir="ltr"
             />
           </section>
@@ -311,15 +301,10 @@
             >
               نام کاربری
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="username"
-              value="jackson"
-            />
+            <input type="text" class="form-control" id="username" value="" />
           </section>
           <section
-            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+            class="d-flex requestRemove flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
           >
             <label
               for="password"
@@ -331,26 +316,10 @@
               type="password"
               class="form-control"
               id="password"
-              value="sjdhf234"
-            />
-          </section>
-          <section
-            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
-          >
-            <label
-              for="confirm-password"
-              class="form-label text-sm-end text-start pe-3"
-            >
-              تایید رمز عبور
-            </label>
-            <input
-              type="password"
-              class="form-control"
-              id="confirm-password"
               value=""
-              disabled
             />
           </section>
+
           <!-- +++++++++++++++ -->
           <input type="submit" value="ویرایش اطلاعات" class="btn btn-light" />
           <p
@@ -361,9 +330,7 @@
           <hr />
           <section class="text-center">
             <span class="fw-bold"> اسناد: </span>
-            <a href="#" class="fw-bold" id="documents">
-              جهت دانلود اسناد کلیک کنید.
-            </a>
+            <div id="filebox"></div>
           </section>
           <hr />
           <section class="digital-sign">
@@ -413,10 +380,10 @@
 
         <form
           type="profile2"
+          onsubmit="return patchCenterProfile(event)"
           id="profile2"
-          method="POST"
           name="profile-form"
-          class="w-100 px-4 mt-3 text-end d-none"
+          class="w-100 px-4 mt-3 profileForm text-end d-none"
         >
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type4"
@@ -431,7 +398,7 @@
               type="text"
               class="form-control"
               id="office-name2"
-              value="داروخانه ی دکتر عزیزی"
+              value=""
             />
           </section>
           <section
@@ -440,12 +407,7 @@
             <label for="name2" class="form-label text-sm-end text-start pe-3">
               نام و نام خانوادگی
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="name2"
-              value="جکسون عزیزی"
-            />
+            <input type="text" class="form-control" id="name2" value="" />
           </section>
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type4"
@@ -460,7 +422,7 @@
               type="text"
               class="form-control"
               id="user-position2"
-              value="مدیر"
+              value=""
             />
           </section>
           <section
@@ -476,7 +438,7 @@
               type="text"
               class="form-control"
               id="national-code2"
-              value="1234567890"
+              value=""
               dir="ltr"
               disabled
             />
@@ -494,7 +456,7 @@
               maxlength="11"
               class="form-control"
               id="mobile2"
-              value="09123456780"
+              value=""
               dir="ltr"
               disabled
             />
@@ -512,7 +474,7 @@
               maxlength="11"
               class="form-control"
               id="phone2"
-              value="03112345678"
+              value=""
               dir="ltr"
               disabled
             />
@@ -526,12 +488,7 @@
             >
               آدرس
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="address2"
-              value="تهران، سعادت آباد"
-            />
+            <input type="text" class="form-control" id="address2" value="" />
           </section>
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type4"
@@ -548,7 +505,7 @@
               maxlength="10"
               class="form-control"
               id="postal-code2"
-              value="1234567890"
+              value=""
               dir="ltr"
             />
           </section>
@@ -565,7 +522,7 @@
               type="text"
               class="form-control"
               id="office-type2"
-              value="داروخانه"
+              value=""
             />
           </section>
           <section
@@ -582,7 +539,7 @@
               pattern="\d*"
               class="form-control"
               id="office-code2"
-              value="1402346"
+              value=""
               dir="ltr"
               disabled
             />
@@ -601,7 +558,7 @@
                 class="form-control rounded-end-0"
                 id="shaba2"
                 dir="ltr"
-                value="983247538783287638760923"
+                value=""
               />
               <span class="fs-5 bg-secondary-subtle px-2 rounded-end pt-2"
                 >IR</span
@@ -623,7 +580,7 @@
               maxlength="16"
               class="form-control"
               id="card-number2"
-              value="3984590234533499"
+              value=""
               dir="ltr"
             />
           </section>
@@ -642,7 +599,7 @@
               maxlength="24"
               class="form-control"
               id="account-number2"
-              value="32452345808"
+              value=""
               dir="ltr"
             />
           </section>
@@ -660,7 +617,7 @@
               pattern="\d*"
               class="form-control"
               id="tracking-code2"
-              value="34533499"
+              value=""
               dir="ltr"
             />
           </section>
@@ -673,15 +630,10 @@
             >
               نام کاربری
             </label>
-            <input
-              type="text"
-              class="form-control"
-              id="username2"
-              value="jackson"
-            />
+            <input type="text" class="form-control" id="username2" value="" />
           </section>
           <section
-            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type4"
+            class="d-flex requestRemove flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type4"
           >
             <label
               for="password2"
@@ -693,26 +645,10 @@
               type="password"
               class="form-control"
               id="password2"
-              value="sjdhf234"
-            />
-          </section>
-          <section
-            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type4"
-          >
-            <label
-              for="confirm-password2"
-              class="form-label text-sm-end text-start pe-3"
-            >
-              تایید رمز عبور
-            </label>
-            <input
-              type="password"
-              class="form-control"
-              id="confirm-password2"
               value=""
-              disabled
             />
           </section>
+
           <!-- +++++++++++++++ -->
           <input type="submit" value="ویرایش اطلاعات" class="btn btn-light" />
           <p
@@ -723,9 +659,7 @@
           <hr />
           <section class="text-center">
             <span class="fw-bold"> اسناد: </span>
-            <a href="#" class="fw-bold" id="documents">
-              جهت دانلود اسناد کلیک کنید.
-            </a>
+            <div id="filebox2"></div>
           </section>
           <hr />
           <section class="digital-sign">
@@ -809,5 +743,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="main-assets/js/services.js"></script>
+    <script src="main-assets/js/profile.js"></script>
   </body>
 </html>

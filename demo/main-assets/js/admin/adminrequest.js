@@ -50,7 +50,7 @@ function getAdminUser() {
         const profile = document.querySelectorAll(".profile-user");
         for (const el of profile) {
           el.addEventListener("click", function () {
-            window.location.href = `http://127.0.0.1:5500/daroo1/all/main-profile.html?requestid=${el.getAttribute(
+            window.location.href = `https://daroocard.com/main-profile.html?requestid=${el.getAttribute(
               "id"
             )}`;
           });
@@ -113,7 +113,7 @@ function getAdminUser() {
         const profile = document.querySelectorAll(".profile-user");
         for (const el of profile) {
           el.addEventListener("click", function () {
-            window.location.href = `http://127.0.0.1:5500/daroo1/all/main-profile.html?requestid=${el.getAttribute(
+            window.location.href = `https://daroocard.com/main-profile.html?requestid=${el.getAttribute(
               "id"
             )}`;
           });

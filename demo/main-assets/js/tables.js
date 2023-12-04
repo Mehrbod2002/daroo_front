@@ -375,11 +375,53 @@ try {
     }
     for (const el of document.getElementsByClassName("eject-user-final")) {
       el.addEventListener("click", function () {
-        this.parentElement.innerHTML =
-          "رد شده (به علت: " +
-          this.parentElement.querySelector("textarea").value +
-          ")";
+        ejectUser(el.parentElement.getAttribute("id"), el);
       });
+    }
+    function ejectUser(val, el) {
+      var url =
+        urldemo +
+        `/api/admin/${el.parentElement.getAttribute(
+          "type"
+        )}/unverify/user/${val}/`;
+      try {
+        const formData = new FormData();
+        formData.append(
+          "reason",
+          el.parentElement.querySelector("textarea").value
+        );
+        formData.append("id", val);
+        const request = new XMLHttpRequest();
+        request.onloadend = function () {
+          if (request.status == 200 || request.status == 201) {
+            el.parentElement.innerHTML =
+              "رد شده (به علت: " +
+              el.parentElement.querySelector("textarea").value +
+              ")";
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+            getAdminUser();
+          } else {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+          }
+          setTimeout(clearMessageBox, 1000);
+        };
+
+        request.onloadstart = function () {
+          $(".loader").fadeIn();
+        };
+        request.open("PATCH", url);
+        request.setRequestHeader(
+          "Authorization",
+          `Token ${localStorage.getItem("token")}`
+        );
+        request.send(formData);
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 } catch {}
@@ -416,7 +458,11 @@ try {
       });
     }
     function removeUser(val, el) {
-      var url = urldemo + `/api/admin/users/delete/user/${val}/`;
+      var url =
+        urldemo +
+        `/api/admin/${el.parentElement.getAttribute(
+          "type"
+        )}/delete/user/${val}/`;
       try {
         const formData = new FormData();
         formData.append("id", val);
@@ -493,8 +539,13 @@ try {
         blockUser(el.parentElement.getAttribute("id"), el);
       });
     }
+
     function blockUser(val, el) {
-      var url = urldemo + `/api/admin/centers/block/user/${val}/`;
+      var url =
+        urldemo +
+        `/api/admin/${el.parentElement.getAttribute(
+          "type"
+        )}/block/user/${val}/`;
       try {
         const formData = new FormData();
         formData.append(
@@ -661,12 +712,13 @@ try {
     .getElementsByClassName("remove-request")
     .item(0)
     .addEventListener("click", function () {
-      var list_id = [];
-      var i = 0;
+      var list_id = {};
+var i = 1
       for (const el of document.querySelectorAll("#lastRequests tbody tr")) {
         if (el.firstElementChild.firstElementChild.checked) {
-          list_id[i] = el.getAttribute("id");
-          i++;
+         
+          list_id[`key${i}`] = el.getAttribute("id") ;
+          i++
         }
       }
 
@@ -675,11 +727,11 @@ try {
         var url = urldemo + `/api/admin/requests/delete/`;
         try {
           const formData = new FormData();
-          formData.append("list_id", list_id);
+          formData.append("list_id", JSON.stringify(list_id));
 
           const request = new XMLHttpRequest();
           request.onloadend = function () {
-            console.log(request.status);
+            console.log(request);
             if (request.status == 200 || request.status == 201) {
               $(".messagewrapper").fadeIn();
               messageBox.innerHTML =
@@ -701,7 +753,7 @@ try {
             "Authorization",
             `Token ${localStorage.getItem("token")}`
           );
-          request.send(JSON.stringify(formData));
+          request.send(formData);
         } catch (error) {
           console.error(error);
         }

@@ -399,57 +399,133 @@
           name="blocking-form"
           class="w-100 px-4 mt-3 text-end"
         >
-          <section
-            class="card-number-section d-flex flex-sm-row flex-column align-items-center justify-content-sm-center align-items-start mb-3"
+        <section
+            class="w-100 d-flex flex-column justify-content-between choice"
           >
-            <label
-              for="card-numbers"
-              class="form-label text-sm-end text-start pe-3"
+            <section
+              class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
             >
-              شماره ی دارو کارت
-            </label>
-            <div
-              class="card-numbers d-flex justify-content-between align-items-center"
-              id="card-numbers"
-              dir="ltr"
+              <div
+                class="form-check form-label d-flex justify-content-sm-end justify-content-start mb-sm-0 mb-2"
+              >
+                <input
+                  type="radio"
+                  class="form-check-input me-3"
+                  id="wallet-number-radio"
+                  name="radio"
+                  checked=""
+                  onchange="changeOption(this, 'choice')"
+                />
+                <label
+                  for="wallet-number-radio"
+                  class="form-check-label text-sm-end text-start pe-3"
+                >
+                  شماره ی کیف پول
+                </label>
+              </div>
+              <div class="left-group w-100 d-flex">
+                <input
+                  type="text"
+                  class="form-control text-end me-2"
+                  id="wallet-number"
+                  autofocus="autofocus"
+                />
+                <button
+                  type="button"
+                  onclick=""
+                  style="width: max-content !important"
+                  title="اسکن QR Code"
+                  class="btn btn-light h-100"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    fill="currentColor"
+                    class="bi bi-qr-code-scan"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M0 .5A.5.5 0 0 1 .5 0h3a.5.5 0 0 1 0 1H1v2.5a.5.5 0 0 1-1 0v-3Zm12 0a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-1 0V1h-2.5a.5.5 0 0 1-.5-.5ZM.5 12a.5.5 0 0 1 .5.5V15h2.5a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5v-3a.5.5 0 0 1 .5-.5Zm15 0a.5.5 0 0 1 .5.5v3a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1 0-1H15v-2.5a.5.5 0 0 1 .5-.5ZM4 4h1v1H4V4Z"
+                    ></path>
+                    <path d="M7 2H2v5h5V2ZM3 3h3v3H3V3Zm2 8H4v1h1v-1Z"></path>
+                    <path d="M7 9H2v5h5V9Zm-4 1h3v3H3v-3Zm8-6h1v1h-1V4Z"></path>
+                    <path
+                      d="M9 2h5v5H9V2Zm1 1v3h3V3h-3ZM8 8v2h1v1H8v1h2v-2h1v2h1v-1h2v-1h-3V8H8Zm2 2H9V9h1v1Zm4 2h-1v1h-2v1h3v-2Zm-4 2v-1H8v1h2Z"
+                    ></path>
+                    <path d="M12 9h2V8h-2v1Z"></path>
+                  </svg>
+                </button>
+              </div>
+            </section>
+            <section
+              class="card-number-section d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
             >
-              <input
-                type="number"
-                minlength="4"
-                maxlength="4"
-                min="0"
-                max="9999"
-                autofocus="autofocus"
-                class="form-control text-center ms-2"
-              />
-              <input
-                type="number"
-                minlength="4"
-                maxlength="4"
-                min="0"
-                max="9999"
-                autofocus="autofocus"
-                class="form-control text-center ms-2"
-              />
-              <input
-                type="number"
-                minlength="4"
-                maxlength="4"
-                min="0"
-                max="9999"
-                autofocus="autofocus"
-                class="form-control text-center ms-2"
-              />
-              <input
-                type="number"
-                minlength="4"
-                maxlength="4"
-                min="0"
-                max="9999"
-                autofocus="autofocus"
-                class="form-control text-center"
-              />
-            </div>
+              <div
+                class="form-check form-label d-flex justify-content-sm-end justify-content-start mb-sm-0 mb-2"
+              >
+                <input
+                  type="radio"
+                  class="form-check-input me-3"
+                  id="card-numbers-radio"
+                  name="radio"
+                  onchange="changeOption(this, 'choice')"
+                />
+                <label
+                  for="card-numbers-radio"
+                  class="form-check-label text-sm-end text-start pe-3"
+                >
+                  شماره ی دارو کارت
+                </label>
+              </div>
+              <div
+                class="card-numbers d-flex justify-content-between align-items-center"
+                id="card-numbers"
+                dir="ltr"
+                disabled=""
+              >
+                <input
+                  type="number"
+                  minlength="4"
+                  maxlength="4"
+                  min="0"
+                  max="9999"
+                  autofocus="autofocus"
+                  class="form-control text-center ms-2"
+                  disabled=""
+                />
+                <input
+                  type="number"
+                  minlength="4"
+                  maxlength="4"
+                  min="0"
+                  max="9999"
+                  autofocus="autofocus"
+                  class="form-control text-center ms-2"
+                  disabled=""
+                />
+                <input
+                  type="number"
+                  minlength="4"
+                  maxlength="4"
+                  min="0"
+                  max="9999"
+                  autofocus="autofocus"
+                  class="form-control text-center ms-2"
+                  disabled=""
+                />
+                <input
+                  type="number"
+                  minlength="4"
+                  maxlength="4"
+                  min="0"
+                  max="9999"
+                  autofocus="autofocus"
+                  class="form-control text-center"
+                  disabled=""
+                />
+              </div>
+            </section>
           </section>
 
           <section
