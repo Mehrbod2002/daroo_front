@@ -18,17 +18,21 @@ function getLoan() {
             <td> ${key.description}</td>
             <td>  ${key.state}</td>
             <td>  ${key.installment} </td>
-            <td> <button class="get-report2 btn btn-secondary p-2" id="${key.id}"> گزارش درخواست </button> </td>
+            <td> <button class="get-report2 btn btn-secondary p-2" id="${
+              key.id
+            }"> گزارش درخواست </button> </td>
         </tr>`;
           html = html + item;
         });
         document.querySelector("#reportsTable tbody").innerHTML = html;
         for (const el of document.querySelectorAll(".get-report2")) {
           el.addEventListener("click", function () {
-            window.open(`./main-facility-report.html?q=${el.getAttribute("id")}`);
+            window.open(
+              `./main-facility-report.html?q=${el.getAttribute("id")}`
+            );
           });
         }
-      } else if (request.status == 400) {
+      } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
         const keys = Object.keys(res);
@@ -38,12 +42,8 @@ function getLoan() {
           msg = msg + `${res[key]}<br>`;
         });
         if (msg) {
-          const errors = document.getElementById("errors");
-          errors.innerHTML = msg;
-          errors.className = errors.className.replace(
-            "text-success",
-            "text-danger"
-          );
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
         }
       } else {
         $(".messagewrapper").fadeIn();

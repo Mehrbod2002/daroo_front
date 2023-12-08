@@ -161,6 +161,29 @@ try {
               ") </span>" +
               "<button class='btn btn-success unblock-wallet mx-1'> رفع مسدودسازی کیف پول </button>";
             setUnblockWalletEvent();
+          } else if (request.status == 401) {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+          } else if (request.status == 400 || request.status == 403) {
+            const res = JSON.parse(request.response);
+            const keys = Object.keys(res);
+            let msg = "";
+            keys.forEach((key, index) => {
+              var keyf = "";
+              if (key == "error") {
+                keyf = "ارور";
+              } else if (key == "reason") {
+                keyf = "دلیل";
+              } else {
+                keyf = key;
+              }
+              msg = msg + `${keyf} : ${res[key]}<br>`;
+            });
+            if (msg) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML = msg;
+            }
           } else {
             $(".messagewrapper").fadeIn();
             messageBox.innerHTML =
@@ -213,6 +236,27 @@ try {
               "<button class='btn btn-secondary edit-wallet mx-1'> ویرایش موجودی کیف پول </button>" +
               "<button class='btn btn-danger block-wallet mx-1'> مسدودسازی کیف پول </button>";
             setBlockWalletEvent();
+          } else if (request.status == 401) {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+          } else if (request.status == 400 || request.status == 403) {
+            const res = JSON.parse(request.response);
+            const keys = Object.keys(res);
+            let msg = "";
+            keys.forEach((key, index) => {
+              var keyf = "";
+              if (key == "error") {
+                keyf = "ارور";
+              } else {
+                keyf = key;
+              }
+              msg = msg + `${keyf} : ${res[key]}<br>`;
+            });
+            if (msg) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML = msg;
+            }
           } else {
             $(".messagewrapper").fadeIn();
             messageBox.innerHTML =
@@ -302,6 +346,29 @@ try {
             "<button class='btn btn-danger block-wallet mx-1'> مسدودسازی کیف پول </button>";
           setEditWalletEvent();
           setBlockWalletEvent();
+        } else if (request.status == 401) {
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML =
+            "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+        } else if (request.status == 400 || request.status == 403) {
+          const res = JSON.parse(request.response);
+          const keys = Object.keys(res);
+          let msg = "";
+          keys.forEach((key, index) => {
+            var keyf = "";
+            if (key == "error") {
+              keyf = "ارور";
+            } else if (key == "balance") {
+              keyf = "مقدار";
+            } else {
+              keyf = key;
+            }
+            msg = msg + `${keyf} : ${res[key]}<br>`;
+          });
+          if (msg) {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML = msg;
+          }
         } else {
           $(".messagewrapper").fadeIn();
           messageBox.innerHTML =
@@ -388,6 +455,29 @@ try {
             messageBox.innerHTML =
               "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
             getAdminUser();
+          } else if (request.status == 401) {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+          } else if (request.status == 400 || request.status == 403) {
+            const res = JSON.parse(request.response);
+            const keys = Object.keys(res);
+            let msg = "";
+            keys.forEach((key, index) => {
+              var keyf = "";
+              if (key == "error") {
+                keyf = "ارور";
+              } else if (key == "balance") {
+                keyf = "مقدار";
+              } else {
+                keyf = key;
+              }
+              msg = msg + `${keyf} : ${res[key]}<br>`;
+            });
+            if (msg) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML = msg;
+            }
           } else {
             $(".messagewrapper").fadeIn();
             messageBox.innerHTML =
@@ -457,6 +547,27 @@ try {
           console.log(request.status);
           if (request.status == 200 || request.status == 201) {
             el.parentElement.parentElement.remove();
+          } else if (request.status == 401) {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+          } else if (request.status == 400 || request.status == 403) {
+            const res = JSON.parse(request.response);
+            const keys = Object.keys(res);
+            let msg = "";
+            keys.forEach((key, index) => {
+              var keyf = "";
+              if (key == "error") {
+                keyf = "ارور";
+              } else {
+                keyf = key;
+              }
+              msg = msg + `${keyf} : ${res[key]}<br>`;
+            });
+            if (msg) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML = msg;
+            }
           } else {
             $(".messagewrapper").fadeIn();
             messageBox.innerHTML =
@@ -551,6 +662,29 @@ try {
               ") </span>" +
               "<button class='btn btn-success mx-1 unblock-user'> رفع مسدودسازی کاربر </button>";
             setUnblockUserEvent();
+          } else if (request.status == 401) {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+          } else if (request.status == 400 || request.status == 403) {
+            const res = JSON.parse(request.response);
+            const keys = Object.keys(res);
+            let msg = "";
+            keys.forEach((key, index) => {
+              var keyf = "";
+              if (key == "error") {
+                keyf = "ارور";
+              } else if (key == "reason") {
+                keyf = "دلیل";
+              } else {
+                keyf = key;
+              }
+              msg = msg + `${keyf} : ${res[key]}<br>`;
+            });
+            if (msg) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML = msg;
+            }
           } else {
             $(".messagewrapper").fadeIn();
             messageBox.innerHTML =
@@ -646,27 +780,29 @@ try {
             messageBox.innerHTML =
               "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
             window.location.reload();
-            // const element = this.parentElement.parentElement;
-            // element.lastElementChild.previousElementSibling.innerHTML =
-            //   "رد شده (به علت: " +
-            //   this.parentElement.querySelector("textarea").value +
-            //   ")";
-            // element.lastElementChild.innerHTML =
-            //   "<a href='main-profile.html' target='_blank' class='btn btn-info mx-1'> مشاهده پروفایل کاربر </a>";
-            // element.insertBefore(
-            //   document.createElement("td"),
-            //   element.children.item(2)
-            // );
-            // element.children.item(2).innerHTML = "امروز";
-
-            // document
-            //   .getElementById("lastRequests")
-            //   .querySelector("tbody")
-            //   .insertBefore(
-            //     element,
-            //     document.getElementById("lastRequests").querySelector("tbody")
-            //       .firstElementChild
-            //   );
+          } else if (request.status == 401) {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+          } else if (request.status == 400 || request.status == 403) {
+            const res = JSON.parse(request.response);
+            const keys = Object.keys(res);
+            let msg = "";
+            keys.forEach((key, index) => {
+              var keyf = "";
+              if (key == "error") {
+                keyf = "ارور";
+              } else if (key == "reason") {
+                keyf = "دلیل";
+              } else {
+                keyf = key;
+              }
+              msg = msg + `${keyf} : ${res[key]}<br>`;
+            });
+            if (msg) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML = msg;
+            }
           } else {
             $(".messagewrapper").fadeIn();
             messageBox.innerHTML =
@@ -722,6 +858,27 @@ try {
               messageBox.innerHTML =
                 "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
               window.location.reload();
+            } else if (request.status == 401) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML =
+                "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+            } else if (request.status == 400 || request.status == 403) {
+              const res = JSON.parse(request.response);
+              const keys = Object.keys(res);
+              let msg = "";
+              keys.forEach((key, index) => {
+                var keyf = "";
+                if (key == "error") {
+                  keyf = "ارور";
+                } else {
+                  keyf = key;
+                }
+                msg = msg + `${keyf} : ${res[key]}<br>`;
+              });
+              if (msg) {
+                $(".messagewrapper").fadeIn();
+                messageBox.innerHTML = msg;
+              }
             } else {
               $(".messagewrapper").fadeIn();
               messageBox.innerHTML =

@@ -55,6 +55,19 @@ function getAdminUser() {
             )}`;
           });
         }
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        console.log(res);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          console.log(`${res[key]}`);
+          msg = msg + `${res[key]}<br>`;
+        });
+        if (msg) {
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
+        }
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -117,6 +130,19 @@ function getAdminUser() {
               "id"
             )}`;
           });
+        }
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        console.log(res);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          console.log(`${res[key]}`);
+          msg = msg + `${res[key]}<br>`;
+        });
+        if (msg) {
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
         }
       } else {
         $(".messagewrapper").fadeIn();
@@ -353,6 +379,27 @@ function acceptRequest(val) {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
         getAdminUser();
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
+        });
+        if (msg) {
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
+        }
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =

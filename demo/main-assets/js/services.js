@@ -705,6 +705,19 @@ try {
               "Copy";
             document.querySelector(".digital-sign .input-group-text ").value =
               response.token;
+          } else if (request.status == 400 || request.status == 403) {
+            const res = JSON.parse(request.response);
+            console.log(res);
+            const keys = Object.keys(res);
+            let msg = "";
+            keys.forEach((key, index) => {
+              console.log(`${res[key]}`);
+              msg = msg + `${res[key]}<br>`;
+            });
+            if (msg) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML = msg;
+            }
           } else {
             console.log(request);
           }
@@ -780,8 +793,21 @@ function register() {
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          console.log(`${res[key]}`);
-          msg = msg + `${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "username") {
+            keyf = "نام کاربری";
+          } else if (key == "password") {
+            keyf = "رمزعبور";
+          } else if (key == "code") {
+            keyf = "کد";
+          } else if (key == "phone_number") {
+            keyf = "شماره موبایل";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -892,14 +918,31 @@ function increase() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'> ئرخواست شما با موفقیت انجام شد </span>";
-      } else if (request.status == 400) {
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+      } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          console.log(`${res[key]}`);
-          msg = msg + `${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "wallet_number") {
+            keyf = "شماره ی کیف پول";
+          } else if (key == "daroo_card_number") {
+            keyf = "شماره ی دارو کارت";
+          } else if (key == "mablagh") {
+            keyf = "مبلغ";
+          } else if (key == "dscription") {
+            keyf = "توضیحات";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1041,12 +1084,24 @@ function supportfile(event) {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>پیام شما با موفقیت ارسال شد</span>";
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          msg = msg + `${key} : ${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "document") {
+            keyf = "مدرک";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1092,12 +1147,26 @@ function support() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>پیام شما با موفقیت ارسال شد</span>";
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          msg = msg + `${key} : ${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "title") {
+            keyf = "عنوان";
+          } else if (key == "message") {
+            keyf = "پیام";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1199,14 +1268,57 @@ function patchCenterProfile(event) {
         console.log(response);
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML = `<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>`;
-      } else if (request.status == 400) {
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+      } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          console.log(`${res[key]}`);
-          msg = msg + `${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "mobile") {
+            keyf = "شماره موبایل";
+          } else if (key == "name") {
+            keyf = "نام و نام خانوادگی";
+          } else if (key == "password") {
+            keyf = "رمز عبور";
+          } else if (key == "account_number") {
+            keyf = "شماره حساب ";
+          } else if (key == "card_number") {
+            keyf = "شماره کارت";
+          } else if (key == "address") {
+            keyf = "آدرس";
+          } else if (key == "national_id") {
+            keyf = "کد ملی";
+          } else if (key == "phone") {
+            keyf = " تلفن همراه";
+          } else if (key == "role") {
+            keyf = "نقش کاربر";
+          } else if (key == "username") {
+            keyf = "نام کاربری";
+          } else if (key == "postal_code") {
+            keyf = "کد پستی";
+          } else if (key == "center_name") {
+            keyf = "نام مرکز";
+          } else if (key == "pepresentative_position") {
+            keyf = "سمت نماینده";
+          } else if (key == "center_type") {
+            keyf = "	نوع مرکز";
+          } else if (key == "center_code") {
+            keyf = "	کد مرکز";
+          } else if (key == "economy_code") {
+            keyf = "کد رهگیری/کداقتصادی ";
+          } else if (key == "sheba") {
+            keyf = "شماره شبا";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1286,14 +1398,41 @@ function patchProfile(event) {
         console.log(response);
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML = `<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>`;
-      } else if (request.status == 400) {
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+      } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          console.log(`${res[key]}`);
-          msg = msg + `${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "name") {
+            keyf = "نام و نام خانوادگی";
+          } else if (key == "password") {
+            keyf = "رمز عبور";
+          } else if (key == "account_number") {
+            keyf = "شماره حساب ";
+          } else if (key == "card_number") {
+            keyf = "شماره کارت";
+          } else if (key == "address") {
+            keyf = "آدرس";
+          } else if (key == "national_id") {
+            keyf = "کد ملی";
+          } else if (key == "phone") {
+            keyf = "تلفن";
+          } else if (key == "role") {
+            keyf = "نقش کاربر";
+          } else if (key == "sheba") {
+            keyf = "شماره شبا";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1355,12 +1494,36 @@ function visitReq() {
         window.location.replace(
           "https://daroocard.com/main-reception-requests.html"
         );
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          msg = msg + `${key} : ${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "name") {
+            keyf = "نام و نام خانوادگی";
+          } else if (key == "title") {
+            keyf = "عنوان";
+          } else if (key == "national_id") {
+            keyf = "کد ملی";
+          } else if (key == "mablagh") {
+            keyf = "مبلغ";
+          } else if (key == "phone_number") {
+            keyf = "شماره موبایل";
+          } else if (key == "dsc") {
+            keyf = "توضیحات";
+          } else if (key == "payment_method") {
+            keyf = "روش پرداخت";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1418,12 +1581,30 @@ function loan() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          msg = msg + `${key} : ${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "loan_type") {
+            keyf = "نوع وام";
+          } else if (key == "loan_amount") {
+            keyf = "مبلغ";
+          } else if (key == "payment_time") {
+            keyf = "مدت بازپرداخت";
+          } else if (key == "description") {
+            keyf = "توضیحات";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1469,12 +1650,24 @@ function cardInfo() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          msg = msg + `${key} : ${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "card_type") {
+            keyf = "نوع کارت";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1560,12 +1753,26 @@ function sms() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          msg = msg + `${key} : ${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "number") {
+            keyf = "شماره";
+          } else if (key == "description") {
+            keyf = "توضیحات";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1626,12 +1833,26 @@ function block() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          msg = msg + `${key} : ${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "description") {
+            keyf = "توضیحات";
+          } else if (key == "code") {
+            keyf = "کد";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1687,7 +1908,17 @@ function forget() {
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          msg = msg + `${key} : ${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "phone_number") {
+            keyf = "شماره موبایل";
+          } else if (key == "code") {
+            keyf = "کد";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");
@@ -1758,12 +1989,38 @@ function transfer() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          msg = msg + `${key} : ${res[key]}<br>`;
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "from_wallet_number") {
+            keyf = "شماره ی کیف پول";
+          } else if (key == "from_daroo_card_number") {
+            keyf = "شماره ی کیف پول";
+          } else if (key == "mablagh") {
+            keyf = "مبلغ";
+          } else if (key == "to_wallet_number") {
+            keyf = "شماره ی کیف پول مقصد";
+          } else if (key == "sheba") {
+            keyf = "شماره شبا مقصد ";
+          } else if (key == "phone_number") {
+            keyf = "تلفن همراه";
+          } else if (key == "name") {
+            keyf = "نام و نام خانوادگی";
+          } else if (key == "dscription") {
+            keyf = "توضیحات";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
           const errors = document.getElementById("errors");

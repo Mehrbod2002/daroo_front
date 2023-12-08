@@ -31,7 +31,7 @@ function getData() {
         });
         document.getElementById("filebox2").innerHTML = html;
         document.getElementById("filebox").innerHTML = html;
-      } else if (request.status == 400) {
+      } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
         const keys = Object.keys(res);
@@ -41,12 +41,8 @@ function getData() {
           msg = msg + `${res[key]}<br>`;
         });
         if (msg) {
-          const errors = document.getElementById("errors");
-          errors.innerHTML = msg;
-          errors.className = errors.className.replace(
-            "text-success",
-            "text-danger"
-          );
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
         }
       } else {
         $(".messagewrapper").fadeIn();
@@ -128,7 +124,7 @@ function getCustomeProfile() {
           document.querySelector("#mobile").value = response.mobile;
           document.querySelector("#username").value = response.username;
         }
-      } else if (request.status == 400) {
+      } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
         const keys = Object.keys(res);
@@ -138,12 +134,8 @@ function getCustomeProfile() {
           msg = msg + `${res[key]}<br>`;
         });
         if (msg) {
-          const errors = document.getElementById("errors");
-          errors.innerHTML = msg;
-          errors.className = errors.className.replace(
-            "text-success",
-            "text-danger"
-          );
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
         }
       } else {
         $(".messagewrapper").fadeIn();
@@ -192,7 +184,7 @@ function getProfile() {
         document.querySelector("#mobile").value = response[0].mobile;
         document.querySelector("#username").value = response[0].username;
         document.querySelector("#password").value = response[0].password;
-      } else if (request.status == 400) {
+      } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
         const keys = Object.keys(res);
@@ -202,12 +194,8 @@ function getProfile() {
           msg = msg + `${res[key]}<br>`;
         });
         if (msg) {
-          const errors = document.getElementById("errors");
-          errors.innerHTML = msg;
-          errors.className = errors.className.replace(
-            "text-success",
-            "text-danger"
-          );
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
         }
       } else {
         $(".messagewrapper").fadeIn();
@@ -281,7 +269,7 @@ function getCenterProfile() {
         document.querySelector("#office-code2").value = response[0].center_code;
         document.querySelector("#tracking-code2").value =
           response[0].economy_code;
-      } else if (request.status == 400) {
+      } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
         const keys = Object.keys(res);
@@ -291,12 +279,8 @@ function getCenterProfile() {
           msg = msg + `${res[key]}<br>`;
         });
         if (msg) {
-          const errors = document.getElementById("errors");
-          errors.innerHTML = msg;
-          errors.className = errors.className.replace(
-            "text-success",
-            "text-danger"
-          );
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
         }
       } else {
         $(".messagewrapper").fadeIn();

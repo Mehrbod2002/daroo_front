@@ -28,7 +28,7 @@ function getTransfer() {
             html = html + item;
           });
           document.querySelector("#reportsTable tbody").innerHTML = html;
-        } else if (request.status == 400) {
+        } else if (request.status == 400 || request.status == 403) {
           const res = JSON.parse(request.response);
           console.log(res);
           const keys = Object.keys(res);
@@ -38,12 +38,8 @@ function getTransfer() {
             msg = msg + `${res[key]}<br>`;
           });
           if (msg) {
-            const errors = document.getElementById("errors");
-            errors.innerHTML = msg;
-            errors.className = errors.className.replace(
-              "text-success",
-              "text-danger"
-            );
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML = msg;
           }
         } else {
           $(".messagewrapper").fadeIn();
@@ -90,7 +86,7 @@ function getTransfer() {
             html = html + item;
           });
           document.querySelector("#reportsTable tbody").innerHTML = html;
-        } else if (request.status == 400) {
+        } else if (request.status == 400 || request.status == 403) {
           const res = JSON.parse(request.response);
           console.log(res);
           const keys = Object.keys(res);
@@ -100,12 +96,8 @@ function getTransfer() {
             msg = msg + `${res[key]}<br>`;
           });
           if (msg) {
-            const errors = document.getElementById("errors");
-            errors.innerHTML = msg;
-            errors.className = errors.className.replace(
-              "text-success",
-              "text-danger"
-            );
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML = msg;
           }
         } else {
           $(".messagewrapper").fadeIn();
@@ -151,7 +143,7 @@ function getTransfer() {
             html = html + item;
           });
           document.querySelector("#reportsTable tbody").innerHTML = html;
-        } else if (request.status == 400) {
+        } else if (request.status == 400 || request.status == 403) {
           const res = JSON.parse(request.response);
           console.log(res);
           const keys = Object.keys(res);
@@ -161,12 +153,8 @@ function getTransfer() {
             msg = msg + `${res[key]}<br>`;
           });
           if (msg) {
-            const errors = document.getElementById("errors");
-            errors.innerHTML = msg;
-            errors.className = errors.className.replace(
-              "text-success",
-              "text-danger"
-            );
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML = msg;
           }
         } else {
           $(".messagewrapper").fadeIn();

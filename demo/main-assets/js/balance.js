@@ -12,7 +12,7 @@ function getBalanec() {
         document.querySelector("#balanceAmount").innerHTML =
           response[0].balance;
         response[0].balance;
-      } else if (request.status == 400) {
+      } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
         const keys = Object.keys(res);
@@ -22,12 +22,8 @@ function getBalanec() {
           msg = msg + `${res[key]}<br>`;
         });
         if (msg) {
-          const errors = document.getElementById("errors");
-          errors.innerHTML = msg;
-          errors.className = errors.className.replace(
-            "text-success",
-            "text-danger"
-          );
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
         }
       } else {
         $(".messagewrapper").fadeIn();

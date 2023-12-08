@@ -21,6 +21,24 @@ body {
   background-size: 200px;
   overflow: auto;
 }
+.footer_logo_box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer_logo_box > a {
+  display: block;
+  margin: 10px;
+  max-height: 75px;
+  max-width: 100px;
+}
+.footer_logo_box > a img {
+  max-width: max-content;
+  width: auto;
+  max-height: 100%;
+  object-fit: contain;
+}
 .remove-file {
   background-color: #dc3545;
   opacity: 0.9;
