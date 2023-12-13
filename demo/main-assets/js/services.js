@@ -26,6 +26,7 @@ function getUser() {
         try {
           if (response[0].role != "(پذیرنده) مراکز") {
             document.querySelector("#menu .nav li:nth-of-type(6)").remove();
+            document.querySelector("#menu .nav li:nth-of-type(7)").remove();
           }
 
           document.querySelector("#userName_box").innerHTML =
@@ -627,6 +628,8 @@ function validate(event) {
       visitReq();
     } else if (act == "increase") {
       increase();
+    } else if (act == "service") {
+      service();
     }
   }
 }
@@ -786,7 +789,7 @@ function register() {
         console.log(response);
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML = `<span class='text-sm text-success'>ثبت نام شما با موفقیت انجام شد</span>`;
-        window.location.replace("https://daroocard.com/main-signin.html");
+        window.location.replace("http://127.0.0.1:5500/main-signin.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -850,7 +853,7 @@ function login() {
         var data = JSON.parse(this.responseText);
         console.log(data.detail);
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace("https://daroocard.com/main-index.html");
+        window.location.replace("http://127.0.0.1:5500/main-index.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -987,7 +990,7 @@ function logout() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         localStorage.clear();
-        window.location.replace("https://daroocard.com/main-index.html");
+        window.location.replace("http://127.0.0.1:5500/main-index.html");
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -1134,6 +1137,67 @@ function supportfile(event) {
     console.error(error);
   }
 }
+function service() {
+  var url = urldemo + `/api/services/`;
+  try {
+    const formData = new FormData();
+    formData.append("service", document.getElementById("title").value);
+
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "service") {
+            keyf = "عنوان";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
+        });
+        if (msg) {
+          const errors = document.getElementById("errors");
+          errors.innerHTML = msg;
+          errors.className = errors.className.replace(
+            "text-success",
+            "text-danger"
+          );
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+    request.open("POST", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+    request.send(formData);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function support() {
   var url = urldemo + `/api/support/`;
   try {
@@ -1471,6 +1535,7 @@ function visitReq() {
     const formData = new FormData();
     formData.append("name", document.getElementById("name").value);
     formData.append("title", document.getElementById("title").value);
+    formData.append("service", document.getElementById("service-type").value);
     formData.append(
       "national_id",
       document.getElementById("national-code").value
@@ -1492,7 +1557,7 @@ function visitReq() {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
         window.location.replace(
-          "https://daroocard.com/main-reception-requests.html"
+          "http://127.0.0.1:5500/main-reception-requests.html"
         );
       } else if (request.status == 401) {
         $(".messagewrapper").fadeIn();
@@ -1520,6 +1585,8 @@ function visitReq() {
             keyf = "توضیحات";
           } else if (key == "payment_method") {
             keyf = "روش پرداخت";
+          } else if (key == "service") {
+            keyf = " خدمت";
           } else {
             keyf = key;
           }
@@ -1902,7 +1969,7 @@ function forget() {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace("https://daroocard.com/main-profile.html");
+        window.location.replace("http://127.0.0.1:5500/main-profile.html");
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);

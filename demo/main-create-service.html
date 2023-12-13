@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fa">
   <head>
@@ -7,7 +8,7 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>دارو کارت | تسهیلات</title>
+    <title>دارو کارت | تیکت/پشتیبانی</title>
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href="main-assets/css/plans-pages-style.css" />
     <link
@@ -17,21 +18,24 @@
     />
     <style>
       main {
-        width: 65%;
+        width: 40% !important;
+      }
+      main .form-control {
+        min-width: 85% !important;
       }
       @media (max-width: 1200px) {
         main {
-          width: 70%;
+          width: 50% !important;
         }
       }
       @media (max-width: 992px) {
         main {
-          width: 75%;
+          width: 60% !important;
         }
       }
       @media (max-width: 768px) {
         main {
-          width: 95%;
+          width: 85% !important;
         }
       }
     </style>
@@ -143,11 +147,7 @@
               </li>
             </ul>
           </nav>
-          <button
-            onclick="logout()"
-            class="btn btn-danger mx-auto p-2"
-            style="width: max-content"
-          >
+          <button class="btn btn-danger mx-auto p-2" style="width: max-content">
             خروج از حساب کاربری
           </button>
         </div>
@@ -159,25 +159,31 @@
       </header>
       <main class="rounded-4 pb-4 mb-5 text-center overflow-hidden shadow-lg">
         <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary">
-          تسهیلات
+        افزودن خدمت
         </h1>
-        <p class="px-3 fw-semibold" id="facilities_desc">
-         
-        </p>
-        <section
-        id="itemsbox"
-          class="d-flex flex-md-row flex-column justify-content-around align-items-center mb-2 mt-4"
+        <form
+          type="service"
+          method="POST"
+          name="support-form"
+          class="w-100 px-4 mt-3 text-end"
         >
-         
-        </section>
-        <section class="d-flex justify-content-center align-items-center mt-4">
-          <a href="main-facilities-add.html" class="btn btn-primary fs-5 me-3">
-            افزودن درخواست تسهیلات
-          </a>
-          <a href="main-facilities-requests.html" class="btn btn-danger fs-5">
-            گزارش درخواست های تسهیلات
-          </a>
-        </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+          >
+            <label for="title" class="form-label text-sm-end text-start pe-3">
+              عنوان
+            </label>
+            <input type="text" class="form-control" id="title" />
+          </section>
+
+     
+          <input type="submit" value="افزودن" class="btn btn-light" />
+          <p
+            class="form-text text-danger text-center fw-bolder"
+            id="errors"
+          ></p>
+        </form>
+
       </main>
       <footer class="info text-center mb-2">
         <div class="footer_logo_box">
@@ -221,10 +227,23 @@
           تمامی حقوق محفوظ است
         </span>
       </footer>
+      <div class="messagewrapper">
+        <div>
+          <div class="messageBox">
+            <p></p>
+            <button class="messageBtn btn btn-success">تایید</button>
+          </div>
+        </div>
+      </div>
+      <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="mask"></div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="main-assets/js/services.js"></script>
-    <script src="main-assets/js/facilities.js"></script>
   </body>
 </html>
