@@ -1,6 +1,6 @@
 // //////////////////////////////////////////////////
 // **************************** global
-let urldemo = "https://dl.eramglobal.com";
+let urldemo = "https://api.daroocard.com";
 let messageBox = document.querySelector(".messageBox p");
 let fetchHeader = {
   "Content-Type": "application/json; charset=utf-8",
