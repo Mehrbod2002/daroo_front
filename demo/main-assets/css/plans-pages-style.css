@@ -97,6 +97,8 @@ main .form-label {
 main
   .form-control:not(
     #shaba,
+    #shaba2,
+    #nfcnumber,
     #mobile[data-is-blocking-page="true"],
     #wallet-number,
     #target-wallet-number

@@ -4,7 +4,7 @@ function getTransfer() {
   var urlpath2 = searchparams.get("centerid");
 
   if (urlpath2) {
-    var url = urldemo + `/api/admin/centers/wallet/reports/${urlpath2}/`;
+    var url = urldemo + `/api/admin/centers/transaction/reports/${urlpath2}/`;
     try {
       const request = new XMLHttpRequest();
       request.onloadend = function () {
@@ -14,25 +14,25 @@ function getTransfer() {
           var html = "";
           response.forEach((key, index) => {
             var item = `<tr>
-            <td> ${index + 1}</td>
-            <td sorttable_customkey="14020215"> ${key.created_at} </td>
-            <td> ${key.transaction_type}</td>
-            <td>  ${
-              key.origin_object_id
-                ? key.origin_object_id + "(شماره کیف پول)"
-                : "-"
-            } </td>
-            <td>  ${
-              key.destination_object_id
-                ? key.destination_object_id + "(شماره کیف پول)"
-                : "-"
-            } </td>
-            <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
-            <td>${key.phone_number} </td>
-            <td> ${key.tracking_code}</td>
-            <td> ${key.status}  </td>
-            <td> ${key.dsc}</td>
-        </tr>`;
+              <td> ${index + 1}</td>
+              <td sorttable_customkey="14020215"> ${key.created_at} </td>
+              <td> ${key.transaction_type}</td>
+              <td>  ${
+                key.origin_object_id
+                  ? key.origin_object_id + "(شماره کیف پول)"
+                  : "-"
+              } </td>
+              <td>  ${
+                key.destination_object_id
+                  ? key.destination_object_id + "(شماره کیف پول)"
+                  : "-"
+              } </td>
+              <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
+              <td>${key.phone_number} </td>
+              <td> ${key.tracking_code}</td>
+              <td> ${key.status}  </td>
+              <td> ${key.dsc}</td>
+          </tr>`;
             html = html + item;
           });
           document.querySelector("#reportsTable tbody").innerHTML = html;
@@ -70,7 +70,7 @@ function getTransfer() {
       console.error(error);
     }
   } else if (urlpath) {
-    var url = urldemo + `/api/admin/users/wallet/reports/${urlpath}/`;
+    var url = urldemo + `/api/admin/users/transaction/reports/${urlpath}/`;
     try {
       const request = new XMLHttpRequest();
       request.onloadend = function () {
@@ -80,25 +80,25 @@ function getTransfer() {
           var html = "";
           response.forEach((key, index) => {
             var item = `<tr>
-            <td> ${index + 1}</td>
-            <td sorttable_customkey="14020215"> ${key.created_at} </td>
-            <td> ${key.transaction_type}</td>
-            <td>  ${
-              key.origin_object_id
-                ? key.origin_object_id + "(شماره کیف پول)"
-                : "-"
-            } </td>
-            <td>  ${
-              key.destination_object_id
-                ? key.destination_object_id + "(شماره کیف پول)"
-                : "-"
-            } </td>
-            <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
-            <td>${key.phone_number} </td>
-            <td> ${key.tracking_code}</td>
-            <td> ${key.status}  </td>
-            <td> ${key.dsc}</td>
-        </tr>`;
+              <td> ${index + 1}</td>
+              <td sorttable_customkey="14020215"> ${key.created_at} </td>
+              <td> ${key.transaction_type}</td>
+              <td>  ${
+                key.origin_object_id
+                  ? key.origin_object_id + "(شماره کیف پول)"
+                  : "-"
+              } </td>
+              <td>  ${
+                key.destination_object_id
+                  ? key.destination_object_id + "(شماره کیف پول)"
+                  : "-"
+              } </td>
+              <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
+              <td>${key.phone_number} </td>
+              <td> ${key.tracking_code}</td>
+              <td> ${key.status}  </td>
+              <td> ${key.dsc}</td>
+          </tr>`;
             html = html + item;
           });
           document.querySelector("#reportsTable tbody").innerHTML = html;
@@ -136,7 +136,7 @@ function getTransfer() {
       console.error(error);
     }
   } else {
-    var url = urldemo + `/api/transfer/`;
+    var url = urldemo + `/api/reports/`;
     try {
       const request = new XMLHttpRequest();
       request.onloadend = function () {
@@ -145,25 +145,25 @@ function getTransfer() {
           var html = "";
           response.forEach((key, index) => {
             var item = `<tr>
-            <td> ${index + 1}</td>
-            <td sorttable_customkey="14020215"> ${key.created_at} </td>
-            <td> ${key.transaction_type}</td>
-            <td> ${
-              key.origin_object_id
-                ? key.origin_object_id + "(شماره کیف پول)"
-                : "-"
-            } </td>
-            <td>  ${
-              key.destination_object_id
-                ? key.destination_object_id + "(شماره کیف پول)"
-                : "-"
-            } </td>
-            <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
-            <td>${key.phone_number} </td>
-            <td> ${key.tracking_code}</td>
-            <td> ${key.status}  </td>
-            <td> ${key.dsc}</td>
-        </tr>`;
+              <td> ${index + 1}</td>
+              <td sorttable_customkey="14020215"> ${key.created_at} </td>
+              <td> ${key.transaction_type}</td>
+              <td> ${
+                key.origin_object_id
+                  ? key.origin_object_id + "(شماره کیف پول)"
+                  : "-"
+              } </td>
+              <td>  ${
+                key.destination_object_id
+                  ? key.destination_object_id + "(شماره کیف پول)"
+                  : "-"
+              } </td>
+              <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
+              <td>${key.phone_number} </td>
+              <td> ${key.tracking_code}</td>
+              <td> ${key.status}  </td>
+              <td> ${key.dsc}</td>
+          </tr>`;
             html = html + item;
           });
           document.querySelector("#reportsTable tbody").innerHTML = html;

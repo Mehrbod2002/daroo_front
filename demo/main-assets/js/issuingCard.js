@@ -13,7 +13,7 @@ function getLoan() {
           <img src="${key.logo}">
           <h3 class="fw-bold my-2">${key.title} </h3>
           <span class="text-danger fs-5 fw-bold">
-            ${key.per_year} هزار تومان <sub class="text-muted"> / سالیانه </sub>
+            ${key.per_year}  تومان <sub class="text-muted"> / سالیانه </sub>
           </span>
           <ul class="border-top mt-3 text-start">
             <li class="text-dark my-1">تا سقف   ${

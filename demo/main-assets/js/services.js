@@ -24,11 +24,17 @@ function getUser() {
         console.log(response);
 
         try {
+          
+          
           if (response[0].role != "(پذیرنده) مراکز") {
             document.querySelector("#menu .nav li:nth-of-type(6)").remove();
             document.querySelector("#menu .nav li:nth-of-type(7)").remove();
+            document.querySelector("#menu .nav li:nth-of-type(11)").remove();
           }
-
+          if (response[0].is_staff != true) {
+            document.querySelector("#meniadmin").remove();
+           
+          }
           document.querySelector("#userName_box").innerHTML =
             response[0].username;
         } catch {}
@@ -303,6 +309,63 @@ function smsregister() {
     console.error(error);
   }
 }
+function nfcLink() {
+  var url = urldemo + `/api/nfc/send/link/`;
+  try {
+    const formData = new FormData();
+    formData.append("nfc_number", document.getElementById("nfcnumber").value);
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>کد برای تلفن همراه شما ارسال شد</span>";
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        const keys = Object.keys(res);
+        let msg = "";
+
+        keys.forEach((key, index) => {
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "nfc_number") {
+            keyf = "شماره nfc ";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
+        });
+        if (msg) {
+          const errors = document.getElementById("errors");
+          errors.innerHTML = msg;
+          errors.className = errors.className.replace(
+            "text-success",
+            "text-danger"
+          );
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+
+    request.open("POST", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+    request.send(formData);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 function smsblock() {
   var xx = "";
@@ -414,12 +477,12 @@ function forgetsms() {
 
 // Validate Form On Submit
 try {
-  document
-    .querySelector("form:not(.profileForm)")
-    .addEventListener("submit", function (event) {
+  for (const el of document.querySelectorAll("form:not(.profileForm)")) {
+    el.addEventListener("submit", function (event) {
       event.preventDefault();
       validate(event);
     });
+  }
 } catch {}
 function validate(event) {
   let message = "";
@@ -608,6 +671,10 @@ function validate(event) {
 
     if (act == "register") {
       register();
+    } else if (act == "nfcdetail") {
+      nfcdetail();
+    } else if (act == "nfcbalance") {
+      nfcbalance();
     } else if (act == "login") {
       login();
     } else if (act == "support") {
@@ -770,6 +837,148 @@ try {
   });
 } catch {}
 
+// **************************** nfcdetail
+
+function nfcdetail() {
+  var url = urldemo + `/api/nfc/get/details/`;
+  try {
+    const formData = new FormData();
+    formData.append("nfc_number", document.getElementById("nfcnumber").value);
+    formData.append("code", document.getElementById("activation-code").value);
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        var data = JSON.parse(this.responseText);
+        console.log(data);
+        document.getElementById("nfcForm").remove();
+        document
+          .getElementById("nfcForm2")
+          .classList.replace("d-none", "d-block");
+        document.getElementById("nfcForm2").setAttribute("idnfc", data.id);
+        document.getElementById("mojodi").value = data.balance;
+
+        console.log(data);
+        document
+          .getElementById("mojodi")
+          .classList.replace("d-none", "d-block");
+        document
+          .getElementById("mablagh")
+          .classList.replace("d-none", "d-block");
+        document
+          .getElementById("activation-code2")
+          .classList.replace("d-none", "d-block");
+      } else if (request.status == 400) {
+        const res = JSON.parse(request.response);
+        console.log(res);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "nfc_number") {
+            keyf = "شماره nfc ";
+          } else if (key == "code") {
+            keyf = "کد  ";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
+        });
+        if (msg) {
+          const errors = document.getElementById("errors");
+          errors.innerHTML = msg;
+          errors.className = errors.className.replace(
+            "text-success",
+            "text-danger"
+          );
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+    request.open("POST", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+    request.send(formData);
+  } catch (error) {
+    console.error(error);
+  }
+}
+// **************************** nfcdetail
+
+function nfcbalance() {
+  var url =
+    urldemo +
+    `/api/nfc/reduce/balance/${document.getElementById("nfcForm2").getAttribute("idnfc")}/`;
+  try {
+    const formData = new FormData();
+    formData.append("mablagh", document.getElementById("mablagh").value);
+    formData.append("code", document.getElementById("activation-code2").value);
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        var data = JSON.parse(this.responseText);
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+      } else if (request.status == 400) {
+        const res = JSON.parse(request.response);
+
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "mablagh") {
+            keyf = " مبلغ ";
+          } else if (key == "code") {
+            keyf = "کد  ";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
+        });
+        console.log(msg);
+        if (msg) {
+          const errors = document.getElementById("errors2");
+          errors.innerHTML = msg;
+          errors.className = errors.className.replace(
+            "text-success",
+            "text-danger"
+          );
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+    request.open("PATCH", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+    request.send(formData);
+  } catch (error) {
+    console.error(error);
+  }
+}
 // **************************** register
 
 function register() {
@@ -1322,7 +1531,6 @@ function patchCenterProfile(event) {
       "economy_code",
       document.getElementById("tracking-code2").value
     );
-    formData.append("password", document.getElementById("password2").value);
 
     const request = new XMLHttpRequest();
     request.onloadend = function () {
@@ -1452,8 +1660,6 @@ function patchProfile(event) {
 
     formData.append("name", document.getElementById("name").value);
 
-    formData.append("password", document.getElementById("password").value);
-
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
@@ -1528,6 +1734,70 @@ function patchProfile(event) {
   }
 }
 
+function changepass(event) {
+  var url = urldemo + "/api/change/password/";
+  event.preventDefault();
+  try {
+    const formData = new FormData();
+    formData.append("password", document.getElementById("passworduser").value);
+
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        var response = JSON.parse(this.responseText);
+
+        console.log(response);
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML = `<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>`;
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        console.log(res);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else if (key == "password") {
+            keyf = "رمز عبور";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
+        });
+        if (msg) {
+          const errors = document.getElementById("errors2");
+          errors.innerHTML = msg;
+          errors.className = errors.className.replace(
+            "text-success",
+            "text-danger"
+          );
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+    request.open("POST", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+    request.send(formData);
+  } catch (error) {
+    console.error(error);
+  }
+}
 // **************************** visitReq
 function visitReq() {
   var url = urldemo + `/api/vizit/`;

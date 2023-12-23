@@ -101,7 +101,7 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="main-create-service.html">
-                  افزودن خدمت 
+                  افزودن خدمت
                 </a>
               </li>
               <li class="nav-item">
@@ -118,12 +118,28 @@
                   تیکت / پشتیبانی
                 </a>
               </li>
-              <li class="nav-item">
+                      <li class="nav-item">
                 <a
                   class="nav-link"
                   href="https://daroocard.ir/Help%20Daroocard.pdf"
                 >
                   قوانین و ضوابط
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="main-nfc.html"
+                >
+                 nfc
+                </a>
+              </li>
+              <li class="nav-item"  id="meniadmin">
+                <a
+                  class="nav-link"
+                  href="admin.html"
+                >
+                پنل ادمین
                 </a>
               </li>
             </ul>
@@ -305,22 +321,6 @@
             </label>
             <input type="text" class="form-control" id="username" value="" />
           </section>
-          <section
-            class="d-flex requestRemove flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
-          >
-            <label
-              for="password"
-              class="form-label text-sm-end text-start pe-3"
-            >
-              رمز عبور
-            </label>
-            <input
-              type="password"
-              class="form-control"
-              id="password"
-              value=""
-            />
-          </section>
 
           <!-- +++++++++++++++ -->
           <input type="submit" value="ویرایش اطلاعات" class="btn btn-light" />
@@ -335,7 +335,6 @@
             <div id="filebox"></div>
           </section>
           <hr />
-          
         </form>
 
         <form
@@ -588,22 +587,6 @@
             </label>
             <input type="text" class="form-control" id="username2" value="" />
           </section>
-          <section
-            class="d-flex requestRemove flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type4"
-          >
-            <label
-              for="password2"
-              class="form-label text-sm-end text-start pe-3"
-            >
-              رمز عبور
-            </label>
-            <input
-              type="password"
-              class="form-control"
-              id="password2"
-              value=""
-            />
-          </section>
 
           <!-- +++++++++++++++ -->
           <input type="submit" value="ویرایش اطلاعات" class="btn btn-light" />
@@ -618,7 +601,6 @@
             <div id="filebox2"></div>
           </section>
           <hr />
-         
         </form>
         <section class="digital-sign">
           <p class="form-text text-info-emphasis text-center fw-bold mb-2">
@@ -663,6 +645,47 @@
             </button>
           </div>
         </section>
+      </main>
+
+      <main class="rounded-4 pb-4 mb-5 text-center overflow-hidden shadow-lg">
+        <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary">
+          پسورد
+        </h1>
+        <form
+          type="changepass"
+          onsubmit="return  changepass(event)"
+          class="w-100 requestRemove px-4 mt-3 text-end"
+        >
+          <div class="w-100 px-4 mt-3 text-end">
+            <section
+              class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+            >
+              <label
+                for="passworduser"
+                class="form-label text-sm-end text-start pe-3"
+              >
+                رمز عبور
+              </label>
+              <input
+                type="password"
+                class="form-control"
+                id="passworduser"
+                value=""
+              />
+            </section>
+
+            <!-- +++++++++++++++ -->
+            <input
+              type="submit"
+              value="ویرایش رمز عبور"
+              class="btn btn-light"
+            />
+            <p
+              class="form-text text-danger text-center fw-bolder mb-5"
+              id="errors2"
+            ></p>
+          </div>
+        </form>
       </main>
       <footer class="info text-center mb-2">
         <div class="footer_logo_box">

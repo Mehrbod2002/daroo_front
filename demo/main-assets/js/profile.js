@@ -9,9 +9,11 @@ if (urlpath) {
 } else if (urlpath2) {
   document.querySelector("#profile2").remove();
   document.querySelector("#user-type option:nth-of-type(2)").remove();
+  document.querySelectorAll(".requestRemove").forEach((e) => e.remove());
 } else if (urlpath3) {
   document.querySelector("#profile1").remove();
   document.querySelector("#user-type option:nth-of-type(1)").remove();
+  document.querySelectorAll(".requestRemove").forEach((e) => e.remove());
 } else {
   getCenterProfile();
   getProfile();
@@ -183,7 +185,6 @@ function getProfile() {
         document.querySelector("#name").value = response[0].name;
         document.querySelector("#mobile").value = response[0].mobile;
         document.querySelector("#username").value = response[0].username;
-        document.querySelector("#password").value = response[0].password;
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -263,7 +264,6 @@ function getCenterProfile() {
         document.querySelector("#name2").value = response[0].name;
         document.querySelector("#username2").value = response[0].username;
 
-        document.querySelector("#password2").value = response[0].password;
         document.querySelector("#postal-code2").value = response[0].postal_code;
         document.querySelector("#office-type2").value = response[0].center_type;
         document.querySelector("#office-code2").value = response[0].center_code;
