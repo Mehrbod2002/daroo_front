@@ -27,13 +27,15 @@ function getUser() {
           
           
           if (response[0].role != "(پذیرنده) مراکز") {
-            document.querySelector("#menu .nav li:nth-of-type(6)").remove();
-            document.querySelector("#menu .nav li:nth-of-type(7)").remove();
-            document.querySelector("#menu .nav li:nth-of-type(11)").remove();
+       
+            document.querySelector(".rm_li1").remove();
+            document.querySelector(".rm_li2").remove();
+            document.querySelector(".rm_li3").remove();
           }
+         
           if (response[0].is_staff != true) {
             document.querySelector("#meniadmin").remove();
-           
+      
           }
           document.querySelector("#userName_box").innerHTML =
             response[0].username;
@@ -1098,38 +1100,38 @@ function login() {
   }
 }
 function increase() {
-  var url = urldemo + `/api/increase/`;
+  
   try {
+    var url = urldemo + `/api/ipg/increase/wallet/balance/`;
+   
     const formData = new FormData();
     var xx = "";
     if (document.getElementById("wallet-number-radio").checked) {
       formData.append(
-        "wallet_number",
+        "wallet_id",
         document.getElementById("wallet-number").value
       );
     } else {
+      var url = urldemo + `/api/ipg/increase/card/balance/`;
       const cardnums = document.querySelectorAll("#card-numbers input");
 
       for (const el of cardnums) {
         xx = xx + el.value;
       }
-      formData.append("daroo_card_number", xx);
+      formData.append("card_number", xx);
     }
 
     formData.append(
-      "mablagh",
+      "amount",
       document.getElementById("amount").value.replaceAll(",", "")
     );
-    formData.append("dscription", document.getElementById("description").value);
+    formData.append("description", document.getElementById("description").value);
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         var data = JSON.parse(this.responseText);
-        console.log(data.detail);
-        window.localStorage.setItem("token", data.detail.token);
-        $(".messagewrapper").fadeIn();
-        messageBox.innerHTML =
-          "<span class='text-sm text-success'> ئرخواست شما با موفقیت انجام شد </span>";
+                    
+                      window.location.replace(data);
       } else if (request.status == 401) {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -1143,13 +1145,13 @@ function increase() {
           var keyf = "";
           if (key == "error") {
             keyf = "ارور";
-          } else if (key == "wallet_number") {
+          } else if (key == "wallet_id") {
             keyf = "شماره ی کیف پول";
-          } else if (key == "daroo_card_number") {
+          } else if (key == "card_number") {
             keyf = "شماره ی دارو کارت";
-          } else if (key == "mablagh") {
+          } else if (key == "amount") {
             keyf = "مبلغ";
-          } else if (key == "dscription") {
+          } else if (key == "description") {
             keyf = "توضیحات";
           } else {
             keyf = key;
@@ -1611,7 +1613,7 @@ function patchCenterProfile(event) {
     request.onloadstart = function () {
       $(".loader").fadeIn();
     };
-    request.open("PATCH", url);
+    request.open("PUT", url);
     request.setRequestHeader(
       "Authorization",
       `Token ${localStorage.getItem("token")}`
@@ -1723,7 +1725,7 @@ function patchProfile(event) {
     request.onloadstart = function () {
       $(".loader").fadeIn();
     };
-    request.open("PATCH", url);
+    request.open("PUT", url);
     request.setRequestHeader(
       "Authorization",
       `Token ${localStorage.getItem("token")}`

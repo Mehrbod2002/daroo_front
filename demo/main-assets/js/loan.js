@@ -12,7 +12,7 @@ function getLoan() {
             <td> ${index + 1} </td>
             <td sorttable_customkey="14020215">${key.created_at} </td>
             <td> ${key.loan_type} </td>
-            <td sorttable_customkey="2000000"> ${key.loan_amount} </td>
+            <td sorttable_customkey="${key.loan_amount}" style="direction: ltr;"> ${key.loan_amount} </td>
             <td> ${key.payment_time} </td>
             <td> ${key.tracking_code} </td>
             <td> ${key.description}</td>

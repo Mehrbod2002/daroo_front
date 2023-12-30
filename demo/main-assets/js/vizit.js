@@ -18,8 +18,8 @@ function getvizit() {
             <td> ${key.title}</td>
             <td> ${key.national_id}  </td>
             <td> ${key.phone_number}  </td>
-            <td sorttable_customkey="2000000"> - </td>
-            <td>-</td>
+            <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
+            <td>${key.tracking_code}</td>
             <td> ${key.status}</td>
             <td>
             ${
