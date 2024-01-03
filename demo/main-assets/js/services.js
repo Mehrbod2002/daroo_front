@@ -857,12 +857,6 @@ function nfcdetail() {
           .getElementById("nfcForm2")
           .classList.replace("d-none", "d-block");
         document.getElementById("nfcForm2").setAttribute("idnfc", data.id);
-        document.getElementById("mojodi").value = data.balance;
-
-        console.log(data);
-        document
-          .getElementById("mojodi")
-          .classList.replace("d-none", "d-block");
         document
           .getElementById("mablagh")
           .classList.replace("d-none", "d-block");
@@ -1000,7 +994,7 @@ function register() {
         console.log(response);
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML = `<span class='text-sm text-success'>ثبت نام شما با موفقیت انجام شد</span>`;
-        window.location.replace("https://daroocard.com/main-signin.html");
+        window.location.replace("http://127.0.0.1:5501/main-signin.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -1064,7 +1058,7 @@ function login() {
         var data = JSON.parse(this.responseText);
         console.log(data.detail);
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace("https://daroocard.com/main-index.html");
+        window.location.replace("http://127.0.0.1:5501/main-index.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -1201,7 +1195,7 @@ function logout() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         localStorage.clear();
-        window.location.replace("https://daroocard.com/main-index.html");
+        window.location.replace("http://127.0.0.1:5501/main-index.html");
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -1492,46 +1486,46 @@ function patchCenterProfile(event) {
   try {
     const formData = new FormData();
 
-    formData.append("role", document.getElementById("user-type").value);
-    formData.append("phone", document.getElementById("phone2").value);
+    formData.append("role", document.getElementById("user-type").value.length ?  document.getElementById("user-type").value : " ");
+    formData.append("phone", document.getElementById("phone2").value.length ?  document.getElementById("phone2").value : " " );
     formData.append(
       "national_id",
-      document.getElementById("national-code2").value
+      document.getElementById("national-code2").value.length ?  document.getElementById("national-code2").value: " "
     );
-    formData.append("address", document.getElementById("address2").value);
-    formData.append("sheba", document.getElementById("shaba2").value);
+    formData.append("address", document.getElementById("address2").value.length ?  document.getElementById("address2").value : " " );
+    formData.append("sheba", document.getElementById("shaba2").value.length ?  document.getElementById("shaba2").value : " ");
     formData.append(
       "card_number",
-      document.getElementById("card-number2").value
+      document.getElementById("card-number2").value.length ? document.getElementById("card-number2").value  : " "
     );
     formData.append(
       "account_number",
-      document.getElementById("account-number2").value
+      document.getElementById("account-number2").value.length ?   document.getElementById("account-number2").value: " "
     );
-    formData.append("name", document.getElementById("name2").value);
+    formData.append("name", document.getElementById("name2").value.length ?  document.getElementById("name2").value: " " );
     formData.append(
       "postal_code",
-      document.getElementById("postal-code2").value
+      document.getElementById("postal-code2").value.length ?  document.getElementById("postal-code2").value : " "
     );
     formData.append(
       "pepresentative_position",
-      document.getElementById("user-position2").value
+      document.getElementById("user-position2").value.length ?  document.getElementById("user-position2").value : " "
     );
     formData.append(
       "center_name",
-      document.getElementById("user-position2").value
+      document.getElementById("user-position2").value.length ?  document.getElementById("user-position2").value : " "
     );
     formData.append(
       "center_type",
-      document.getElementById("office-type2").value
+      document.getElementById("office-type2").value.length ?  document.getElementById("office-type2").value : " "
     );
     formData.append(
       "center_code",
-      document.getElementById("office-code2").value
+      document.getElementById("office-code2").value.length ?  document.getElementById("office-code2").value : " "
     );
     formData.append(
       "economy_code",
-      document.getElementById("tracking-code2").value
+      document.getElementById("tracking-code2").value.length ?   document.getElementById("tracking-code2").value : " "
     );
 
     const request = new XMLHttpRequest();
@@ -1643,24 +1637,24 @@ function patchProfile(event) {
 
   try {
     const formData = new FormData();
-    formData.append("role", document.getElementById("user-type").value);
-    formData.append("phone", document.getElementById("phone").value);
+    formData.append("role", document.getElementById("user-type").value.length  ? document.getElementById("user-type").value : " ");
+    formData.append("phone", document.getElementById("phone").value.length  ? document.getElementById("phone").value : " ");
     formData.append(
       "national_id",
-      document.getElementById("national-code").value
+      document.getElementById("national-code").value.length  ? document.getElementById("national-code").value : " "
     );
-    formData.append("address", document.getElementById("address").value);
-    formData.append("sheba", document.getElementById("shaba").value);
+    formData.append("address", document.getElementById("address").value.length > 0 ? document.getElementById("address").value : " " );
+    formData.append("sheba", document.getElementById("shaba").value.length  ? document.getElementById("shaba").value : " ");
     formData.append(
       "card_number",
-      document.getElementById("card-number").value
+      document.getElementById("card-number").value.length  ? document.getElementById("card-number").value : " "
     );
     formData.append(
       "account_number",
-      document.getElementById("account-number").value
+      document.getElementById("account-number").value.length  ? document.getElementById("account-number").value : " "
     );
 
-    formData.append("name", document.getElementById("name").value);
+    formData.append("name", document.getElementById("name").value.length  ? document.getElementById("name").value : " ");
 
     const request = new XMLHttpRequest();
     request.onloadend = function () {
@@ -1707,7 +1701,7 @@ function patchProfile(event) {
           msg = msg + `${keyf} : ${res[key]}<br>`;
         });
         if (msg) {
-          const errors = document.getElementById("errors");
+          const errors = document.getElementById("errors3");
           errors.innerHTML = msg;
           errors.className = errors.className.replace(
             "text-success",
@@ -1829,7 +1823,7 @@ function visitReq() {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
         window.location.replace(
-          "https://daroocard.com/main-reception-requests.html"
+          "http://127.0.0.1:5501/main-reception-requests.html"
         );
       } else if (request.status == 401) {
         $(".messagewrapper").fadeIn();
@@ -2241,7 +2235,7 @@ function forget() {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace("https://daroocard.com/main-profile.html");
+        window.location.replace("http://127.0.0.1:5501/main-profile.html");
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);

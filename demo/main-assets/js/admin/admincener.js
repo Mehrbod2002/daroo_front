@@ -156,7 +156,7 @@ function getAdminUser() {
         const reception = document.querySelectorAll(".reception-user");
         for (const el of reception) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/main-reception-requests.html?centerid=${el.getAttribute(
+            window.location.href = `http://127.0.0.1:5501/main-reception-requests.html?centerid=${el.getAttribute(
               "id"
             )}`;
           });
@@ -164,7 +164,7 @@ function getAdminUser() {
         const transaction = document.querySelectorAll(".transaction-user");
         for (const el of transaction) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/main-reports.html?centerid=${el.getAttribute(
+            window.location.href = `http://127.0.0.1:5501/main-reports.html?centerid=${el.getAttribute(
               "id"
             )}`;
           });
@@ -172,7 +172,7 @@ function getAdminUser() {
         const wallet = document.querySelectorAll(".wallet-user");
         for (const el of wallet) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/main-wallet.html?centerid=${el.getAttribute(
+            window.location.href = `http://127.0.0.1:5501/main-wallet.html?centerid=${el.getAttribute(
               "id"
             )}`;
           });
@@ -180,7 +180,7 @@ function getAdminUser() {
         const profile = document.querySelectorAll(".profile-user");
         for (const el of profile) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/main-profile.html?centerid=${el.getAttribute(
+            window.location.href = `http://127.0.0.1:5501/main-profile.html?centerid=${el.getAttribute(
               "id"
             )}`;
           });
