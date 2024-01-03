@@ -1633,7 +1633,7 @@ function patchProfile(event) {
   } else if (urlpath2) {
     var xx = `/api/admin/centers/edit/profile/${urlpath}/`;
   } else {
-    var xx = `/api/center/profile/${document
+    var xx = `/api/profile/${document
       .querySelector("#profile")
       .getAttribute("formid")}/`;
   }
