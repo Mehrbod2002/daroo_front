@@ -27,7 +27,7 @@ function getTransfer() {
                   ? key.destination_object_id + "(شماره کیف پول)"
                   : "-"
               } </td>
-              <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
+              <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${key.mablagh} </td>
               <td>${key.phone_number} </td>
               <td> ${key.tracking_code}</td>
               <td> ${key.status}  </td>
@@ -93,7 +93,7 @@ function getTransfer() {
                   ? key.destination_object_id + "(شماره کیف پول)"
                   : "-"
               } </td>
-              <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
+              <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${key.mablagh} </td>
               <td>${key.phone_number} </td>
               <td> ${key.tracking_code}</td>
               <td> ${key.status}  </td>
@@ -158,7 +158,7 @@ function getTransfer() {
                   ? key.destination_object_id + "(شماره کیف پول)"
                   : "-"
               } </td>
-              <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
+              <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${key.mablagh} </td>
               <td>${key.phone_number} </td>
               <td> ${key.tracking_code}</td>
               <td> ${key.status}  </td>

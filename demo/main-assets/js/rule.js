@@ -5,12 +5,12 @@ function getvizitReport() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
-        console.log(response[0].content);
+        
 
         document.querySelector("#ruleBody").innerHTML = response[0].content;
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
-        console.log(res);
+       
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
@@ -33,10 +33,7 @@ function getvizitReport() {
       $(".loader").fadeIn();
     };
     request.open("GET", url);
-    request.setRequestHeader(
-      "Authorization",
-      `Token ${localStorage.getItem("token")}`
-    );
+   
     request.send();
   } catch (error) {
     console.error(error);

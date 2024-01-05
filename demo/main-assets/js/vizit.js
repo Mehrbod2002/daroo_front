@@ -13,12 +13,12 @@ function getvizit() {
         response.forEach((key, index) => {
           var item = `<tr>
             <td> ${index + 1} </td>
-            <td sorttable_customkey="14020215"> ${key.created_at} </td>
+            <td sorttable_customkey="14020215" style="direction: ltr;"> ${key.created_at} </td>
             <td>${key.name}</td>
             <td> ${key.title}</td>
             <td> ${key.national_id}  </td>
             <td> ${key.phone_number}  </td>
-            <td sorttable_customkey="${key.mablagh}"> ${key.mablagh} </td>
+            <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${key.mablagh} </td>
             <td>${key.tracking_code}</td>
             <td> ${key.status}</td>
             <td>
