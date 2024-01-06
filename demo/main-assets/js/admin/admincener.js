@@ -25,7 +25,7 @@ function getAdminUser() {
             </td>
             <td>${key.username}</td>
            
-            <td>------</td>
+            <td>${key.center_name}</td>
             <td>${key.center_type}</td>
             <td>${key.center_code}</td>
             <td>${key.name}</td>
