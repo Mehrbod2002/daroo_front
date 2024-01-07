@@ -33,7 +33,7 @@ function getAdminUser() {
           <td class="d-flex justify-content-center align-items-center"  dir="ltr" type="users" id="${
             key.id
           }">
-            <span> ${key.wallet_balance}   ریال </span>
+            <span> ریال ${key.wallet_balance}</span>
             ${
               key.wallet_blocked == "TRUE"
                 ? `| مسدود شده (به علت: ${
