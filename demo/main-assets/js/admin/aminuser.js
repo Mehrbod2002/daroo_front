@@ -30,7 +30,7 @@ function getAdminUser() {
           <td>${key.mobile}</td>
           <td>${key.phone}</td>
           <td> ${key.address}</td>
-          <td class="d-flex justify-content-center align-items-center" type="users" id="${
+          <td class="d-flex justify-content-center align-items-center"  dir="ltr" type="users" id="${
             key.id
           }">
             <span> ${key.wallet_balance}   ریال </span>
