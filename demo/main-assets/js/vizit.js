@@ -2,7 +2,12 @@ function getvizit() {
   const searchparams = new URLSearchParams(window.location.search);
   var urlpath = searchparams.get("id");
   var urlpath2 = searchparams.get("centerid");
-  var url = urldemo + `/api/vizit/`;
+  if(urlpath2){
+    var url = urldemo + `/api/admin/centers/accepts/reports/${urlpath2}/`;
+  }else{
+    var url = urldemo + `/api/vizit/`;
+  }
+  
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
