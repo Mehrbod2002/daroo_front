@@ -17,6 +17,7 @@ function getvizitReport() {
           response.tracking_code;
         document.querySelector(".valStatus").innerHTML = response.status;
         document.querySelector(".valDsc").innerHTML = response.dsc;
+        document.querySelector(".valPayment").innerHTML = response.payment;
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -46,10 +47,6 @@ function getvizitReport() {
       $(".loader").fadeIn();
     };
     request.open("GET", url);
-    request.setRequestHeader(
-      "Authorization",
-      `Token ${localStorage.getItem("token")}`
-    );
     request.send();
   } catch (error) {
     console.error(error);
