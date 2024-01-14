@@ -17,7 +17,9 @@ function getvizitReport() {
           response.tracking_code;
         document.querySelector(".valStatus").innerHTML = response.status;
         document.querySelector(".valDsc").innerHTML = response.dsc;
-        document.querySelector(".valPayment").innerHTML = response.payment;
+        <button id="${response.payment}" class="btn btn-primary buyCard align-self-end me-3 mb-2">
+            پرداخت
+        </button>
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
