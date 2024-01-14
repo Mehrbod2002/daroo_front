@@ -9,7 +9,7 @@ function getvizitReport() {
         console.log(response);
         document.querySelector(".valTitle").innerHTML = response.title;
         document.querySelector(".valName").innerHTML = response.name;
-        document.querySelector(".valDtae").innerHTML = response.create_at;
+        document.querySelector(".valDtae").innerHTML = response.created_at;
         document.querySelector(".valNational").innerHTML = response.national_id;
         document.querySelector(".valPhone").innerHTML = response.phone_number;
         document.querySelector(".valMablagh").innerHTML = response.mablagh;
