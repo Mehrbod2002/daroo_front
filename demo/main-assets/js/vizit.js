@@ -30,7 +30,7 @@ function getvizit() {
             }
             ${
               key.status == "در انتظار پرداخت متقاضی"
-                ? `<button class="btn p-2 linkReqBtn" id=""> ارسال لینک پرداخت </button>`
+                ? `<button class="btn p-2 btn-secondary"> ارسال لینک پرداخت </button>`
                 : ""
             }
             ${
