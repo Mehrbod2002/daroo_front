@@ -18,11 +18,7 @@ function getvizit() {
         response.forEach((key, index) => {
           var item = `<tr>
             <td> ${index + 1} </td>
-            <td sorttable_customkey="14020215" style="direction: ltr;"> ${key.created_at} </td>
             <td>${key.name}</td>
-            <td> ${key.title}</td>
-            <td> ${key.national_id}  </td>
-            <td> ${key.phone_number}  </td>
             <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${key.mablagh} </td>
             <td>${key.tracking_code}</td>
             <td> ${key.status}</td>
@@ -37,7 +33,6 @@ function getvizit() {
                 ? `<button class="btn btn-danger p-2 acceptReqBtn" id="${key.id}"> پذیرش </button>`
                 : ""
             }  </td>
-            <td> ${key.dsc} </td>
             <td> <button class="get-report btn btn-secondary p-2" id="${
               key.id
             }"> گزارش درخواست </button> </td>
