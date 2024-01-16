@@ -29,6 +29,11 @@ function getvizit() {
                 : ""
             }
             ${
+              key.status == "در انتظار پرداخت متقاضی"
+                ? `<button class="btn p-2 linkReqBtn" id=""> ارسال لینک پرداخت </button>`
+                : ""
+            }
+            ${
               key.status == "در انتظار پذیرش اپراتور"
                 ? `<button class="btn btn-danger p-2 acceptReqBtn" id="${key.id}"> پذیرش </button>`
                 : ""
