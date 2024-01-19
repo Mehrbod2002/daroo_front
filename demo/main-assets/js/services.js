@@ -680,8 +680,6 @@ function validate(event) {
       nfcbalance();
     } else if (act == "login") {
       login();
-    } else if (act == "support") {
-      support();
     } else if (act == "loan") {
       loan();
     } else if (act == "sms") {
@@ -1099,10 +1097,7 @@ function login() {
           );
         }
       } else {
-        $(".messagewrapper").fadeIn();
-        messageBox.innerHTML =
-          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
-      }
+        $(".messagewrapper").fadevent.preventDefault();
       setTimeout(clearMessageBox, 1000);
     };
 
@@ -1425,7 +1420,8 @@ function service() {
   }
 }
 
-function support() {
+function support(event) {
+  event.preventDefault();
   var url = urldemo + `/api/support/`;
   try {
     const formData = new FormData();
@@ -1832,7 +1828,6 @@ function visitReq() {
       formData.append("code", document.getElementById("activation-codee").value);
     }
     formData.append("name", document.getElementById("name").value);
-    formData.append("title", document.getElementById("title").value);
     formData.append("service", document.getElementById("service-type").value);
     formData.append(
       "national_id",
