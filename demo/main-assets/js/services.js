@@ -490,7 +490,7 @@ function validate(event) {
   let message = "";
   let isTrue = true;
   for (const el of document.querySelectorAll(
-    "main form>section input:not(#office-code):not(#description):not(#national-code), main form>section textarea"
+    "main form>section input:not(#office-code):not(#national-code), main form>section textarea:not(#description)"
   )) {
     if (
       !el.hasAttribute("disabled") &&
