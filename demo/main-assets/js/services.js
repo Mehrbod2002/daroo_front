@@ -24,18 +24,13 @@ function getUser() {
         console.log(response);
 
         try {
-          
-          
           if (response[0].role != "(پذیرنده) مراکز") {
-       
             document.querySelector(".rm_li1").remove();
             document.querySelector(".rm_li2").remove();
-           
           }
-         
+
           if (response[0].is_staff != true) {
             document.querySelector("#meniadmin").remove();
-      
           }
           document.querySelector("#userName_box").innerHTML =
             response[0].username;
@@ -479,7 +474,9 @@ function forgetsms() {
 
 // Validate Form On Submit
 try {
-  for (const el of document.querySelectorAll("form:not(.profileForm):not(.supportfile-form):not(.support-form2)")) {
+  for (const el of document.querySelectorAll(
+    "form:not(.profileForm):not(.supportfile-form):not(.support-form2)"
+  )) {
     el.addEventListener("submit", function (event) {
       event.preventDefault();
       validate(event);
@@ -563,7 +560,7 @@ function validate(event) {
           message =
             "لطفا شماره شبا را به روش صحیح (و با اعداد انگلیسی) وارد نمایید.";
           isTrue = false;
-        } 
+        }
         // else if (
         //   (name1 !== undefined && !/^[ا-ی\s]+$/.test(name1.value)) ||
         //   (name2 !== undefined && !/^[ا-ی\s]+$/.test(name2.value))
@@ -588,7 +585,7 @@ function validate(event) {
         //   message =
         //     "لطفا شماره ی موبایل را به روش صحیح (و با اعداد انگلیسی) وارد نمایید (برای مثال: 1234----0913)";
         //   isTrue = false;
-        // } 
+        // }
         else if (
           phone !== undefined &&
           (phone.value.length !== 11 ||
@@ -676,7 +673,7 @@ function validate(event) {
 
     if (act == "register") {
       register();
-    }  else if (act == "nfcbalance") {
+    } else if (act == "nfcbalance") {
       nfcbalance();
     } else if (act == "login") {
       login();
@@ -758,27 +755,29 @@ try {
 
 try {
   document.getElementById("payment-type").selectedIndex = "0";
-  document.getElementById("payment-type").addEventListener("change", function () {
-    document.getElementById("name").value = ""
-    document.getElementById("national-code").value = ""
-    document.getElementById("mobile").value = ""
-    document.getElementById("name").removeAttribute('disabled');
-    document.getElementById("national-code").removeAttribute('disabled');
-    document.getElementById("mobile").removeAttribute('disabled');
-    if(document.getElementById("payment-type").value == "SMS"){
-      for (const el of document.querySelectorAll(".rmvBox")) {
-        el.classList.replace("d-block", "d-none");
+  document
+    .getElementById("payment-type")
+    .addEventListener("change", function () {
+      document.getElementById("name").value = "";
+      document.getElementById("national-code").value = "";
+      document.getElementById("mobile").value = "";
+      document.getElementById("name").removeAttribute("disabled");
+      document.getElementById("national-code").removeAttribute("disabled");
+      document.getElementById("mobile").removeAttribute("disabled");
+      if (document.getElementById("payment-type").value == "SMS") {
+        for (const el of document.querySelectorAll(".rmvBox")) {
+          el.classList.replace("d-block", "d-none");
+        }
       }
-    }
-    if(document.getElementById("payment-type").value == "NFC"){
-      document.getElementById("name").setAttribute('disabled', '');
-      document.getElementById("national-code").setAttribute('disabled', '');
-      document.getElementById("mobile").setAttribute('disabled', '');
-      for (const el of document.querySelectorAll(".rmvBox")) {
-        el.classList.replace("d-none", "d-block");
+      if (document.getElementById("payment-type").value == "NFC") {
+        document.getElementById("name").setAttribute("disabled", "");
+        document.getElementById("national-code").setAttribute("disabled", "");
+        document.getElementById("mobile").setAttribute("disabled", "");
+        for (const el of document.querySelectorAll(".rmvBox")) {
+          el.classList.replace("d-none", "d-block");
+        }
       }
-    }
-  });
+    });
 } catch {}
 // //////////////////////////////////////////////////
 // Special Sections Controls
@@ -877,12 +876,13 @@ function nfcdetail() {
       if (request.status == 200 || request.status == 201) {
         var data = JSON.parse(this.responseText);
         console.log(data);
-       
-        document.getElementById("name").value = data.name
-        document.getElementById("national-code").value = data.national_id
-        document.getElementById("mobile").value = data.phone_number
-        document.getElementById("reception-form").setAttribute("idnfc", data.id);
-       
+
+        document.getElementById("name").value = data.name;
+        document.getElementById("national-code").value = data.national_id;
+        document.getElementById("mobile").value = data.phone_number;
+        document
+          .getElementById("reception-form")
+          .setAttribute("idnfc", data.id);
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -935,7 +935,9 @@ function nfcdetail() {
 function nfcbalance() {
   var url =
     urldemo +
-    `/api/nfc/reduce/balance/${document.getElementById("nfcForm2").getAttribute("idnfc")}/`;
+    `/api/nfc/reduce/balance/${document
+      .getElementById("nfcForm2")
+      .getAttribute("idnfc")}/`;
   try {
     const formData = new FormData();
     formData.append("mablagh", document.getElementById("mablagh").value);
@@ -1065,7 +1067,6 @@ function register() {
   }
 }
 // **************************** login
-
 function login() {
   var url = urldemo + `/api/login/`;
   try {
@@ -1097,7 +1098,10 @@ function login() {
           );
         }
       } else {
-        $(".messagewrapper").fadevent.preventDefault();
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
       setTimeout(clearMessageBox, 1000);
     };
 
@@ -1111,10 +1115,9 @@ function login() {
   }
 }
 function increase() {
-  
   try {
     var url = urldemo + `/api/ipg/increase/wallet/balance/`;
-   
+
     const formData = new FormData();
     var xx = "";
     if (document.getElementById("wallet-number-radio").checked) {
@@ -1136,13 +1139,16 @@ function increase() {
       "amount",
       document.getElementById("amount").value.replaceAll(",", "")
     );
-    formData.append("description", document.getElementById("description").value);
+    formData.append(
+      "description",
+      document.getElementById("description").value
+    );
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         var data = JSON.parse(this.responseText);
-                    
-                      window.location.replace(data);
+
+        window.location.replace(data);
       } else if (request.status == 401) {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -1504,46 +1510,89 @@ function patchCenterProfile(event) {
   try {
     const formData = new FormData();
 
-    formData.append("role", document.getElementById("user-type").value.length ?  document.getElementById("user-type").value : " ");
-    formData.append("phone", document.getElementById("phone2").value.length ?  document.getElementById("phone2").value : " " );
+    formData.append(
+      "role",
+      document.getElementById("user-type").value.length
+        ? document.getElementById("user-type").value
+        : " "
+    );
+    formData.append(
+      "phone",
+      document.getElementById("phone2").value.length
+        ? document.getElementById("phone2").value
+        : " "
+    );
     formData.append(
       "national_id",
-      document.getElementById("national-code2").value.length ?  document.getElementById("national-code2").value: " "
+      document.getElementById("national-code2").value.length
+        ? document.getElementById("national-code2").value
+        : " "
     );
-    formData.append("address", document.getElementById("address2").value.length ?  document.getElementById("address2").value : " " );
-    formData.append("sheba", document.getElementById("shaba2").value.length ?  document.getElementById("shaba2").value : " ");
+    formData.append(
+      "address",
+      document.getElementById("address2").value.length
+        ? document.getElementById("address2").value
+        : " "
+    );
+    formData.append(
+      "sheba",
+      document.getElementById("shaba2").value.length
+        ? document.getElementById("shaba2").value
+        : " "
+    );
     formData.append(
       "card_number",
-      document.getElementById("card-number2").value.length ? document.getElementById("card-number2").value  : " "
+      document.getElementById("card-number2").value.length
+        ? document.getElementById("card-number2").value
+        : " "
     );
     formData.append(
       "account_number",
-      document.getElementById("account-number2").value.length ?   document.getElementById("account-number2").value: " "
+      document.getElementById("account-number2").value.length
+        ? document.getElementById("account-number2").value
+        : " "
     );
-    formData.append("name", document.getElementById("name2").value.length ?  document.getElementById("name2").value: " " );
+    formData.append(
+      "name",
+      document.getElementById("name2").value.length
+        ? document.getElementById("name2").value
+        : " "
+    );
     formData.append(
       "postal_code",
-      document.getElementById("postal-code2").value.length ?  document.getElementById("postal-code2").value : " "
+      document.getElementById("postal-code2").value.length
+        ? document.getElementById("postal-code2").value
+        : " "
     );
     formData.append(
       "pepresentative_position",
-      document.getElementById("user-position2").value.length ?  document.getElementById("user-position2").value : " "
+      document.getElementById("user-position2").value.length
+        ? document.getElementById("user-position2").value
+        : " "
     );
     formData.append(
       "center_name",
-      document.getElementById("user-position2").value.length ?  document.getElementById("user-position2").value : " "
+      document.getElementById("user-position2").value.length
+        ? document.getElementById("user-position2").value
+        : " "
     );
     formData.append(
       "center_type",
-      document.getElementById("office-type2").value.length ?  document.getElementById("office-type2").value : " "
+      document.getElementById("office-type2").value.length
+        ? document.getElementById("office-type2").value
+        : " "
     );
     formData.append(
       "center_code",
-      document.getElementById("office-code2").value.length ?  document.getElementById("office-code2").value : " "
+      document.getElementById("office-code2").value.length
+        ? document.getElementById("office-code2").value
+        : " "
     );
     formData.append(
       "economy_code",
-      document.getElementById("tracking-code2").value.length ?   document.getElementById("tracking-code2").value : " "
+      document.getElementById("tracking-code2").value.length
+        ? document.getElementById("tracking-code2").value
+        : " "
     );
 
     const request = new XMLHttpRequest();
@@ -1655,24 +1704,55 @@ function patchProfile(event) {
 
   try {
     const formData = new FormData();
-    formData.append("role", document.getElementById("user-type").value.length  ? document.getElementById("user-type").value : " ");
-    formData.append("phone", document.getElementById("phone").value.length  ? document.getElementById("phone").value : " ");
+    formData.append(
+      "role",
+      document.getElementById("user-type").value.length
+        ? document.getElementById("user-type").value
+        : " "
+    );
+    formData.append(
+      "phone",
+      document.getElementById("phone").value.length
+        ? document.getElementById("phone").value
+        : " "
+    );
     formData.append(
       "national_id",
-      document.getElementById("national-code").value.length  ? document.getElementById("national-code").value : " "
+      document.getElementById("national-code").value.length
+        ? document.getElementById("national-code").value
+        : " "
     );
-    formData.append("address", document.getElementById("address").value.length > 0 ? document.getElementById("address").value : " " );
-    formData.append("sheba", document.getElementById("shaba").value.length  ? document.getElementById("shaba").value : " ");
+    formData.append(
+      "address",
+      document.getElementById("address").value.length > 0
+        ? document.getElementById("address").value
+        : " "
+    );
+    formData.append(
+      "sheba",
+      document.getElementById("shaba").value.length
+        ? document.getElementById("shaba").value
+        : " "
+    );
     formData.append(
       "card_number",
-      document.getElementById("card-number").value.length  ? document.getElementById("card-number").value : " "
+      document.getElementById("card-number").value.length
+        ? document.getElementById("card-number").value
+        : " "
     );
     formData.append(
       "account_number",
-      document.getElementById("account-number").value.length  ? document.getElementById("account-number").value : " "
+      document.getElementById("account-number").value.length
+        ? document.getElementById("account-number").value
+        : " "
     );
 
-    formData.append("name", document.getElementById("name").value.length  ? document.getElementById("name").value : " ");
+    formData.append(
+      "name",
+      document.getElementById("name").value.length
+        ? document.getElementById("name").value
+        : " "
+    );
 
     const request = new XMLHttpRequest();
     request.onloadend = function () {
@@ -1815,17 +1895,24 @@ function changepass(event) {
 // **************************** visitReq
 
 function visitReq() {
-  if(document.getElementById("payment-type").value == "SMS"){
+  if (document.getElementById("payment-type").value == "SMS") {
     var url = urldemo + `/api/vizit/`;
   }
-  if(document.getElementById("payment-type").value == "NFC"){
-    var url = urldemo + `/api/nfc/reduce/balance/${document.getElementById("reception-form").getAttribute("idnfc")}/`;
+  if (document.getElementById("payment-type").value == "NFC") {
+    var url =
+      urldemo +
+      `/api/nfc/reduce/balance/${document
+        .getElementById("reception-form")
+        .getAttribute("idnfc")}/`;
   }
- 
+
   try {
     const formData = new FormData();
-    if(document.getElementById("payment-type").value == "NFC"){
-      formData.append("code", document.getElementById("activation-codee").value);
+    if (document.getElementById("payment-type").value == "NFC") {
+      formData.append(
+        "code",
+        document.getElementById("activation-codee").value
+      );
     }
     formData.append("name", document.getElementById("name").value);
     formData.append("service", document.getElementById("service-type").value);
