@@ -479,7 +479,7 @@ function forgetsms() {
 
 // Validate Form On Submit
 try {
-  for (const el of document.querySelectorAll("form:not(.profileForm)")) {
+  for (const el of document.querySelectorAll("form:not(.profileForm):not(.supportfile-form):not(.support-form2)")) {
     el.addEventListener("submit", function (event) {
       event.preventDefault();
       validate(event);
@@ -490,7 +490,7 @@ function validate(event) {
   let message = "";
   let isTrue = true;
   for (const el of document.querySelectorAll(
-    "main form>section input:not(#office-code), main form>section textarea"
+    "main form>section input:not(#office-code):not(#description):not(#national-code), main form>section textarea"
   )) {
     if (
       !el.hasAttribute("disabled") &&
