@@ -546,9 +546,6 @@ function validate(event) {
         ) {
           message = "لطفا میزان مبلغ را به درستی (با اعداد انگلیسی) وارد کنید.";
           isTrue = false;
-        } else if (parseInt(amount.value.replaceAll(",", "")) > 499445000) {
-          message = "مبلغ نمی تواند از 499,445,000 ریال بیشتر باشد.";
-          isTrue = false;
         }
       }
       if (isTrue === true) {
