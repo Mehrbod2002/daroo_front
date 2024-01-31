@@ -10,10 +10,13 @@ if (urlpath) {
   document.querySelector("#profile2").remove();
   document.querySelector("#user-type option:nth-of-type(2)").remove();
   document.querySelectorAll(".requestRemove").forEach((e) => e.remove());
+
+  getProfile();
 } else if (urlpath3) {
-  document.querySelector("#profile1").remove();
+  document.querySelector("#profile").remove();
   document.querySelector("#user-type option:nth-of-type(1)").remove();
   document.querySelectorAll(".requestRemove").forEach((e) => e.remove());
+  getCenterProfile();
 } else {
   getCenterProfile();
   getProfile();
@@ -99,8 +102,7 @@ function getCustomeProfile() {
           document.querySelector("#name2").value = response.name;
           document.querySelector("#mobile2").value = response.mobile;
           document.querySelector("#username2").value = response.username;
-          document.querySelector("#office-name2").value =
-            response[0].center_name;
+          document.querySelector("#office-name2").value = data.center_name;
           document.querySelector("#postal-code2").value = response.postal_code;
           document.querySelector("#office-type2").value = response.center_type;
           document.querySelector("#office-code2").value = response.center_code;
@@ -161,30 +163,36 @@ function getCustomeProfile() {
   }
 }
 function getProfile() {
-  var url = urldemo + `/api/profile/`;
+  if (urlpath2) {
+    var url = urldemo + `/api/admin/users/get/profile/${urlpath2}/`;
+  } else {
+    var url = urldemo + `/api/profile/`;
+  }
+
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
 
-        console.log(response[0]);
+        console.log(response);
+        if (urlpath2) {
+          var data = response;
+        } else {
+          var data = response[0];
+        }
         // document.querySelector("#user-position").value = response[0].role;
 
-        document
-          .querySelector("#profile")
-          .setAttribute("formid", response[0].id);
-        document.querySelector("#phone").value = response[0].phone;
-        document.querySelector("#national-code").value =
-          response[0].national_id;
-        document.querySelector("#address").value = response[0].address;
-        document.querySelector("#shaba").value = response[0].sheba;
-        document.querySelector("#card-number").value = response[0].card_number;
-        document.querySelector("#account-number").value =
-          response[0].account_number;
-        document.querySelector("#name").value = response[0].name;
-        document.querySelector("#mobile").value = response[0].mobile;
-        document.querySelector("#username").value = response[0].username;
+        document.querySelector("#profile").setAttribute("formid", data.id);
+        document.querySelector("#phone").value = data.phone;
+        document.querySelector("#national-code").value = data.national_id;
+        document.querySelector("#address").value = data.address;
+        document.querySelector("#shaba").value = data.sheba;
+        document.querySelector("#card-number").value = data.card_number;
+        document.querySelector("#account-number").value = data.account_number;
+        document.querySelector("#name").value = data.name;
+        document.querySelector("#mobile").value = data.mobile;
+        document.querySelector("#username").value = data.username;
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -221,18 +229,24 @@ function getProfile() {
 }
 
 function getCenterProfile() {
-  var url = urldemo + `/api/center/profile/`;
+  if (urlpath3) {
+    var url = urldemo + `/api/admin/centers/get/profile/${urlpath3}/`;
+  } else {
+    var url = urldemo + `/api/center/profile/`;
+  }
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
-
-        console.log(response[0]);
-        document
-          .querySelector("#profile2")
-          .setAttribute("formid", response[0].id);
-        if (response[0].role == "CENTER") {
+        if (urlpath3) {
+          var data = response;
+        } else {
+          var data = response[0];
+        }
+        console.log(response);
+        document.querySelector("#profile2").setAttribute("formid", data.id);
+        if (data.role == "CENTER") {
           document
             .getElementById("profile2")
             .classList.replace("d-none", "d-block");
@@ -250,25 +264,22 @@ function getCenterProfile() {
           document.getElementById("user-type").selectedIndex = 0;
         }
         document.querySelector("#user-position2").value =
-          response[0].pepresentative_position;
-        document.querySelector("#phone2").value = response[0].phone;
-        document.querySelector("#national-code2").value =
-          response[0].national_id;
-        document.querySelector("#address2").value = response[0].address;
-        document.querySelector("#shaba2").value = response[0].sheba;
-        document.querySelector("#card-number2").value = response[0].card_number;
-        document.querySelector("#account-number2").value =
-          response[0].account_number;
-        document.querySelector("#office-name2").value = response[0].center_name;
-        document.querySelector("#mobile2").value = response[0].mobile;
-        document.querySelector("#name2").value = response[0].name;
-        document.querySelector("#username2").value = response[0].username;
+          data.pepresentative_position;
+        document.querySelector("#phone2").value = data.phone;
+        document.querySelector("#national-code2").value = data.national_id;
+        document.querySelector("#address2").value = data.address;
+        document.querySelector("#shaba2").value = data.sheba;
+        document.querySelector("#card-number2").value = data.card_number;
+        document.querySelector("#account-number2").value = data.account_number;
+        document.querySelector("#office-name2").value = data.center_name;
+        document.querySelector("#mobile2").value = data.mobile;
+        document.querySelector("#name2").value = data.name;
+        document.querySelector("#username2").value = data.username;
 
-        document.querySelector("#postal-code2").value = response[0].postal_code;
-        document.querySelector("#office-type2").value = response[0].center_type;
-        document.querySelector("#office-code2").value = response[0].center_code;
-        document.querySelector("#tracking-code2").value =
-          response[0].economy_code;
+        document.querySelector("#postal-code2").value = data.postal_code;
+        document.querySelector("#office-type2").value = data.center_type;
+        document.querySelector("#office-code2").value = data.center_code;
+        document.querySelector("#tracking-code2").value = data.economy_code;
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         console.log(res);

@@ -22,11 +22,10 @@ function getAdminUser() {
               <td class="d-flex justify-content-center align-items-center" id="${
                 key.id
               }">
-              <button   class="profile-user btn btn-info mx-1" id="${
-                key.profile_id
-              }">
-                مشاهده پروفایل کاربر
+              <button   class="request-report btn btn-info mx-1" id="${key.id}">
+                گزارش گیری
               </button>
+             
               <button id="${
                 key.id
               }" class="btn btn-success mx-1 accept-request">
@@ -41,18 +40,18 @@ function getAdminUser() {
         });
         document.querySelector("#currentRequests tbody").innerHTML = html;
         setAcceptEjectRequestEvents();
+        const report = document.querySelectorAll(".request-report");
+        for (const el of report) {
+          el.addEventListener("click", function () {
+            window.location.href = `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
+              "id"
+            )}`;
+          });
+        }
         const accept = document.querySelectorAll(".accept-request");
         for (const el of accept) {
           el.addEventListener("click", function () {
             acceptRequest(el.getAttribute("id"));
-          });
-        }
-        const profile = document.querySelectorAll(".profile-user");
-        for (const el of profile) {
-          el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/main-profile.html?requestid=${el.getAttribute(
-              "id"
-            )}`;
           });
         }
       } else if (request.status == 400 || request.status == 403) {
@@ -111,22 +110,23 @@ function getAdminUser() {
               <td>${key.request_type}</td>
               <td>${key.information_of_request}</td>
               <td> ${key.status}</td>
-              <td class="d-flex justify-content-center align-items-center">
-              <button   class="profile-user btn btn-info mx-1" id="${
-                key.profile_id
+              <td class="d-flex justify-content-center align-items-center" id="${
+                key.id
               }">
-                مشاهده پروفایل کاربر
-              </button>
+              <button   class="request-report btn btn-info mx-1" id="${key.id}">
+              گزارش گیری
+            </button>
+           
             </td>
             </tr>`;
           html = html + item;
         });
         document.querySelector("#lastRequests tbody").innerHTML = html;
 
-        const profile = document.querySelectorAll(".profile-user");
-        for (const el of profile) {
+        const report = document.querySelectorAll(".request-report");
+        for (const el of report) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/main-profile.html?requestid=${el.getAttribute(
+            window.location.href = `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
               "id"
             )}`;
           });

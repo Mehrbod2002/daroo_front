@@ -7,6 +7,7 @@ function getvizitReport() {
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
         console.log(response);
+        document.querySelector(".valTitle").innerHTML = response.title;
         document.querySelector(".valName").innerHTML = response.name;
         document.querySelector(".valDtae").innerHTML = response.created_at;
         document.querySelector(".valNational").innerHTML = response.national_id;

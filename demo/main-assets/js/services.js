@@ -474,9 +474,7 @@ function forgetsms() {
 
 // Validate Form On Submit
 try {
-  for (const el of document.querySelectorAll(
-    "form:not(.profileForm):not(.supportfile-form):not(.support-form2)"
-  )) {
+  for (const el of document.querySelectorAll("form:not(.profileForm)")) {
     el.addEventListener("submit", function (event) {
       event.preventDefault();
       validate(event);
@@ -487,7 +485,7 @@ function validate(event) {
   let message = "";
   let isTrue = true;
   for (const el of document.querySelectorAll(
-    "main form>section input:not(#office-code):not(#national-code), main form>section textarea:not(#description)"
+    "main form>section input:not(#office-code), main form>section textarea"
   )) {
     if (
       !el.hasAttribute("disabled") &&
@@ -545,6 +543,9 @@ function validate(event) {
           parseInt(amount.value.replaceAll(",", "")) === 0
         ) {
           message = "لطفا میزان مبلغ را به درستی (با اعداد انگلیسی) وارد کنید.";
+          isTrue = false;
+        } else if (parseInt(amount.value.replaceAll(",", "")) > 499445000) {
+          message = "مبلغ نمی تواند از 499,445,000 ریال بیشتر باشد.";
           isTrue = false;
         }
       }
@@ -674,6 +675,8 @@ function validate(event) {
       nfcbalance();
     } else if (act == "login") {
       login();
+    } else if (act == "support") {
+      support();
     } else if (act == "loan") {
       loan();
     } else if (act == "sms") {
@@ -1064,6 +1067,7 @@ function register() {
   }
 }
 // **************************** login
+
 function login() {
   var url = urldemo + `/api/login/`;
   try {
@@ -1363,7 +1367,15 @@ function supportfile(event) {
   }
 }
 function service() {
-  var url = urldemo + `/api/services/`;
+  const searchparams = new URLSearchParams(window.location.search);
+  var urlpath = searchparams.get("id");
+
+  if (urlpath) {
+    var url = urldemo + `/api/services/${urlpath}/`;
+  } else {
+    var url = urldemo + `/api/services/`;
+  }
+
   try {
     const formData = new FormData();
     formData.append("service", document.getElementById("title").value);
@@ -1412,7 +1424,12 @@ function service() {
     request.onloadstart = function () {
       $(".loader").fadeIn();
     };
-    request.open("POST", url);
+
+    if (urlpath) {
+      request.open("PATCH", url);
+    } else {
+      request.open("POST", url);
+    }
     request.setRequestHeader(
       "Authorization",
       `Token ${localStorage.getItem("token")}`
@@ -1423,8 +1440,7 @@ function service() {
   }
 }
 
-function support(event) {
-  event.preventDefault();
+function support() {
   var url = urldemo + `/api/support/`;
   try {
     const formData = new FormData();
@@ -1912,6 +1928,7 @@ function visitReq() {
       );
     }
     formData.append("name", document.getElementById("name").value);
+    formData.append("title", document.getElementById("title").value);
     formData.append("service", document.getElementById("service-type").value);
     formData.append(
       "national_id",

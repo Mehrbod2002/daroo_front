@@ -158,8 +158,42 @@
           <img src="assets/img/daroo-card.gif" alt="daroo-card" />
         </a>
       </header>
+     <div class="container">
+<div class="col-md-8  m-auto rounded-4 overflow-hidden">
+  <section class="table-section text-center table-responsive mx-3">
+    <table
+      class="table caption-top sortable align-middle"
+      id="reportsTable"
+    >
+      <caption class="text-light fw-bolder fs-5 text-start ps-3">
+        مشخصات پذیرندگان
+      </caption>
+      <thead>
+        <tr>
+          <th class="sorttable_numeric">ردیف</th>
+          <th>عنوان</th>
+
+          <th class="sorttable_nosort">عملیات</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td
+            colspan="22"
+            class="dataTables_empty text-center"
+            valign="top"
+          >
+            موردی یافت نشد
+          </td>
+          </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+     </div>
       <main class="rounded-4 pb-4 mb-5 text-center overflow-hidden shadow-lg">
-        <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary">
+      
+        <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary" id="mainTitle">
         افزودن خدمت
         </h1>
         <form
@@ -246,5 +280,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="main-assets/js/services.js"></script>
+    <script src="main-assets/js/editServices.js"></script>
   </body>
 </html>

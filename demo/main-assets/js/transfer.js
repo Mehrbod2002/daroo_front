@@ -10,10 +10,15 @@ function getTransfer() {
       request.onloadend = function () {
         if (request.status == 200 || request.status == 201) {
           var response = JSON.parse(this.responseText);
-          console.log(response);
+
+          document.querySelector("#balanceId").innerHTML =
+            response[response.length - 1].balance_details.id;
+          document.querySelector("#balanceAmount").innerHTML =
+            response[response.length - 1].balance_details.balance;
           var html = "";
           response.forEach((key, index) => {
-            var item = `<tr>
+            if (index < response.length - 1) {
+              var item = `<tr>
             <td> ${index + 1}</td>
             <td sorttable_customkey="14020215"> ${key.created_at} </td>
             <td> ${key.transaction_type}</td>
@@ -27,13 +32,16 @@ function getTransfer() {
                 ? key.destination_object_id + "(شماره کیف پول)"
                 : "-"
             } </td>
-            <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${key.mablagh} </td>
+            <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${
+                key.mablagh
+              } </td>
             <td>${key.phone_number} </td>
             <td> ${key.tracking_code}</td>
             <td> ${key.status}  </td>
             <td> ${key.dsc}</td>
         </tr>`;
-            html = html + item;
+              html = html + item;
+            }
           });
           document.querySelector("#reportsTable tbody").innerHTML = html;
         } else if (request.status == 400 || request.status == 403) {
@@ -77,9 +85,14 @@ function getTransfer() {
         if (request.status == 200 || request.status == 201) {
           var response = JSON.parse(this.responseText);
           console.log(response);
+          document.querySelector("#balanceId").innerHTML =
+            response[response.length - 1].balance_details.id;
+          document.querySelector("#balanceAmount").innerHTML =
+            response[response.length - 1].balance_details.balance;
           var html = "";
           response.forEach((key, index) => {
-            var item = `<tr>
+            if (index < response.length - 1) {
+              var item = `<tr>
             <td> ${index + 1}</td>
             <td sorttable_customkey="14020215"> ${key.created_at} </td>
             <td> ${key.transaction_type}</td>
@@ -93,13 +106,16 @@ function getTransfer() {
                 ? key.destination_object_id + "(شماره کیف پول)"
                 : "-"
             } </td>
-            <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${key.mablagh} </td>
+            <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${
+                key.mablagh
+              } </td>
             <td>${key.phone_number} </td>
             <td> ${key.tracking_code}</td>
             <td> ${key.status}  </td>
             <td> ${key.dsc}</td>
         </tr>`;
-            html = html + item;
+              html = html + item;
+            }
           });
           document.querySelector("#reportsTable tbody").innerHTML = html;
         } else if (request.status == 400 || request.status == 403) {
@@ -158,7 +174,9 @@ function getTransfer() {
                 ? key.destination_object_id + "(شماره کیف پول)"
                 : "-"
             } </td>
-            <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${key.mablagh} </td>
+            <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${
+              key.mablagh
+            } </td>
             <td>${key.phone_number} </td>
             <td> ${key.tracking_code}</td>
             <td> ${key.status}  </td>

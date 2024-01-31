@@ -2,12 +2,12 @@ function getvizit() {
   const searchparams = new URLSearchParams(window.location.search);
   var urlpath = searchparams.get("id");
   var urlpath2 = searchparams.get("centerid");
-  if(urlpath2){
+  if (urlpath2) {
     var url = urldemo + `/api/admin/centers/accepts/reports/${urlpath2}/`;
-  }else{
+  } else {
     var url = urldemo + `/api/vizit/`;
   }
-  
+
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
@@ -18,19 +18,28 @@ function getvizit() {
         response.forEach((key, index) => {
           var item = `<tr>
             <td> ${index + 1} </td>
+            <td sorttable_customkey="14020215" style="direction: ltr;"> ${
+              key.created_at
+            } </td>
             <td>${key.name}</td>
-            <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${key.mablagh} </td>
+            <td> ${key.title}</td>
+            <td> ${key.national_id}  </td>
+            <td> ${key.phone_number}  </td>
+            <td sorttable_customkey="${key.mablagh}" style="direction: ltr;"> ${
+            key.mablagh
+          } </td>
             <td>${key.tracking_code}</td>
             <td> ${key.status}</td>
             <td>
+            
             ${
-              key.status == "در انتظار تایید اپراتور"
-                ? `<button class="btn btn-danger p-2 linkReqBtn" id="${key.id}"> ارسال لینک پرداخت </button>`
+              key.status != "لغو شده"
+                ? `<button class="btn btn-danger p-2 cancelReqBtn" id="${key.id}"> لغو درخواست </button>`
                 : ""
             }
             ${
-              key.status == "در انتظار پرداخت متقاضی"
-                ? `<button class="btn p-2 btn-secondary"> ارسال لینک پرداخت </button>`
+              key.status == "در انتظار تایید اپراتور"
+                ? `<button class="btn btn-danger p-2 linkReqBtn" id="${key.id}"> ارسال لینک پرداخت </button>`
                 : ""
             }
             ${
@@ -38,6 +47,7 @@ function getvizit() {
                 ? `<button class="btn btn-danger p-2 acceptReqBtn" id="${key.id}"> پذیرش </button>`
                 : ""
             }  </td>
+            <td> ${key.dsc} </td>
             <td> <button class="get-report btn btn-secondary p-2" id="${
               key.id
             }"> گزارش درخواست </button> </td>
@@ -65,6 +75,13 @@ function getvizit() {
         for (const el of Link) {
           el.addEventListener("click", function () {
             sendVisit(el.getAttribute("id"));
+          });
+        }
+        // +++
+        const cancel = document.querySelectorAll(".cancelReqBtn");
+        for (const el of cancel) {
+          el.addEventListener("click", function () {
+            cancelVisit(el.getAttribute("id"));
           });
         }
       } else if (request.status == 400 || request.status == 403) {
@@ -165,6 +182,65 @@ function acceptVisit(val) {
 
 function sendVisit(val) {
   var url = urldemo + `/api/vizit/operation/send/link/${val}/`;
+  try {
+    const formData = new FormData();
+    formData.append("id", val);
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        console.log(request.response);
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+        window.location.reload();
+      } else if (request.status == 401) {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          var keyf = "";
+          if (key == "error") {
+            keyf = "ارور";
+          } else {
+            keyf = key;
+          }
+          msg = msg + `${keyf} : ${res[key]}<br>`;
+        });
+        if (msg) {
+          const errors = document.getElementById("errors");
+          errors.innerHTML = msg;
+          errors.className = errors.className.replace(
+            "text-success",
+            "text-danger"
+          );
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+    request.open("PATCH", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+    request.send(formData);
+  } catch (error) {
+    console.error(error);
+  }
+}
+function cancelVisit(val) {
+  var url = urldemo + `/api/vizit/operation/cancel/${val}/`;
   try {
     const formData = new FormData();
     formData.append("id", val);
