@@ -1,6 +1,6 @@
 // //////////////////////////////////////////////////
 // **************************** global
-let urldemo = "https://api.daroocard.com";
+let urldemo = "https://dl.eramglobal.com";
 let messageBox = document.querySelector(".messageBox p");
 let fetchHeader = {
   "Content-Type": "application/json; charset=utf-8",
@@ -474,7 +474,9 @@ function forgetsms() {
 
 // Validate Form On Submit
 try {
-  for (const el of document.querySelectorAll("form:not(.profileForm)")) {
+  for (const el of document.querySelectorAll(
+    "form:not(.profileForm):not(.supportfile-form):not(.support-form2)"
+  )) {
     el.addEventListener("submit", function (event) {
       event.preventDefault();
       validate(event);
@@ -485,7 +487,7 @@ function validate(event) {
   let message = "";
   let isTrue = true;
   for (const el of document.querySelectorAll(
-    "main form>section input:not(#office-code), main form>section textarea"
+    "main form>section input:not(#office-code):not(#national-code), main form>section textarea:not(#description)"
   )) {
     if (
       !el.hasAttribute("disabled") &&
@@ -543,9 +545,6 @@ function validate(event) {
           parseInt(amount.value.replaceAll(",", "")) === 0
         ) {
           message = "لطفا میزان مبلغ را به درستی (با اعداد انگلیسی) وارد کنید.";
-          isTrue = false;
-        } else if (parseInt(amount.value.replaceAll(",", "")) > 499445000) {
-          message = "مبلغ نمی تواند از 499,445,000 ریال بیشتر باشد.";
           isTrue = false;
         }
       }
@@ -675,8 +674,6 @@ function validate(event) {
       nfcbalance();
     } else if (act == "login") {
       login();
-    } else if (act == "support") {
-      support();
     } else if (act == "loan") {
       loan();
     } else if (act == "sms") {
@@ -1016,7 +1013,7 @@ function register() {
         console.log(response);
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML = `<span class='text-sm text-success'>ثبت نام شما با موفقیت انجام شد</span>`;
-        window.location.replace("https://daroocard.com/main-signin.html");
+        window.location.replace("http://127.0.0.1:5502/main-signin.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -1067,7 +1064,6 @@ function register() {
   }
 }
 // **************************** login
-
 function login() {
   var url = urldemo + `/api/login/`;
   try {
@@ -1080,7 +1076,7 @@ function login() {
         var data = JSON.parse(this.responseText);
         console.log(data.detail);
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace("https://daroocard.com/main-index.html");
+        window.location.replace("http://127.0.0.1:5502/main-index.html");
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
@@ -1219,7 +1215,7 @@ function logout() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         localStorage.clear();
-        window.location.replace("https://daroocard.com/main-index.html");
+        window.location.replace("http://127.0.0.1:5502/main-index.html");
       } else {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -1367,18 +1363,10 @@ function supportfile(event) {
   }
 }
 function service() {
-  const searchparams = new URLSearchParams(window.location.search);
-  var urlpath = searchparams.get("id");
-
-  if (urlpath) {
-    var url = urldemo + `/api/services/${urlpath}/`;
-  } else {
-    var url = urldemo + `/api/services/`;
-  }
-
+  var url = urldemo + `/api/services/`;
   try {
     const formData = new FormData();
-    formData.append("service", document.getElementById("title").value);
+    formData.append("service", document.getElementById("titlereport").value);
 
     const request = new XMLHttpRequest();
     request.onloadend = function () {
@@ -1386,6 +1374,7 @@ function service() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
+        window.location.reload();
       } else if (request.status == 401) {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
@@ -1425,11 +1414,8 @@ function service() {
       $(".loader").fadeIn();
     };
 
-    if (urlpath) {
-      request.open("PATCH", url);
-    } else {
-      request.open("POST", url);
-    }
+    request.open("POST", url);
+
     request.setRequestHeader(
       "Authorization",
       `Token ${localStorage.getItem("token")}`
@@ -1440,7 +1426,8 @@ function service() {
   }
 }
 
-function support() {
+function support(event) {
+  event.preventDefault();
   var url = urldemo + `/api/support/`;
   try {
     const formData = new FormData();
@@ -1928,7 +1915,6 @@ function visitReq() {
       );
     }
     formData.append("name", document.getElementById("name").value);
-    formData.append("title", document.getElementById("title").value);
     formData.append("service", document.getElementById("service-type").value);
     formData.append(
       "national_id",
@@ -1951,7 +1937,7 @@ function visitReq() {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
         window.location.replace(
-          "https://daroocard.com/main-reception-requests.html"
+          "http://127.0.0.1:5502/main-reception-requests.html"
         );
       } else if (request.status == 401) {
         $(".messagewrapper").fadeIn();
@@ -2363,7 +2349,7 @@ function forget() {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
         window.localStorage.setItem("token", data.detail.token);
-        window.location.replace("https://daroocard.com/main-profile.html");
+        window.location.replace("http://127.0.0.1:5502/main-profile.html");
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);

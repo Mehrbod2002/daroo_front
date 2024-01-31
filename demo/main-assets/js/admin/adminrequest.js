@@ -25,7 +25,6 @@ function getAdminUser() {
               <button   class="request-report btn btn-info mx-1" id="${key.id}">
                 گزارش گیری
               </button>
-             
               <button id="${
                 key.id
               }" class="btn btn-success mx-1 accept-request">
@@ -40,18 +39,18 @@ function getAdminUser() {
         });
         document.querySelector("#currentRequests tbody").innerHTML = html;
         setAcceptEjectRequestEvents();
-        const report = document.querySelectorAll(".request-report");
-        for (const el of report) {
-          el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
-              "id"
-            )}`;
-          });
-        }
         const accept = document.querySelectorAll(".accept-request");
         for (const el of accept) {
           el.addEventListener("click", function () {
             acceptRequest(el.getAttribute("id"));
+          });
+        }
+        const report = document.querySelectorAll(".request-report");
+        for (const el of report) {
+          el.addEventListener("click", function () {
+            window.location.href = `http://127.0.0.1:5502/admin-request-report.html?requestid=${el.getAttribute(
+              "id"
+            )}`;
           });
         }
       } else if (request.status == 400 || request.status == 403) {
@@ -110,13 +109,10 @@ function getAdminUser() {
               <td>${key.request_type}</td>
               <td>${key.information_of_request}</td>
               <td> ${key.status}</td>
-              <td class="d-flex justify-content-center align-items-center" id="${
-                key.id
-              }">
+              <td class="d-flex justify-content-center align-items-center">
               <button   class="request-report btn btn-info mx-1" id="${key.id}">
               گزارش گیری
             </button>
-           
             </td>
             </tr>`;
           html = html + item;
@@ -126,7 +122,7 @@ function getAdminUser() {
         const report = document.querySelectorAll(".request-report");
         for (const el of report) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
+            window.location.href = `http://127.0.0.1:5502/admin-request-report.html?requestid=${el.getAttribute(
               "id"
             )}`;
           });

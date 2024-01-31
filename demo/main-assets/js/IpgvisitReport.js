@@ -7,7 +7,6 @@ function getvizitReport() {
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
         console.log(response);
-        document.querySelector(".valTitle").innerHTML = response.title;
         document.querySelector(".valName").innerHTML = response.name;
         document.querySelector(".valDtae").innerHTML = response.created_at;
         document.querySelector(".valNational").innerHTML = response.national_id;
@@ -17,7 +16,10 @@ function getvizitReport() {
           response.tracking_code;
         document.querySelector(".valStatus").innerHTML = response.status;
         document.querySelector(".valDsc").innerHTML = response.dsc;
-        document.querySelector(".valPayment").innerHTML = response.payment;
+        document
+          .querySelector("#paymentLink")
+          .setAttribute("href", response.payment);
+
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);

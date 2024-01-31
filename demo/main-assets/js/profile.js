@@ -255,13 +255,15 @@ function getCenterProfile() {
             .classList.replace("d-block", "d-none");
           document.getElementById("user-type").selectedIndex = 1;
         } else {
-          document
-            .getElementById("profile")
-            .classList.replace("d-none", "d-block");
-          document
-            .getElementById("profile2")
-            .classList.replace("d-block", "d-none");
-          document.getElementById("user-type").selectedIndex = 0;
+          if (!urlpath3) {
+            document
+              .getElementById("profile")
+              .classList.replace("d-none", "d-block");
+            document
+              .getElementById("profile2")
+              .classList.replace("d-block", "d-none");
+            document.getElementById("user-type").selectedIndex = 0;
+          }
         }
         document.querySelector("#user-position2").value =
           data.pepresentative_position;
