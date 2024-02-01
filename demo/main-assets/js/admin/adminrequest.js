@@ -48,7 +48,7 @@ function getAdminUser() {
         const report = document.querySelectorAll(".request-report");
         for (const el of report) {
           el.addEventListener("click", function () {
-            window.location.href = `http://127.0.0.1:5502/admin-request-report.html?requestid=${el.getAttribute(
+            window.location.href = `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
               "id"
             )}`;
           });
@@ -122,7 +122,7 @@ function getAdminUser() {
         const report = document.querySelectorAll(".request-report");
         for (const el of report) {
           el.addEventListener("click", function () {
-            window.location.href = `http://127.0.0.1:5502/admin-request-report.html?requestid=${el.getAttribute(
+            window.location.href = `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
               "id"
             )}`;
           });
