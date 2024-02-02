@@ -859,7 +859,10 @@ try {
     }
   });
 } catch {}
-
+function copytext() {
+  navigator.clipboard.writeText(document.querySelector("#balanceId").innerText);
+  alert("متن کپی شد");
+}
 // **************************** nfcdetail
 
 function nfcdetail() {
@@ -2028,6 +2031,9 @@ function loan() {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
+        window.location.replace(
+          "https://daroocard.com/main-facilities-requests.html"
+        );
       } else if (request.status == 401) {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =

@@ -246,6 +246,11 @@ function getCenterProfile() {
         }
         console.log(response);
         document.querySelector("#profile2").setAttribute("formid", data.id);
+        if (urlpath3) {
+          document
+            .getElementById("profile2")
+            .classList.replace("d-none", "d-block");
+        }
         if (data.role == "CENTER") {
           document
             .getElementById("profile2")

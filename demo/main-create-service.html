@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fa">
   <head>
@@ -123,13 +122,13 @@
                   افزودن خدمت
                 </a>
               </li>
-          
+
               <li class="nav-item">
                 <a class="nav-link" href="main-support.html">
                   تیکت / پشتیبانی
                 </a>
               </li>
-                      <li class="nav-item">
+              <li class="nav-item">
                 <a
                   class="nav-link"
                   href="https://daroocard.ir/Help%20Daroocard.pdf"
@@ -137,18 +136,17 @@
                   قوانین و ضوابط
                 </a>
               </li>
-           
-              <li class="nav-item"  id="meniadmin">
-                <a
-                  class="nav-link"
-                  href="admin.html"
-                >
-                پنل ادمین
-                </a>
+
+              <li class="nav-item" id="meniadmin">
+                <a class="nav-link" href="admin.html"> پنل ادمین </a>
               </li>
             </ul>
           </nav>
-          <button onclick="logout()" class="btn btn-danger mx-auto p-2" style="width: max-content">
+          <button
+            onclick="logout()"
+            class="btn btn-danger mx-auto p-2"
+            style="width: max-content"
+          >
             خروج از حساب کاربری
           </button>
         </div>
@@ -158,43 +156,13 @@
           <img src="assets/img/daroo-card.gif" alt="daroo-card" />
         </a>
       </header>
-     <div class="container">
-<div class="col-md-8  m-auto rounded-4 overflow-hidden">
-  <section class="table-section text-center table-responsive mx-3">
-    <table
-      class="table caption-top sortable align-middle"
-      id="reportsTable"
-    >
-      <caption class="text-light fw-bolder fs-5 text-start ps-3">
-      لیست خدمات
-      </caption>
-      <thead>
-        <tr>
-          <th class="sorttable_numeric">ردیف</th>
-          <th>عنوان</th>
 
-          <th class="sorttable_nosort">عملیات</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr>
-            <td
-            colspan="22"
-            class="dataTables_empty text-center"
-            valign="top"
-          >
-            موردی یافت نشد
-          </td>
-          </tr>
-      </tbody>
-    </table>
-  </section>
-</div>
-     </div>
       <main class="rounded-4 pb-4 mb-5 text-center overflow-hidden shadow-lg">
-      
-        <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary" id="mainTitle">
-        افزودن خدمت
+        <h1
+          class="title fs-4 w-100 py-3 border-bottom border-1 border-primary"
+          id="mainTitle"
+        >
+          افزودن خدمت
         </h1>
         <form
           type="service"
@@ -205,21 +173,56 @@
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
           >
-            <label for="titlereport" class="form-label text-sm-end text-start pe-3">
+            <label
+              for="titlereport"
+              class="form-label text-sm-end text-start pe-3"
+            >
               عنوان
             </label>
             <input type="text" class="form-control" id="titlereport" />
           </section>
 
-     
-          <button    type="button"
-          onclick="service()"  class="btn btn-light" > افزودن</button>
+          <button type="button" onclick="service()" class="btn btn-light">
+            افزودن
+          </button>
           <p
             class="form-text text-danger text-center fw-bolder"
             id="errors"
           ></p>
         </form>
+        <div class="container">
+          <div class="rounded-4 overflow-hidden">
+            <section class="table-section text-center table-responsive">
+              <table
+                class="table caption-top sortable align-middle"
+                id="reportsTable"
+              >
+                <caption class="text-light fw-bolder fs-5 text-start ps-3">
+                  لیست خدمات
+                </caption>
+                <thead>
+                  <tr>
+                    <th class="sorttable_numeric">ردیف</th>
+                    <th>عنوان</th>
 
+                    <th class="sorttable_nosort">عملیات</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td
+                      colspan="22"
+                      class="dataTables_empty text-center"
+                      valign="top"
+                    >
+                      موردی یافت نشد
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </div>
       </main>
       <footer class="info text-center mb-2">
         <div class="footer_logo_box">

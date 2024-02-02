@@ -48,9 +48,12 @@ function getAdminUser() {
         const report = document.querySelectorAll(".request-report");
         for (const el of report) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
-              "id"
-            )}`;
+            window.open(
+              `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
+                "id"
+              )}`,
+              "_blank"
+            );
           });
         }
       } else if (request.status == 400 || request.status == 403) {
@@ -122,9 +125,12 @@ function getAdminUser() {
         const report = document.querySelectorAll(".request-report");
         for (const el of report) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
-              "id"
-            )}`;
+            window.open(
+              `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
+                "id"
+              )}`,
+              "_blank"
+            );
           });
         }
       } else if (request.status == 400 || request.status == 403) {
