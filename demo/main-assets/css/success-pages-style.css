@@ -129,6 +129,7 @@ main {
 .value {
     max-width: 50%;
     text-align: left;
+    direction: ltr;
 }
 
 .label::before {
