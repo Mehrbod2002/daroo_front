@@ -1503,7 +1503,7 @@ function patchCenterProfile(event) {
   if (urlpath) {
     var xx = `/api/admin/users/edit/profile/${urlpath}/`;
   } else if (urlpath2) {
-    var xx = `/api/admin/centers/edit/profile/${urlpath}/`;
+    var xx = `/api/admin/centers/edit/profile/${urlpath2}/`;
   } else {
     var xx = `/api/center/profile/${document
       .querySelector("#profile2")
@@ -1695,7 +1695,7 @@ function patchProfile(event) {
   if (urlpath) {
     var xx = `/api/admin/users/edit/profile/${urlpath}/`;
   } else if (urlpath2) {
-    var xx = `/api/admin/centers/edit/profile/${urlpath}/`;
+    var xx = `/api/admin/centers/edit/profile/${urlpath2}/`;
   } else {
     var xx = `/api/profile/${document
       .querySelector("#profile")
