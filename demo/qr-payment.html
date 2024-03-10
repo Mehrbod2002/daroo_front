@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title> دارو کارت | عملیات موفق </title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="main-assets/css/success-pages-style.css">
+    <link rel="shortcut icon" href="assets/img/daroo-card.png" type="image/x-icon">
+</head>
+<body>
+    <div class="container-fluid d-flex flex-column justify-content-start align-items-center">
+        <header class="w-100 text-center py-3">
+          <a href="main-index.html" class="logo d-inline-block">
+            <img src="assets/img/daroo-card.gif" alt="daroo-card">
+          </a>
+        </header>
+        <main class="text-center">
+            <h1 class="fs-3 fw-bold w-100 mb-3 text-success"> 
+                پذیرش
+            </h1>
+            <section class="bg-success bg-opacity-50 text-center rounded-4 px-3 py-4 mb-5 overflow-hidden shadow-lg">
+                <div class="mb-5">
+                    <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
+                        <span class="label"> نام مرکز </span>
+                        <span class="value" id="center_name">   </span>
+                    </div>
+                    <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
+                        <span class="label">  انتخاب خدمت </span>
+                        <div class="value" > 
+                            <select class="form-control" id="service_list" style="appearance: auto;direction: rtl;min-width: 150px;">
+                                <option>
+                                    انتخاب کنید
+                                </option>
+
+                            </select>
+                        </div>
+                    </div>
+                  
+                    <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
+                        <span class="label">  مبلغ </span>
+                        <span class="value" id="center_mablag"> </span>
+                    </div>
+                    <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
+                        <span class="label">  شماره تماس مرکز  </span>
+                        <span class="value" dir="ltr" id="center_phone">  </span>
+                    </div>
+                    <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
+                        <span class="label"> نام و نام خانوادگی </span>
+                        <span class="value"> <input type="text" class="form-control" id="user_name" /></span>
+                    </div>
+                    <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
+                        <span class="label"> تلفن همراه   </span>
+                        <span class="value"><input type="text" class="form-control" id="user_phone_number" /></span>
+                    </div>
+                    <div class="item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2">
+                        <span class="label"> کدملی</span>
+                        <span class="value" dir="ltr"> <input type="text" class="form-control" id="user_national_id" /> </span>
+                    </div>
+                   
+                </div>
+                <div id="errors">
+
+                </div>
+                <div class="buttons d-flex flex-sm-row flex-column justify-content-between align-items-center">
+                  
+                    <button class="btn btn-success fs-5" onclick="sendqrpayment()">
+                       ارسال
+                       
+                    </button>
+                </div>
+            </section>
+            <div class="messagewrapper">
+                <div>
+                  <div class="messageBox">
+                    <p></p>
+                    <button class="messageBtn btn btn-success">تایید</button>
+                  </div>
+                </div>
+              </div>
+              <div class="loader">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div id="mask"></div>
+        </main>
+    </div>
+    <script>
+    </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="main-assets/js/services.js"></script>
+        <script src="main-assets/js/qrpayment.js"></script>
+</body>
+</html>

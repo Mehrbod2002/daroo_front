@@ -1370,7 +1370,8 @@ function service() {
   try {
     const formData = new FormData();
     formData.append("service", document.getElementById("titlereport").value);
-
+    formData.append("mablagh", document.getElementById("pricereport").value);
+    formData.append("phone_number", document.getElementById("phonereport").value);
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {

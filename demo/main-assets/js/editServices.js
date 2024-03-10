@@ -23,7 +23,13 @@ function getservice() {
                 } </td>
   
                 <td>
-                <button class="btn btn-danger p-2 editReqBtn" name="${
+                <button class="btn btn-danger p-2 editReqBtn" 
+                mablagh="${
+                  key.mablagh
+                }"
+                phone_number="${
+                  key.phone_number
+                }" name="${
                   key.service
                 }" id="${key.id}">  ویرایش </button>
                 </td>
@@ -39,14 +45,22 @@ function getservice() {
               const mainData = el.getAttribute("name");
               const mainWalletCash = this.parentElement.innerHTML;
               this.parentElement.innerHTML =
-                "<span> تغییر عنوان: </span>" +
-                "<input type='text' id='datatitle' class='form-control mx-1 border border-dark' value='" +
-                mainData +
+                "<div ><span style='display: block;text-align: right;'> تغییر عنوان: </span>" +
+                "<input type='text' id='datatitle' class='service form-control mx-1 border border-dark' value='" +
+                el.getAttribute("name") +
+                "'>" +
+                "<span style='display: block;text-align: right;'> تغییر مبلغ: </span>" +
+                "<input type='text' id='datatitle2' class='mablagh form-control mx-1 border border-dark' value='" +
+                el.getAttribute("mablagh") +
+                "'>" +
+                "<span style='display: block;text-align: right;'> تغییر شماره تماس: </span>" +
+                "<input type='text' id='datatitle3' class=' phone_number form-control mx-1 border border-dark mb-2' value='" +
+                el.getAttribute("phone_number") +
                 "'>" +
                 "<button class='btn btn-secondary cancel-edit-report mx-1'> لغو عملیات </button>" +
                 `<button class='btn btn-danger edit-report-final mx-1' id="${el.getAttribute(
                   "id"
-                )}"> تایید </button>`;
+                )}"> تایید </button></div>`;
               makeEditReport(mainWalletCash);
             });
           }
@@ -73,7 +87,15 @@ function getservice() {
                 const formData = new FormData();
                 formData.append(
                   "service",
-                  el.parentElement.querySelector("input").value
+                  el.parentElement.querySelector(".service").value
+                );
+                formData.append(
+                  "mablagh",
+                  el.parentElement.querySelector(".mablagh").value
+                );
+                formData.append(
+                  "phone_number",
+                  el.parentElement.querySelector(".phone_number").value
                 );
 
                 const request = new XMLHttpRequest();

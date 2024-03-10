@@ -164,6 +164,11 @@
             class="searchable form-control"
             style="width: 200px !important"
           />
+          <div class="d-flex">
+            <button class="saveAsExcel btn btn-light d-flex align-items-center mx-3">
+              <span class="me-2 text-dark fs-5"> خروجی اکسل </span>
+             
+            </button>
           <button class="print btn btn-light d-flex align-items-center">
             <span class="me-2 text-dark fs-5"> پرینت </span>
             <svg
@@ -180,6 +185,7 @@
               ></path>
             </svg>
           </button>
+          </div>
         </div>
         <section class="table-section text-center table-responsive mx-3">
           <table
@@ -266,5 +272,33 @@
     <script src="main-assets/js/services.js"></script>
     <script src="main-assets/js/tables.js"></script>
     <script src="main-assets/js/report.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2014-11-29/FileSaver.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.1/js/bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.12.13/xlsx.full.min.js"></script>
+        <script>
+          $(document).ready(function(){
+        $(".saveAsExcel").click(function(){
+            var workbook = XLSX.utils.book_new();
+            
+            //var worksheet_data  =  [['hello','world']];
+            //var worksheet = XLSX.utils.aoa_to_sheet(worksheet_data);
+          
+            var worksheet_data  = document.getElementById("reportsTable");
+            var worksheet = XLSX.utils.table_to_sheet(worksheet_data);
+            
+            workbook.SheetNames.push("Test");
+            workbook.Sheets["Test"] = worksheet;
+          
+             exportExcelFile(workbook);
+          
+         
+        });
+    })
+    
+    function exportExcelFile(workbook) {
+        return XLSX.writeFile(workbook, "bookName.xlsx");
+    }
+    
+        </script>
   </body>
 </html>

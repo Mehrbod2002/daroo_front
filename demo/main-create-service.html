@@ -24,7 +24,7 @@
       }
       @media (max-width: 1200px) {
         main {
-          width: 50% !important;
+          width: 55% !important;
         }
       }
       @media (max-width: 992px) {
@@ -181,6 +181,28 @@
             </label>
             <input type="text" class="form-control" id="titlereport" />
           </section>
+          <section
+          class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+        >
+          <label
+            for="titlereport"
+            class="form-label text-sm-end text-start pe-3"
+          >
+            مبلغ
+          </label>
+          <input type="text" class="form-control" id="pricereport" />
+        </section>
+        <section
+        class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+      >
+        <label
+          for="titlereport"
+          class="form-label text-sm-end text-start pe-3"
+        >
+          شماره تماس
+        </label>
+        <input type="text" class="form-control" id="phonereport" />
+      </section>
 
           <button type="button" onclick="service()" class="btn btn-light">
             افزودن
@@ -285,5 +307,6 @@
     <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="main-assets/js/services.js"></script>
     <script src="main-assets/js/editServices.js"></script>
+   
   </body>
 </html>
