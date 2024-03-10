@@ -1,4 +1,17 @@
 
+let urldemo = "https://api.daroocard.com";
+let messageBox = document.querySelector(".messageBox p");
+let fetchHeader = {
+  "Content-Type": "application/json; charset=utf-8",
+};
+$(".messagewrapper").hide();
+$(".messageBtn").click(function () {
+  $(".messagewrapper").fadeOut();
+});
+function clearMessageBox() {
+  $(" .loader ").fadeOut();
+}
+
 function sendqrpayment(){
    
        
@@ -21,11 +34,7 @@ function sendqrpayment(){
                 var data = JSON.parse(this.responseText);
                     console.log(data)
                       window.location.replace(data);
-            } else if (request.status == 401) {
-              $(".messagewrapper").fadeIn();
-              messageBox.innerHTML =
-                "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
-            } else if (request.status == 400 || request.status == 403) {
+            }  else if (request.status == 400 || request.status == 403) {
               const res = JSON.parse(request.response);
               const keys = Object.keys(res);
               let msg = "";
@@ -61,10 +70,7 @@ function sendqrpayment(){
           };
           request.open("POST", url, true);
           // request.setRequestHeader("Content-Type", "multipart/form-data");
-          request.setRequestHeader(
-            "Authorization",
-            `Token ${localStorage.getItem("token")}`
-          );
+          
       
           request.send(formData);
         } catch (error) {
@@ -124,10 +130,7 @@ document.querySelector("#center_phone").innerHTML = $("#service_list").children(
         $(".loader").fadeIn();
       };
       request.open("GET", url);
-      request.setRequestHeader(
-        "Authorization",
-        `Token ${localStorage.getItem("token")}`
-      );
+      
       request.send();
     } catch (error) {
       console.error(error);
