@@ -505,7 +505,7 @@ th.sorttable_sorted_reverse::after {
 
 @media (max-width: 1200px) {
   main {
-    width: 60% !important;
+    width: 85% !important;
   }
   .menu {
     width: 25% !important;
@@ -565,5 +565,532 @@ th.sorttable_sorted_reverse::after {
   }
   .plan {
     width: 85%;
+  }
+}
+/* ++++++++++++++++++++++++++++++++++++++++ */
+/* //////////////////////////////////// */
+/* General Styles */
+@font-face {
+  src: url("../../assets/fonts/Vazir.ttf");
+  font-family: Vazir;
+}
+
+* {
+  font-family: Vazir, sans-serif;
+  font-size: 13px;
+  padding: 0;
+  --bg-color: 209, 237, 255;
+  --blue-color: 45, 172, 223;
+  --dark-blue-color: 7, 116, 195;
+  color: #0d3362;
+}
+
+body {
+  direction: rtl;
+  background-image: url("../../assets/img/background.png");
+  background-size: 200px;
+  overflow: auto;
+}
+
+.container-fluid {
+  padding: 0 !important;
+  min-height: 100vh;
+  background: radial-gradient(
+    circle,
+    rgba(var(--bg-color), 0.3) 10%,
+    rgba(var(--bg-color), 0.5) 30%,
+    rgba(var(--bg-color), 0.7) 50%,
+    rgba(var(--bg-color), 0.9) 60%,
+    rgba(var(--bg-color), 1)
+  );
+}
+
+.logo img {
+  height: 130px;
+}
+
+main {
+  width: 40%;
+  background-color: rgba(var(--dark-blue-color), 0.3);
+}
+
+.form-label,
+.form-check-label,
+.title {
+  font-weight: bolder;
+}
+
+.title {
+  background-color: rgba(40, 40, 40, 0.15);
+}
+
+.links {
+  color: #0d3362;
+  cursor: pointer;
+}
+
+.form-bottom-links {
+  width: 65%;
+}
+
+.info * {
+  font-size: 14px;
+  color: black;
+}
+
+main .form-label {
+  width: 35% !important;
+}
+
+main
+  .form-control:not(
+    #shaba,
+    #mobile[data-is-blocking-page="true"],
+    #wallet-number,
+    #target-wallet-number
+  ),
+.card-numbers,
+.left-group {
+  width: 65% !important;
+}
+
+.left-group button {
+  min-width: max-content !important;
+}
+
+.card-numbers input {
+  width: 25% !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+@keyframes startPageAnim {
+  from {
+    transform: translateY(300px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+main,
+footer {
+  transform: translateY(300px);
+  opacity: 0;
+  animation: startPageAnim 1s ease-in-out 1 forwards;
+}
+
+/* //////////////////////////////////// */
+/* Menu Styles */
+.menu-toggler {
+  position: absolute;
+  top: 35px;
+  right: 35px;
+  z-index: 1041;
+}
+
+.menu {
+  width: 20% !important;
+  background-color: #b2cee1;
+  border: 2px solid rgba(var(--dark-blue-color)) !important;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  z-index: 1042;
+}
+
+.menu .offcanvas-header {
+  background-color: rgba(var(--dark-blue-color), 1);
+  border-bottom: 2px solid rgba(var(--dark-blue-color));
+}
+
+.menu .nav .nav-item {
+  position: relative;
+  width: 95%;
+  border-radius: 15px 5px 5px 15px;
+  transition: all 0.2s ease-in-out;
+  background-color: rgba(var(--dark-blue-color), 0.75);
+  margin-bottom: 10px;
+}
+
+.menu .nav .nav-item:hover {
+  background-color: rgba(var(--dark-blue-color), 0.9);
+  width: 100%;
+}
+
+.menu .nav .nav-item:active {
+  background-color: rgba(var(--dark-blue-color), 1);
+}
+
+.menu .nav .nav-link {
+  font-size: 17px;
+  color: white;
+}
+
+.menu .nav .nav-link::before {
+  content: "●";
+}
+
+/* //////////////////////////////////// */
+/* Modal Styles */
+.modal-dialog {
+  max-width: 100% !important;
+  width: 70%;
+}
+
+.modal-header {
+  background-color: rgba(var(--dark-blue-color), 0.85);
+  border-bottom: 2px solid rgba(var(--dark-blue-color), 1);
+}
+
+.modal-header span {
+  font-size: 22px;
+}
+
+.modal-body p {
+  text-align: justify;
+  text-indent: 13px;
+}
+
+.modal-footer button {
+  background-color: rgba(var(--dark-blue-color), 1) !important;
+}
+
+.modal-footer button:hover {
+  background-color: #064e83 !important;
+}
+
+.modal-footer button:active {
+  background-color: #043457 !important;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 10px;
+}
+.modal-body::-webkit-scrollbar-track {
+  background: #ddd;
+  border-radius: 5px;
+}
+.modal-body::-webkit-scrollbar-thumb {
+  background: rgba(var(--dark-blue-color), 0.7);
+  border-radius: 5px;
+}
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--dark-blue-color), 1);
+}
+
+/* //////////////////////////////////// */
+/* Tables Styles */
+.table-section {
+  max-height: 500px !important;
+  overflow: auto !important;
+}
+
+.table-section table {
+  min-width: 100%;
+  width: max-content;
+}
+
+.table-section::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  transition: all 0.3s ease-in-out;
+}
+.table-section::-webkit-scrollbar-track,
+.table-section::-webkit-scrollbar-corner {
+  background-color: #ddd;
+  border-radius: 5px;
+}
+.table-section::-webkit-scrollbar-thumb {
+  background-color: #666;
+  border-radius: 5px;
+}
+.table-section::-webkit-scrollbar-thumb:active {
+  background-color: #444;
+}
+
+.table-section thead tr th,
+.table-section tbody tr td,
+.table-section thead tr th *,
+.table-section tbody tr td * {
+  border: none;
+}
+
+.table-section tr:not(:last-of-type:not(.table-section thead tr)) {
+  border-bottom: 1px solid rgba(var(--dark-blue-color), 1);
+}
+
+.table-section caption {
+  background-color: rgba(var(--dark-blue-color), 1);
+  border-block: 1px solid rgba(var(--dark-blue-color), 1);
+  border-radius: 10px 10px 0 0;
+}
+
+/* Thead */
+.table-section .sortable thead th {
+  cursor: pointer;
+}
+
+.table-section thead tr {
+  background-color: rgba(var(--blue-color), 1);
+  border-block: 1px solid rgba(var(--dark-blue-color), 1);
+}
+
+/* Tbody */
+.table-section tbody tr {
+  background-color: rgba(var(--bg-color), 1);
+}
+
+.table-section tbody tr:hover {
+  background-color: rgba(var(--dark-blue-color), 1);
+}
+.table-section tbody tr:hover td,
+.table-section tbody tr:hover td span,
+.table-section tbody tr:hover td a:not(.btn),
+.table-section tbody tr:hover td label {
+  color: white;
+}
+
+.table-section tbody tr:last-of-type td:first-child {
+  border-bottom-right-radius: 10px;
+}
+.table-section tbody tr:last-of-type td:last-child {
+  border-bottom-left-radius: 10px;
+}
+
+.table-section tbody tr td {
+  padding-inline: 15px;
+  font-size: 15px;
+}
+
+.table-section tbody td button,
+.table-section tbody td a,
+.table-section tbody td span {
+  min-width: max-content !important;
+  min-height: max-content !important;
+}
+
+/* Sort Table */
+table.sortable
+  th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(
+    .sorttable_nosort
+  ):after {
+  content: " ▲▼";
+  font-size: 10px;
+  color: rgba(var(--bg-color), 1);
+  margin-right: 5px;
+}
+
+table.sortable th::after,
+th.sorttable_sorted::after,
+th.sorttable_sorted_reverse::after {
+  color: rgba(var(--dark-blue-color), 1);
+}
+
+th.sorttable_sorted::after {
+  content: "▼";
+  font-size: 12px;
+  background: none;
+}
+
+th.sorttable_sorted_reverse::after {
+  content: "▲";
+  font-size: 12px;
+  background: none;
+}
+
+#sorttable_sortfwdind,
+#sorttable_sortrevind {
+  display: none;
+}
+
+/* //////////////////////////////////// */
+/* Special Styles */
+
+/* Digital Sign Section */
+.digital-sign button:first-of-type {
+  width: max-content !important;
+}
+
+.digital-sign input {
+  width: 240px !important;
+  max-width: 95% !important;
+}
+
+/* Admin Tables*/
+.table-section tbody tr:has(td:first-of-type input:checked) {
+  background-color: rgba(var(--dark-blue-color), 1);
+}
+.table-section tbody tr:has(td:first-of-type input:checked) td,
+.table-section tbody tr:has(td:first-of-type input:checked) td span,
+.table-section tbody tr:has(td:first-of-type input:checked) td a:not(.btn) {
+  color: white;
+}
+
+/* Admin Edit User */
+.right-column > section,
+.left-column > section {
+  background-color: rgba(var(--bg-color), 0.6);
+}
+
+.right-column > section > h2,
+.left-column > section > h2 {
+  background-color: rgba(var(--dark-blue-color), 0.7);
+  height: max-content;
+}
+
+.right-column > section > div > div:first-of-type,
+.left-column > section > div > div:first-of-type {
+  width: 35%;
+}
+
+.right-column > section > div > div:last-of-type,
+.left-column > section > div > div:last-of-type {
+  width: 65%;
+}
+
+.right-column > section > div > div:last-of-type > div:first-of-type,
+.left-column > section > div > div:last-of-type > div:first-of-type {
+  width: 100%;
+}
+
+.profile-img img {
+  width: 150px;
+  height: 150px;
+  border: 3px solid rgba(var(--dark-blue-color));
+  border-radius: 100%;
+}
+
+/* Issuing Daroo-Card Page */
+.plan {
+  width: 28%;
+  transition: all 0.1s ease-in-out;
+}
+
+.plan:hover {
+  transform: scale(1.05, 1.05);
+  background-color: #eee !important;
+}
+
+/* //////////////////////////////////// */
+/* Responsive */
+@media (max-width: 1400px) {
+  main .form-label {
+    width: 40% !important;
+  }
+  main
+    .form-control:not(
+      #shaba,
+      #mobile[data-is-blocking-page="true"],
+      #wallet-number,
+      #target-wallet-number
+    ),
+  .card-numbers,
+  .left-group {
+    width: 60% !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  main {
+    width: 60% !important;
+  }
+  .menu {
+    width: 25% !important;
+  }
+}
+
+@media (max-width: 992px) {
+  main {
+    width: 70% !important;
+  }
+  .menu {
+    width: 32% !important;
+  }
+  .right-column > section > div > div:first-of-type,
+  .left-column > section > div > div:first-of-type {
+    width: 100%;
+  }
+  .right-column > section > div > div:last-of-type,
+  .left-column > section > div > div:last-of-type {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    width: 80% !important;
+  }
+  .modal-fullscreen-sm-down {
+    width: 100%;
+  }
+  .menu {
+    width: 40% !important;
+  }
+  .plan {
+    width: 65%;
+  }
+  .table-section tbody tr td {
+    font-size: 13px;
+  }
+  .right-column > section > div > div:first-of-type,
+  .left-column > section > div > div:first-of-type {
+    width: 35%;
+  }
+  .right-column > section > div > div:last-of-type,
+  .left-column > section > div > div:last-of-type {
+    width: 65%;
+  }
+}
+
+@media (max-width: 576px) {
+  main {
+    width: 95%;
+  }
+  main .form-label,
+  .form-bottom-links,
+  main
+    .form-control:not(
+      #shaba,
+      #mobile[data-is-blocking-page="true"],
+      #wallet-number,
+      #target-wallet-number
+    ),
+  .card-numbers,
+  .left-group {
+    width: 100% !important;
+  }
+  .left-group button {
+    width: 50% !important;
+  }
+  .menu {
+    width: 100% !important;
+  }
+  .menu-toggler svg {
+    width: 35px !important;
+    height: 35px !important;
+  }
+  .plan {
+    width: 85%;
+  }
+  .right-column > section > div > div:first-of-type,
+  .left-column > section > div > div:first-of-type {
+    width: 100%;
+  }
+  .right-column > section > div > div:last-of-type,
+  .left-column > section > div > div:last-of-type {
+    width: 100%;
+  }
+  .left-column > section:last-of-type > div * {
+    width: 75% !important;
   }
 }
