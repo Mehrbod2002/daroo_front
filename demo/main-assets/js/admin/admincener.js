@@ -1,5 +1,5 @@
 function getAdminUser() {
-  var url = urldemo + `/api/admin/centers/first/page/`;
+  var url = urldemo + `/api/admin/centers/`;
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
@@ -8,41 +8,190 @@ function getAdminUser() {
         console.log(response);
         var html = "";
         response.forEach((key, index) => {
-          var item = `<tr class="userDetailItem" id="${key.id}">
-            <td  class="d-flex justify-content-center align-items-center form-check " >
-             
+          var document = key.docs;
+          var documentList = ``;
+          document.forEach((temp, index) => {
+            datadoc = `<div class="my-2"><a href="${temp.url}">${
+              index + 1
+            } فایل   </a> <button class="btn-close btn btn-danger remove-file" id=${
+              temp.id
+            } ></button> </div>`;
+            documentList = documentList + datadoc;
+          });
+          var item = `<tr>
+            <td class="d-flex justify-content-center align-items-center form-check">
+              <input type="checkbox" class="form-check-input me-2 border border-dark">
               <label class="form-check-label"> ${index + 1} </label>
             </td>
-            <td>${key.name}</td>
+            <td>${key.username}</td>
            
             <td>${key.center_name}</td>
             <td>${key.center_type}</td>
             <td>${key.center_code}</td>
-            <td>${key.username}</td>
-            <td> ${key.status}</td>
-     
-     
+            <td>${key.name}</td>
+            <td> ${key.pepresentative_position}</td>
+            <td>${key.postal_code}</td>
+            <td>${key.national_id}</td>
+            <td>${key.mobile}</td>
+            <td>${key.phone}</td>
+            <td>${key.address}</td>
+            <td class="d-flex justify-content-center align-items-center"  dir="ltr" type="centers"  id="${
+              key.id
+            }">
+                <span> ${key.wallet_balance} ریال </span>
+                ${
+                  key.wallet_blocked == "TRUE"
+                    ? `| مسدود شده (به علت: ${key.wallet_reason_of_block} )<button class='btn btn-success unblock-wallet mx-1'> رفع مسدودسازی کیف پول </button>`
+                    : `<button class="btn btn-secondary edit-wallet mx-1">
+                ویرایش موجودی کیف پول
+              </button>
+              <button class="btn btn-danger block-wallet mx-1">
+                مسدودسازی کیف پول
+              </button>`
+                }
+            
+              </td>
+            <td> ${key.sheba}</td>
+           
+            <td>${key.card_number}</td>
+            <td>${key.account_number}</td>
+            <td>${key.economy_code}</td>
+            <td class="d-flex justify-content-center align-items-center" style="width: max-content">
+              <form action="" method="post" class="d-flex justify-content-center align-items-center me-2 pe-2 border-end border-dark">
+                <input type="file" id="editfileitem" class="form-control me-2" style="width: 200px !important; height: max-content">
+                <input type="button" id="${
+                  key.id
+                }" class="btn btn-info editfilebtn" value="ویرایش اسناد">
+              </form>
+              <span>
+                اسناد فعلی:
+               ${documentList}
+              </span>
+            </td>
+            <td>${key.sign}</td>
+            <td type="centers" class="d-flex justify-content-center align-items-center" id="${
+              key.id
+            }">
+            ${
+              key.user_is_verified == false && key.user_is_rejected == false
+                ? `<span> در انتظار تایید </span> 
+            <button class="btn btn-success mx-1 accept-user" id="${key.id}">
+              تایید کاربر
+            </button>
+            <button class="btn btn-secondary mx-1 eject-user" id="${key.id}">
+              عدم تایید کاربر
+            </button>`
+                : ""
+            }
+            ${key.user_is_rejected == true ? `<span> رد شده </span>` : ""}
+            ${
+              key.user_is_blocked == false && key.user_is_verified == true
+                ? ` <span> تایید شده </span>
+                <button class="btn btn-danger mx-1 block-user" id="${key.id}">
+                  مسدودسازی کاربر
+                </button>`
+                : ""
+            }
+            ${
+              key.user_is_blocked == true && key.user_is_verified == true
+                ? `  <span> مسدود شده </span>
+                | مسدود شده (به علت: ${key.reason_of_block} )
+                <button class="btn btn-success mx-1 unblock-user" id="${key.id}">
+                  رفع مسدودسازی کاربر
+                </button>`
+                : ""
+            }
+            </td>
+            <td id="${key.id}" type="centers">
+              
+            <button  class="btn btn-info profile-user"  id="${key.id}">
+            ویرایش اطلاعات
+          </button>
+          <button   class="btn btn-secondary transaction-user" id="${key.id}">
+          گزارش گیری تراکنش ها
+        </button>
+        <button   class="btn btn-secondary wallet-user" id="${key.id}">
+          گزارش گیری کیف پول
+        </button>
+            <button  class="btn btn-secondary reception-user"  id="${key.id}" >
+              گزارش گیری پذیرش ها
+            </button>
+            <button class="btn btn-danger mx-1 remove-user" id="${key.id}">
+              حذف کاربر
+            </button>
+              
+            </td>
           
           </tr>`;
           html = html + item;
         });
         document.querySelector("#reportsTable tbody").innerHTML = html;
 
-        const profile = document.querySelectorAll(".userDetailItem");
-        for (const el of profile) {
+        const editfilebtn = document.querySelectorAll(".editfilebtn");
+        for (const el of editfilebtn) {
           el.addEventListener("click", function () {
-            window.location.href = `https://daroocard.com/admin-center-information.html?centerid=${el.getAttribute(
+            editfilefun(el.getAttribute("id"));
+          });
+        }
+        const removeFile = document.querySelectorAll(".remove-file");
+        for (const el of removeFile) {
+          el.addEventListener("click", function () {
+            removeFileFunc(el.getAttribute("id"));
+          });
+        }
+        const unblock = document.querySelectorAll(".unblock-user");
+        for (const el of unblock) {
+          el.addEventListener("click", function () {
+            unblockUser(el.getAttribute("id"));
+          });
+        }
+
+        const accept = document.querySelectorAll(".accept-user");
+        for (const el of accept) {
+          el.addEventListener("click", function () {
+            acceptUser(el.getAttribute("id"));
+          });
+        }
+
+        const reception = document.querySelectorAll(".reception-user");
+        for (const el of reception) {
+          el.addEventListener("click", function () {
+            window.location.href = `https://daroocard.com/main-reception-requests.html?centerid=${el.getAttribute(
               "id"
             )}`;
           });
         }
-        // setRemoveUserEvent();
-        // setEditWalletEvent();
-        // setBlockWalletEvent();
-        // setUnblockWalletEvent();
-        // setRemoveUserEvent();
-        // setBlockUserEvent();
-        // setAcceptEjectUserEvents();
+        const transaction = document.querySelectorAll(".transaction-user");
+        for (const el of transaction) {
+          el.addEventListener("click", function () {
+            window.location.href = `https://daroocard.com/main-reports.html?centerid=${el.getAttribute(
+              "id"
+            )}`;
+          });
+        }
+        const wallet = document.querySelectorAll(".wallet-user");
+        for (const el of wallet) {
+          el.addEventListener("click", function () {
+            window.location.href = `https://daroocard.com/main-wallet.html?centerid=${el.getAttribute(
+              "id"
+            )}`;
+          });
+        }
+        const profile = document.querySelectorAll(".profile-user");
+        for (const el of profile) {
+          el.addEventListener("click", function () {
+            window.location.href = `https://daroocard.com/main-profile.html?centerid=${el.getAttribute(
+              "id"
+            )}`;
+          });
+        }
+        setRemoveUserEvent();
+        setEditWalletEvent();
+        setBlockWalletEvent();
+        setUnblockWalletEvent();
+        setRemoveUserEvent();
+        setBlockUserEvent();
+        setAcceptEjectUserEvents();
       } else if (request.status == 400) {
         const res = JSON.parse(request.response);
         console.log(res);
