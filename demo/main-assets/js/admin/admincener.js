@@ -13,12 +13,12 @@ function getAdminUser() {
              
               <label class="form-check-label"> ${index + 1} </label>
             </td>
-            <td>${key.name}</td>
+            <td>${key.username}</td>
            
             <td>${key.center_name}</td>
             <td>${key.center_type}</td>
             <td>${key.center_code}</td>
-            <td>${key.username}</td>
+            <td>${key.name}</td>
             <td> ${key.status}</td>
      
      

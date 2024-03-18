@@ -13,9 +13,9 @@ function getAdminUser() {
            
             <label class="form-check-label"> ${index + 1} </label>
           </td>
-          <td>${key.name}</td>
-         
           <td>${key.username}</td>
+         
+          <td>${key.name}</td>
        
           <td> ${key.status}</td>
    
