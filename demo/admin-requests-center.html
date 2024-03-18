@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>دارو کارت | ادمین-درخواست ها</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="main-assets/css/plans-pages-style.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/daroo-card.png"
+      type="image/x-icon"
+    />
+    <style>
+      main {
+        width: 95% !important;
+      }
+      .table-section {
+        max-height: 1000px !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid d-flex flex-column align-items-center">
+      <header class="w-100 text-center py-3">
+        <a href="admin.html" class="logo d-inline-block">
+          <img src="assets/img/daroo-card.gif" alt="daroo-card" />
+        </a>
+      </header>
+      <main class="rounded-4 pb-4 mb-5 text-center overflow-hidden shadow-lg">
+        <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary">
+          ادمین-درخواست ها
+        </h1>
+        <div class="d-flex justify-content-between px-3 mb-3">
+          <input
+            type="search"
+            placeholder="جستجو در جدول ..."
+            class="searchable form-control mb-3"
+            style="width: 200px !important"
+            data-is-second-box="true"
+          />
+          <button class="print btn btn-light d-flex align-items-center">
+            <span class="me-2 text-dark fs-5"> پرینت </span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="22"
+              fill="black"
+              class="bi bi-printer"
+              viewBox="0 0 16 16"
+            >
+              <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
+              <path
+                d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"
+              ></path>
+            </svg>
+          </button>
+        </div>
+
+        <section class="table-section text-center table-responsive mx-3">
+          <div class="d-flex align-items-center mb-4">
+            <button
+              class="btn btn-light d-flex align-items-center"
+              id="nextpage"
+            >
+              <span class="text-dark fs-5"> بعدی </span>
+            </button>
+            <button
+              class="btn btn-light d-flex align-items-center mx-4"
+              id="prevpage"
+            >
+              <span class="text-dark fs-5"> قبلی </span>
+            </button>
+            <div class="btn btn-info">تعداد : <span id="cointReq"></span></div>
+          </div>
+          <table
+            class="table caption-top sortable align-middle"
+            id="lastRequests"
+          >
+            <caption class="text-light fw-bolder fs-5 text-start ps-3">
+              همه ی درخواست های گذشته
+            </caption>
+            <thead>
+              <tr>
+                <th class="sorttable_numeric">ردیف</th>
+                <th class="sorttable_numeric">تاریخ درخواست</th>
+                <th class="sorttable_numeric">تاریخ تعیین وضعیت</th>
+                <th>نام کابری</th>
+                <th>نقش کاربر</th>
+                <th>نوع درخواست</th>
+                <th>اطلاعات درخواست</th>
+                <th>وضعیت درخواست</th>
+                <th class="sorttable_nosort">عملیات</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td
+                  colspan="10"
+                  class="dataTables_empty text-center"
+                  valign="top"
+                >
+                  موردی یافت نشد
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="messagewrapper">
+          <div>
+            <div class="messageBox">
+              <p></p>
+              <button class="messageBtn btn btn-success">تایید</button>
+            </div>
+          </div>
+        </div>
+        <div class="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <div id="mask"></div>
+      </main>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="main-assets/js/sorttable.js"></script>
+    <script src="main-assets/js/services.js"></script>
+    <script src="main-assets/js/tables.js"></script>
+    <script>
+      const searchparams = new URLSearchParams(window.location.search);
+      var urlpath = searchparams.get("centerid");
+      var pagepath = searchparams.get("page");
+
+      function GetData() {
+        if (urlpath) {
+          if (pagepath) {
+            var url2 =
+              urldemo +
+              `/api/admin/centers/requests/${urlpath}/?page=${pagepath}`;
+          } else {
+            var url2 = urldemo + `/api/admin/centers/requests/${urlpath}/`;
+          }
+          try {
+            const request = new XMLHttpRequest();
+            request.onloadend = function () {
+              if (request.status == 200 || request.status == 201) {
+                var response = JSON.parse(this.responseText);
+                console.log(response);
+                var indexitem = 0;
+                if (pagepath && pagepath > 1) {
+                  indexitem = (Number(pagepath) - 1) * 10;
+                }
+                var html = "";
+                response.results.forEach((key, index) => {
+                  var item = `<tr id="${key.id}">
+              <td id="${
+                key.id
+              }" class="d-flex justify-content-center align-items-center form-check">
+                <input type="checkbox" class="form-check-input me-2 border border-dark">
+                <label class="form-check-label"> ${
+                  indexitem + index + 1
+                } </label>
+              </td>
+              <td>${key.created_at}</td>
+              <td>${key.updated_at}</td>
+              <td>${key.username}</td>
+              <td>${key.role}</td>
+              <td>${key.request_type}</td>
+              <td>${key.information_of_request}</td>
+              <td> ${key.status}</td>
+              <td class="d-flex justify-content-center align-items-center">
+              <button   class="request-report btn btn-info mx-1" id="${key.id}">
+              گزارش گیری
+            </button>
+            </td>
+            </tr>`;
+                  html = html + item;
+                });
+                document.querySelector("#lastRequests tbody").innerHTML = html;
+                document.querySelector("#cointReq").innerHTML = response.count;
+                if (response.next) {
+                  console.log(response.next);
+
+                  document
+                    .querySelector("#nextpage")
+                    .addEventListener("click", function () {
+                      let arry = response.next.split("/?page=");
+                      let lastElement = arry[arry.length - 1];
+                      window.location.href = `https://daroocard.com/admin-requests-center.html?centerid=${urlpath}&page=${lastElement}`;
+                    });
+                  document
+                    .querySelector("#nextpage")
+                    .removeAttribute("disabled");
+                } else {
+                  document
+                    .querySelector("#nextpage")
+                    .setAttribute("disabled", "true");
+                }
+                if (response.previous) {
+                  document
+                    .querySelector("#prevpage")
+                    .addEventListener("click", function () {
+                      let arry = response.previous.split("/?page=");
+                      let lastElement = arry[arry.length - 1];
+                      if (arry.length > 1) {
+                        window.location.href = `https://daroocard.com/admin-requests-center.html?centerid=${urlpath}&page=${lastElement}`;
+                      } else {
+                        window.location.href = `https://daroocard.com/admin-requests-center.html?centerid=${urlpath}`;
+                      }
+                    });
+                  document
+                    .querySelector("#prevpage")
+                    .removeAttribute("disabled");
+                } else {
+                  document
+                    .querySelector("#prevpage")
+                    .setAttribute("disabled", "true");
+                }
+                const report = document.querySelectorAll(".request-report");
+                for (const el of report) {
+                  el.addEventListener("click", function () {
+                    window.open(
+                      `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
+                        "id"
+                      )}`,
+                      "_blank"
+                    );
+                  });
+                }
+              } else if (request.status == 400 || request.status == 403) {
+                const res = JSON.parse(request.response);
+                console.log(res);
+                const keys = Object.keys(res);
+                let msg = "";
+                keys.forEach((key, index) => {
+                  console.log(`${res[key]}`);
+                  msg = msg + `${res[key]}<br>`;
+                });
+                if (msg) {
+                  $(".messagewrapper").fadeIn();
+                  messageBox.innerHTML = msg;
+                }
+              } else {
+                $(".messagewrapper").fadeIn();
+                messageBox.innerHTML =
+                  "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+              }
+              setTimeout(clearMessageBox, 1000);
+            };
+
+            request.onloadstart = function () {
+              $(".loader").fadeIn();
+            };
+            request.open("GET", url2);
+            request.setRequestHeader(
+              "Authorization",
+              `Token ${localStorage.getItem("token")}`
+            );
+            request.send();
+          } catch (error) {
+            console.error(error);
+          }
+        }
+      }
+      GetData();
+    </script>
+  </body>
+</html>

@@ -89,21 +89,34 @@ function getAdminUser() {
   } catch (error) {
     console.error(error);
   }
-  var url2 = urldemo + `/api/admin/requests/history/`;
+  const searchparams = new URLSearchParams(window.location.search);
+  var pagepath = searchparams.get("page");
+
+  if (pagepath) {
+    var url2 = urldemo + `/api/admin/requests/history/?page=${pagepath}`;
+  } else {
+    var url2 = urldemo + `/api/admin/requests/history/`;
+  }
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
         console.log(response);
+        var indexitem = 0;
+        if (pagepath && pagepath > 1) {
+          indexitem = (Number(pagepath) - 1) * 10;
+        }
         var html = "";
-        response.forEach((key, index) => {
+        response.results.forEach((key, index) => {
           var item = `<tr id="${key.id}">
               <td id="${
                 key.id
               }" class="d-flex justify-content-center align-items-center form-check">
                 <input type="checkbox" class="form-check-input me-2 border border-dark">
-                <label class="form-check-label"> ${index + 1} </label>
+                <label class="form-check-label"> ${
+                  indexitem + index + 1
+                } </label>
               </td>
               <td>${key.created_at}</td>
               <td>${key.updated_at}</td>
@@ -121,7 +134,37 @@ function getAdminUser() {
           html = html + item;
         });
         document.querySelector("#lastRequests tbody").innerHTML = html;
+        document.querySelector("#cointReq").innerHTML = response.count;
+        if (response.next) {
+          console.log(response.next);
 
+          document
+            .querySelector("#nextpage")
+            .addEventListener("click", function () {
+              let arry = response.next.split("/?page=");
+              let lastElement = arry[arry.length - 1];
+              window.location.href = `https://daroocard.com/admin-requests.html?page=${lastElement}`;
+            });
+          document.querySelector("#nextpage").removeAttribute("disabled");
+        } else {
+          document.querySelector("#nextpage").setAttribute("disabled", "true");
+        }
+        if (response.previous) {
+          document
+            .querySelector("#prevpage")
+            .addEventListener("click", function () {
+              let arry = response.previous.split("/?page=");
+              let lastElement = arry[arry.length - 1];
+              if (arry.length > 1) {
+                window.location.href = `https://daroocard.com/admin-requests.html?page=${lastElement}`;
+              } else {
+                window.location.href = `https://daroocard.com/admin-requests.html`;
+              }
+            });
+          document.querySelector("#prevpage").removeAttribute("disabled");
+        } else {
+          document.querySelector("#prevpage").setAttribute("disabled", "true");
+        }
         const report = document.querySelectorAll(".request-report");
         for (const el of report) {
           el.addEventListener("click", function () {
