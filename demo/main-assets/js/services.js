@@ -1371,7 +1371,10 @@ function service() {
     const formData = new FormData();
     formData.append("service", document.getElementById("titlereport").value);
     formData.append("mablagh", document.getElementById("pricereport").value);
-    formData.append("phone_number", document.getElementById("phonereport").value);
+    formData.append(
+      "phone_number",
+      document.getElementById("phonereport").value
+    );
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
@@ -2402,6 +2405,10 @@ function forget() {
 }
 
 // **************************** transfer
+
+$("#modalResponseTransfer .btn-danger").click(function () {
+  $("#modalResponseTransfer").fadeOut();
+});
 function transfer() {
   var url = urldemo + `/api/transfer/`;
   try {
@@ -2440,9 +2447,20 @@ function transfer() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         console.log(request.response);
-        $(".messagewrapper").fadeIn();
-        messageBox.innerHTML =
-          "<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>";
+
+        var html = ``;
+        for (const [key, value] of Object.entries(request.response)) {
+          html =
+            html +
+            ` <div
+              class="mb-3 item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2"
+            >
+              <span class="label">${key} </span>
+              <span class="value"> ${value} </span>
+            </div>`;
+        }
+        document.querySelector("#modalResponseTransferBox").innerHTML = html;
+        $("#modalResponseTransfer").fadeIn();
       } else if (request.status == 401) {
         $(".messagewrapper").fadeIn();
         messageBox.innerHTML =

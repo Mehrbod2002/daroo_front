@@ -66,11 +66,11 @@ try {
     el.addEventListener("click", function () {
       try {
         navigator.clipboard.writeText(
-          this.previousElementSibling.innerText.trim()
+          this.parentElement.firstElementChild.innerText.trim()
         );
       } catch {
         const inputEl = document.createElement("input");
-        inputEl.value = this.previousElementSibling.innerText.trim();
+        inputEl.value = this.parentElement.firstElementChild.innerText.trim();
         this.appendChild(inputEl);
         inputEl.select();
         inputEl.setSelectionRange(0, 99999);

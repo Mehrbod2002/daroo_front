@@ -21,6 +21,25 @@ body {
   background-size: 200px;
   overflow: auto;
 }
+#modalResponseTransfer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: #d4eeffcc;
+  z-index: 9999;
+  padding: 30px;
+  overflow: auto;
+  height: 100%;
+  display: none;
+}
+#modalResponseTransfer section {
+  max-width: 650px;
+  width: 100%;
+  margin: auto;
+}
 .footer_logo_box {
   display: flex;
   flex-wrap: wrap;

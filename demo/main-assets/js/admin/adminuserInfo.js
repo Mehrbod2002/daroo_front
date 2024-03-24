@@ -122,19 +122,14 @@ if (urlpath) {
           .setAttribute("href", `/admin-requests-user.html?id=${response.id}`);
         document
           .querySelector("#profileEdit")
-          .setAttribute("href", `/main-profile.html?id=${response.id}`);
+          .setAttribute("href", `/main-profile.html?userid=${response.id}`);
         document
           .querySelector("#profileReport")
           .setAttribute("href", `/main-reports.html?id=${response.id}`);
         document
           .querySelector("#profileWallet")
           .setAttribute("href", `/main-wallet.html?id=${response.id}`);
-        document
-          .querySelector("#profileReception")
-          .setAttribute(
-            "href",
-            `/main-reception-requests.html?id=${response.id}`
-          );
+
         const editfilebtn = document.querySelectorAll(".editfilebtn");
         for (const el of editfilebtn) {
           el.addEventListener("click", function () {

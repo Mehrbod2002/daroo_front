@@ -100,13 +100,13 @@
                   افزودن خدمت
                 </a>
               </li>
-             
+
               <li class="nav-item">
                 <a class="nav-link" href="main-support.html">
                   تیکت / پشتیبانی
                 </a>
               </li>
-                      <li class="nav-item">
+              <li class="nav-item">
                 <a
                   class="nav-link"
                   href="https://daroocard.ir/Help%20Daroocard.pdf"
@@ -114,14 +114,9 @@
                   قوانین و ضوابط
                 </a>
               </li>
-             
-              <li class="nav-item"  id="meniadmin">
-                <a
-                  class="nav-link"
-                  href="admin.html"
-                >
-                پنل ادمین
-                </a>
+
+              <li class="nav-item" id="meniadmin">
+                <a class="nav-link" href="admin.html"> پنل ادمین </a>
               </li>
             </ul>
           </nav>
@@ -149,83 +144,79 @@
           id="reception-form"
           class="w-100 px-4 mt-3 text-end"
         >
-        <section
-        class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
-      >
-        <label
-          for="payment-type"
-          class="form-label text-sm-end text-start pe-3"
-        >
-          روش پرداخت
-        </label>
-        <select class="left-group form-select" id="payment-type">
-          <option value="SMS">پیامک</option>
-          <option value="NFC">NFC</option>
-        </select>
-      </section>
-    
-    <div class="rmvBox d-none">
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+          >
+            <label
+              for="payment-type"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              روش پرداخت
+            </label>
+            <select class="left-group form-select" id="payment-type">
+              <option value="SMS">پیامک</option>
+              <option value="NFC">NFC</option>
+            </select>
+          </section>
 
-   
-      <section
-class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
-    >
-      <label
-        for="nfcnumber"
-        class="form-label text-sm-end text-start pe-3"
-      >
-        شماره nfc
-      </label>
-      <div
-        class="w-100 left-group d-flex justify-content-center align-items-center"
-      >
-        <input
-          type="number"
-          class="form-control d-none rmvBox"
-          id="nfcnumber"
-          data-is-blocking-page="true"
-        />
-        <button
-          class="btn btn-light ms-2"
-          type="button"
-          onclick="nfcLink()"
-        >
-          دریافت کد
-        </button>
-      </div>
-    </section>
-   
-   
-    <section
-      class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
-    >
-      <label
-        for="activation-code"
-        class="form-label text-sm-end text-start pe-3"
-      >
-        کد
-      </label>
-      <div
-      class="w-100 left-group d-flex justify-content-center align-items-center"
-    >
-      <input
-        type="text"
-        maxlength="6"
-        class="form-control text-center d-none rmvBox"
-        id="activation-codee"
-        dir="ltr"
-      />
-      <button
-      class="btn btn-light ms-2"
-      type="button"
-      onclick="nfcdetail()"
-    >
-      دریافت اطلاعات
-    </button>
-</div>
-    </section>
-    
-  </div>
+          <div class="rmvBox d-none">
+            <section
+              class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+            >
+              <label
+                for="nfcnumber"
+                class="form-label text-sm-end text-start pe-3"
+              >
+                شماره nfc
+              </label>
+              <div
+                class="w-100 left-group d-flex justify-content-center align-items-center"
+              >
+                <input
+                  type="number"
+                  class="form-control d-none rmvBox"
+                  id="nfcnumber"
+                  data-is-blocking-page="true"
+                />
+                <button
+                  class="btn btn-light ms-2"
+                  type="button"
+                  onclick="nfcLink()"
+                >
+                  دریافت کد
+                </button>
+              </div>
+            </section>
+
+            <section
+              class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+            >
+              <label
+                for="activation-code"
+                class="form-label text-sm-end text-start pe-3"
+              >
+                کد
+              </label>
+              <div
+                class="w-100 left-group d-flex justify-content-center align-items-center"
+              >
+                <input
+                  type="text"
+                  maxlength="6"
+                  class="form-control text-center d-none rmvBox"
+                  id="activation-codee"
+                  dir="ltr"
+                />
+                <button
+                  class="btn btn-light ms-2"
+                  type="button"
+                  onclick="nfcdetail()"
+                >
+                  دریافت اطلاعات
+                </button>
+              </div>
+            </section>
+          </div>
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
           >
@@ -275,21 +266,18 @@ class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-cent
             </label>
             <input type="text" class="form-control" id="amount" dir="ltr" />
           </section>
-  
-        
-        <section
-          class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
-        >
-          <label
-            for="service-type"
-            class="form-label text-sm-end text-start pe-3"
+
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
           >
-           خدمت
-          </label>
-          <select class="left-group form-select" id="service-type">
-            
-          </select>
-        </section>
+            <label
+              for="service-type"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              خدمت
+            </label>
+            <select class="left-group form-select" id="service-type"></select>
+          </section>
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
           >
