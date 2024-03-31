@@ -2446,10 +2446,11 @@ function transfer() {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
-        console.log(request.response);
+        var res = JSON.parse(request.responseText);
+        console.log(res);
 
         var html = ``;
-        for (const [key, value] of Object.entries(request.response)) {
+        for (const [key, value] of Object.entries(res)) {
           html =
             html +
             ` <div
