@@ -1,3 +1,15 @@
+let urldemo = "https://api.daroocard.com";
+let messageBox = document.querySelector(".messageBox p");
+let fetchHeader = {
+  "Content-Type": "application/json; charset=utf-8",
+};
+$(".messagewrapper").hide();
+$(".messageBtn").click(function () {
+  $(".messagewrapper").fadeOut();
+});
+function clearMessageBox() {
+  $(" .loader ").fadeOut();
+}
 
 function sendqrpayment(){
    
