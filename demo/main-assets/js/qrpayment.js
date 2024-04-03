@@ -61,10 +61,10 @@ function sendqrpayment(){
           };
           request.open("POST", url, true);
           // request.setRequestHeader("Content-Type", "multipart/form-data");
-          request.setRequestHeader(
-            "Authorization",
-            `Token ${localStorage.getItem("token")}`
-          );
+          // request.setRequestHeader(
+          //   "Authorization",
+          //   `Token ${localStorage.getItem("token")}`
+          // );
       
           request.send(formData);
         } catch (error) {
