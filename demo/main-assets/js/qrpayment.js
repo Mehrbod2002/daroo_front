@@ -124,10 +124,10 @@ document.querySelector("#center_phone").innerHTML = $("#service_list").children(
         $(".loader").fadeIn();
       };
       request.open("GET", url);
-      request.setRequestHeader(
-        "Authorization",
-        `Token ${localStorage.getItem("token")}`
-      );
+      // request.setRequestHeader(
+      //   "Authorization",
+      //   `Token ${localStorage.getItem("token")}`
+      // );
       request.send();
     } catch (error) {
       console.error(error);
