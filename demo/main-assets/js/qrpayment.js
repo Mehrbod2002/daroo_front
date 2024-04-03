@@ -60,7 +60,7 @@ function sendqrpayment(){
             $(".loader").fadeIn();
           };
           request.open("POST", url, true);
-          // request.setRequestHeader("Content-Type", "multipart/form-data");
+          request.setRequestHeader("Content-Type", "multipart/form-data");
           // request.setRequestHeader(
           //   "Authorization",
           //   `Token ${localStorage.getItem("token")}`
