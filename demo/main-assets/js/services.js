@@ -2156,32 +2156,44 @@ function cardInfo() {
   }
 }
 function changeOption(senderEl, parentClass) {
-  let activeEl;
-  let disableEl;
+
+  let activeEl= []
+  let disableEl= []
+  var i = 0
+  var j = 0
   for (const element of document.querySelectorAll(
     "." + parentClass + " input[type=radio]"
   )) {
     if (element.checked) {
-      activeEl = element;
+      activeEl[i] = element;
+      i++    
     } else {
-      disableEl = element;
+      disableEl[j] = element;
+      j++
     }
   }
-  activeEl.parentElement.nextElementSibling.removeAttribute("disabled");
-  disableEl.parentElement.nextElementSibling.setAttributeNode(
-    document.createAttribute("disabled")
-  );
-  try {
-    for (const el of activeEl.parentElement.nextElementSibling.children) {
-      el.removeAttribute("disabled");
-    }
-  } catch {}
-  try {
-    for (const el of disableEl.parentElement.nextElementSibling.children) {
-      el.setAttributeNode(document.createAttribute("disabled"));
-    }
-  } catch {}
+
+  for (const el of activeEl) {
+    el.parentElement.nextElementSibling.classList.remove("disabled");
+  }
+
+  for (const el of activeEl) {
+    el.parentElement.nextElementSibling.classList.remove("disabled");
+  }
+ 
+ 
+  // try {
+  //   for (const el of activeEl) {
+  //     el.parentElement.nextElementSibling.classList.remove("disabled");
+  //   }
+  // } catch {}
+  // try {
+  //   for (const el of disableEl) {
+  //     el.parentElement.nextElementSibling.classList.add(document.createAttribute("disabled"));
+  //   }
+  // } catch {}
 }
+
 // **************************** sms
 function sms() {
   var xx = "";
@@ -2432,7 +2444,13 @@ function transfer() {
         "to_wallet_number",
         document.getElementById("target-wallet-number").value
       );
-    } else {
+    }else if (document.getElementById("cart-radio").checked) {
+      formData.append(
+        "card_number",
+        document.getElementById("target-wallet-number").value
+      );
+
+    }  else {
       formData.append("sheba", document.getElementById("shaba").value);
     }
 
@@ -2457,7 +2475,7 @@ function transfer() {
               class="mb-3 item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2"
             >
               <span class="label">${key} </span>
-              <span class="value"> ${value} </span>
+              <span class="value ltr"> ${value} </span>
             </div>`;
         }
         document.querySelector("#modalResponseTransferBox").innerHTML = html;

@@ -458,6 +458,7 @@
                   checked
                   onchange="changeOption(this, 'target-choice')"
                 />
+
                 <label
                   for="target-wallet-number-radio"
                   class="form-check-label text-sm-end text-start pe-3"
@@ -534,6 +535,38 @@
                 >
               </div>
             </section>
+            <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+          >
+            <div
+              class="form-check form-label d-flex justify-content-sm-end justify-content-start mb-sm-0 mb-2"
+            >
+              <input
+                type="radio"
+                class="form-check-input me-3"
+                id="cart-radio"
+                name="target-radio"
+                onchange="changeOption(this, 'target-choice')"
+              />
+              <label
+                for="cart-radio"
+                class="form-check-label text-sm-end text-start pe-3"
+              >
+                شماره کارت مقصد
+              </label>
+            </div>
+            <div class="left-group d-flex w-100">
+              <input
+                type="text"
+                pattern="\d*"
+                maxlength="24"
+                class="form-control "
+                id="shaba"
+                dir="ltr"
+              />
+              
+            </div>
+          </section>
           </section>
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
