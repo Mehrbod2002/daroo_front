@@ -500,19 +500,19 @@ function validate(event) {
     }
   }
   if (isTrue === true) {
-    if (
-      document.querySelectorAll("#card-numbers input.form-control[disabled]")
-        .length === 0
-    ) {
-      const cardNumber = document.querySelectorAll("#card-numbers input");
-      for (const el of cardNumber) {
-        if (el.value.length !== 4 || /\D/.test(el.value)) {
-          message =
-            "لطفا شماره ی دارو کارت را به درستی (با اعداد انگلیسی) وارد کنید.";
-          isTrue = false;
-        }
-      }
-    }
+    // if (
+    //   document.querySelectorAll("#card-numbers input.form-control[disabled]")
+    //     .length === 0
+    // ) {
+    //   const cardNumber = document.querySelectorAll("#card-numbers input");
+    //   for (const el of cardNumber) {
+    //     if (el.value.length !== 4 || /\D/.test(el.value)) {
+    //       message =
+    //         "لطفا شماره ی دارو کارت را به درستی (با اعداد انگلیسی) وارد کنید.";
+    //       isTrue = false;
+    //     }
+    //   }
+    // }
 
     if (isTrue === true) {
       const amount = document.getElementById("amount") || undefined;
@@ -2174,11 +2174,21 @@ function changeOption(senderEl, parentClass) {
   }
 
   for (const el of activeEl) {
-    el.parentElement.nextElementSibling.classList.remove("disabled");
+   
+    for (const temp of el.parentElement.nextElementSibling.children) {
+     
+      temp.removeAttribute("disabled");
+    }
+    // el.parentElement.nextElementSibling.children[0].removeAttribute("disabled");
   }
 
-  for (const el of activeEl) {
-    el.parentElement.nextElementSibling.classList.remove("disabled");
+  for (const el of disableEl) {
+    // console.log(el.parentElement.nextElementSibling.children[0])
+    for (const temp of el.parentElement.nextElementSibling.children) {
+     
+      temp.setAttribute("disabled", "");
+    }
+    // el.parentElement.nextElementSibling.children[0].setAttribute("disabled", "");
   }
  
  
@@ -2426,13 +2436,14 @@ function transfer() {
   try {
     const formData = new FormData();
     var xx = "";
+    var yy = "";
     if (document.getElementById("wallet-number-radio").checked) {
       formData.append(
         "from_wallet_number",
         document.getElementById("wallet-number").value
       );
     } else {
-      const cardnums = document.querySelectorAll("#card-numbers input");
+      const cardnums = document.querySelectorAll(".card-numbers-start input");
 
       for (const el of cardnums) {
         xx = xx + el.value;
@@ -2445,10 +2456,17 @@ function transfer() {
         document.getElementById("target-wallet-number").value
       );
     }else if (document.getElementById("cart-radio").checked) {
-      formData.append(
-        "card_number",
-        document.getElementById("target-wallet-number").value
-      );
+      // formData.append(
+      //   "card_number",
+      //   document.getElementById("target-wallet-number").value
+      // );
+
+      const cardnums = document.querySelectorAll(".card-numbers-end input");
+
+      for (const el of cardnums) {
+        yy = yy + el.value;
+      }
+      formData.append("card_number", yy);
 
     }  else {
       formData.append("sheba", document.getElementById("shaba").value);
@@ -2461,6 +2479,7 @@ function transfer() {
     formData.append("name", document.getElementById("target-name").value);
     formData.append("phone_number", document.getElementById("mobile").value);
     formData.append("dscription", document.getElementById("description").value);
+    console.log(formData)
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
