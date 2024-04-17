@@ -16,7 +16,7 @@ function getAdminUser() {
           <td>${key.username}</td>
          
           <td>${key.name}</td>
-          <td>${key.balance}</td>
+          <td style="direction: ltr;">${key.balance}</td>
           <td> ${key.status}</td>
    
          

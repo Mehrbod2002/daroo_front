@@ -17,13 +17,9 @@ function getAdminUser() {
            
             <td>${key.center_name}</td>
             <td>${key.center_type}</td>
-            <td>${key.center_code}</td>
             <td>${key.name}</td>
-            <td>${key.balance}</td>
+            <td style="direction: ltr;">${key.balance}</td>
             <td> ${key.status}</td>
-     
-     
-          
           </tr>`;
           html = html + item;
         });
