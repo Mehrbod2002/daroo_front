@@ -17,8 +17,8 @@ function getLoan() {
             <td> ${key.tracking_code} </td>
             <td> ${key.description}</td>
             <td>  ${key.state}</td>
-            <td>  ${key.installment} </td>
-            <td>  ${key.guaranteed_deposit} </td>
+            <td style="direction: ltr;">  ${key.installment} </td>
+            <td style="direction: ltr;">  ${key.guaranteed_deposit} </td>
             <td> <button class="get-report2 btn btn-secondary p-2" id="${
               key.id
             }"> گزارش درخواست </button> </td>
