@@ -15,6 +15,7 @@ function getvizitReport() {
         document.querySelector(".valTracking").innerHTML =
           response.tracking_code;
         document.querySelector(".valStatus").innerHTML = response.status;
+        document.querySelector(".valService").innerHTML = response.service;
         document.querySelector(".valMethod").innerHTML = response.payment_method;
         document.querySelector(".valDsc").innerHTML = response.dsc;
       } else if (request.status == 400) {
