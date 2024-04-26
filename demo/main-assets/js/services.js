@@ -215,6 +215,35 @@ try {
   }, 1);
 } catch {}
 
+// Control Keyboard On Amount Sectiongggggggggggg
+try {
+  const amountInput = document.getElementById("pricereport");
+  function checkAmount() {
+    let text = amountInput.value.replaceAll(",", "");
+    let result = "";
+    for (let i = text.length; i >= 1; i--) {
+      const chr = text.charAt(i - 1);
+      result = chr + result;
+      if (i !== 1 && (text.length - i + 1) % 3 === 0) {
+        result = "," + result;
+      }
+    }
+    amountInput.value = result;
+  }
+  // For Desktop Devices
+  amountInput.addEventListener("keyup", function (event) {
+    if (event.key !== undefined) {
+      if (!/\D/.test(event.key) || event.key.toLowerCase() === "backspace") {
+        checkAmount();
+      }
+    }
+  });
+  // For Mobile Devices
+  setInterval(function () {
+    checkAmount();
+  }, 1);
+} catch {}
+
 // Activate SMS (Show Message)
 function activeSMS(val) {
   smsblock();
@@ -1370,7 +1399,10 @@ function service() {
   try {
     const formData = new FormData();
     formData.append("service", document.getElementById("titlereport").value);
-    formData.append("mablagh", document.getElementById("pricereport").value);
+    formData.append(
+      "mablagh",
+      document.getElementById("pricereport").value.replaceAll(",", "")
+    );
     formData.append(
       "phone_number",
       document.getElementById("phonereport").value
@@ -2156,27 +2188,24 @@ function cardInfo() {
   }
 }
 function changeOption(senderEl, parentClass) {
-
-  let activeEl= []
-  let disableEl= []
-  var i = 0
-  var j = 0
+  let activeEl = [];
+  let disableEl = [];
+  var i = 0;
+  var j = 0;
   for (const element of document.querySelectorAll(
     "." + parentClass + " input[type=radio]"
   )) {
     if (element.checked) {
       activeEl[i] = element;
-      i++    
+      i++;
     } else {
       disableEl[j] = element;
-      j++
+      j++;
     }
   }
 
   for (const el of activeEl) {
-   
     for (const temp of el.parentElement.nextElementSibling.children) {
-     
       temp.removeAttribute("disabled");
     }
     // el.parentElement.nextElementSibling.children[0].removeAttribute("disabled");
@@ -2185,13 +2214,11 @@ function changeOption(senderEl, parentClass) {
   for (const el of disableEl) {
     // console.log(el.parentElement.nextElementSibling.children[0])
     for (const temp of el.parentElement.nextElementSibling.children) {
-     
       temp.setAttribute("disabled", "");
     }
     // el.parentElement.nextElementSibling.children[0].setAttribute("disabled", "");
   }
- 
- 
+
   // try {
   //   for (const el of activeEl) {
   //     el.parentElement.nextElementSibling.classList.remove("disabled");
@@ -2455,7 +2482,7 @@ function transfer() {
         "to_wallet_number",
         document.getElementById("target-wallet-number").value
       );
-    }else if (document.getElementById("cart-radio").checked) {
+    } else if (document.getElementById("cart-radio").checked) {
       // formData.append(
       //   "card_number",
       //   document.getElementById("target-wallet-number").value
@@ -2467,8 +2494,7 @@ function transfer() {
         yy = yy + el.value;
       }
       formData.append("card_number", yy);
-
-    }  else {
+    } else {
       formData.append("sheba", document.getElementById("shaba").value);
     }
 
@@ -2479,7 +2505,7 @@ function transfer() {
     formData.append("name", document.getElementById("target-name").value);
     formData.append("phone_number", document.getElementById("mobile").value);
     formData.append("dscription", document.getElementById("description").value);
-    console.log(formData)
+    console.log(formData);
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {

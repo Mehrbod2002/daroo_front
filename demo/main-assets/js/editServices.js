@@ -24,14 +24,10 @@ function getservice() {
   
                 <td>
                 <button class="btn btn-danger p-2 editReqBtn" 
-                mablagh="${
-                  key.mablagh
-                }"
-                phone_number="${
-                  key.phone_number
-                }" name="${
-                  key.service
-                }" id="${key.id}">  ویرایش </button>
+                mablagh="${key.mablagh}"
+                phone_number="${key.phone_number}" name="${key.service}" id="${
+            key.id
+          }">  ویرایش </button>
                 </td>
               
             </tr>`;
@@ -62,6 +58,39 @@ function getservice() {
                   "id"
                 )}"> تایید </button></div>`;
               makeEditReport(mainWalletCash);
+              // Control Keyboard On Amount Sectiongggggggggggg
+              for (const el of document.querySelectorAll("#datatitle2")) {
+                try {
+                  const amountInput = el;
+                  function checkAmount() {
+                    let text = amountInput.value.replaceAll(",", "");
+                    let result = "";
+                    for (let i = text.length; i >= 1; i--) {
+                      const chr = text.charAt(i - 1);
+                      result = chr + result;
+                      if (i !== 1 && (text.length - i + 1) % 3 === 0) {
+                        result = "," + result;
+                      }
+                    }
+                    amountInput.value = result;
+                  }
+                  // For Desktop Devices
+                  amountInput.addEventListener("keyup", function (event) {
+                    if (event.key !== undefined) {
+                      if (
+                        !/\D/.test(event.key) ||
+                        event.key.toLowerCase() === "backspace"
+                      ) {
+                        checkAmount();
+                      }
+                    }
+                  });
+                  // For Mobile Devices
+                  setInterval(function () {
+                    checkAmount();
+                  }, 1);
+                } catch {}
+              }
             });
           }
         }
@@ -91,7 +120,9 @@ function getservice() {
                 );
                 formData.append(
                   "mablagh",
-                  el.parentElement.querySelector(".mablagh").value
+                  el.parentElement
+                    .querySelector(".mablagh")
+                    .value.replaceAll(",", "")
                 );
                 formData.append(
                   "phone_number",
