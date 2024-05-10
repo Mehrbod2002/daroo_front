@@ -99,28 +99,18 @@
                   افزودن خدمت
                 </a>
               </li>
-            
+
               <li class="nav-item">
                 <a class="nav-link" href="main-support.html">
                   تیکت / پشتیبانی
                 </a>
               </li>
-                      <li class="nav-item">
-                <a
-                  class="nav-link"
-                  href="https://daroocard.ir/Help%20Daroocard.pdf"
-                >
-                  قوانین و ضوابط
-                </a>
+              <li class="nav-item">
+                <a class="nav-link" href="Rulle_043650.pdf"> قوانین و ضوابط </a>
               </li>
-             
-              <li class="nav-item"  id="meniadmin">
-                <a
-                  class="nav-link"
-                  href="admin.html"
-                >
-                پنل ادمین
-                </a>
+
+              <li class="nav-item" id="meniadmin">
+                <a class="nav-link" href="admin.html"> پنل ادمین </a>
               </li>
             </ul>
           </nav>
@@ -164,7 +154,7 @@
               ></button>
             </div>
             <div class="modal-body text-center" id="ruleBody">
-            <p></p>
+              <p></p>
             </div>
             <div class="modal-footer bg-secondary-subtle shadow">
               <button
@@ -316,6 +306,7 @@
           class="w-100 px-4 mt-3 text-end"
         >
           <section
+            id="wallet-number-wrapper"
             class="w-100 d-flex flex-column justify-content-between choice"
           >
             <section
@@ -324,14 +315,6 @@
               <div
                 class="form-check form-label d-flex justify-content-sm-end justify-content-start mb-sm-0 mb-2 active"
               >
-                <input
-                  type="radio"
-                  class="form-check-input me-3"
-                  id="wallet-number-radio"
-                  name="radio"
-                  checked
-                  onchange="changeOption(this, 'choice')"
-                />
                 <label
                   for="wallet-number-radio"
                   class="form-check-label text-sm-end text-start pe-3"
@@ -372,69 +355,6 @@
                     <path d="M12 9h2V8h-2v1Z" />
                   </svg>
                 </button>
-              </div>
-            </section>
-            <section
-              class="card-number-section d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
-            >
-              <div
-                class="form-check form-label d-flex justify-content-sm-end justify-content-start mb-sm-0 mb-2 disabled"
-              >
-                <input
-                  type="radio"
-                  class="form-check-input me-3"
-                  id="card-numbers-radio"
-                  name="radio"
-                  onchange="changeOption(this, 'choice')"
-                />
-                <label
-                  for="card-numbers-radio"
-                  class="form-check-label text-sm-end text-start pe-3"
-                >
-                  شماره ی دارو کارت
-                </label>
-              </div>
-              <div
-                class="card-numbers d-flex justify-content-between align-items-center"
-                id="card-numbers"
-                dir="ltr"
-              >
-                <input
-                  type="number"
-                  minlength="4"
-                  maxlength="4"
-                  min="0"
-                  max="9999"
-                  autofocus="autofocus"
-                  class="form-control text-center ms-2"
-                />
-                <input
-                  type="number"
-                  minlength="4"
-                  maxlength="4"
-                  min="0"
-                  max="9999"
-                  autofocus="autofocus"
-                  class="form-control text-center ms-2"
-                />
-                <input
-                  type="number"
-                  minlength="4"
-                  maxlength="4"
-                  min="0"
-                  max="9999"
-                  autofocus="autofocus"
-                  class="form-control text-center ms-2"
-                />
-                <input
-                  type="number"
-                  minlength="4"
-                  maxlength="4"
-                  min="0"
-                  max="9999"
-                  autofocus="autofocus"
-                  class="form-control text-center"
-                />
               </div>
             </section>
           </section>

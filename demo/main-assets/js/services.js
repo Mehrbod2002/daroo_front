@@ -21,8 +21,12 @@ function getUser() {
       console.log(request.status);
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
-        console.log(response);
-
+        console.log(response[0].wallet_address);
+        try {
+          document.querySelector(
+            "#wallet-number-wrapper #wallet-number"
+          ).value = response[0].wallet_address;
+        } catch {}
         try {
           if (response[0].role != "(پذیرنده) مراکز") {
             document.querySelector(".rm_li1").remove();
@@ -1148,21 +1152,11 @@ function increase() {
     var url = urldemo + `/api/ipg/increase/wallet/balance/`;
 
     const formData = new FormData();
-    var xx = "";
-    if (document.getElementById("wallet-number-radio").checked) {
-      formData.append(
-        "wallet_id",
-        document.getElementById("wallet-number").value
-      );
-    } else {
-      var url = urldemo + `/api/ipg/increase/card/balance/`;
-      const cardnums = document.querySelectorAll("#card-numbers input");
 
-      for (const el of cardnums) {
-        xx = xx + el.value;
-      }
-      formData.append("card_number", xx);
-    }
+    formData.append(
+      "wallet_id",
+      document.getElementById("wallet-number").value
+    );
 
     formData.append(
       "amount",
@@ -2234,14 +2228,10 @@ function changeOption(senderEl, parentClass) {
 // **************************** sms
 function sms() {
   var xx = "";
-  if (document.getElementById("wallet-number-radio").checked) {
-    xx = document.getElementById("wallet-number").value;
-  } else {
-    const cardnums = document.querySelectorAll("#card-numbers input");
+  const cardnums = document.querySelectorAll("#card-numbers input");
 
-    for (const el of cardnums) {
-      xx = xx + el.value;
-    }
+  for (const el of cardnums) {
+    xx = xx + el.value;
   }
   console.log(xx);
   var url = urldemo + `/api/active/sms/${xx}/`;
