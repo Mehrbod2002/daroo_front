@@ -1645,8 +1645,8 @@ function patchCenterProfile(event) {
     );
     formData.append(
       "center_name",
-      document.getElementById("user-position2").value.length
-        ? document.getElementById("user-position2").value
+      document.getElementById("office-name2").value.length
+        ? document.getElementById("office-name2").value
         : " "
     );
     formData.append(
