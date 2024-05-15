@@ -158,7 +158,7 @@ try {
     });
 } catch {}
 
-alert("lkflf");
+// alert("lkflf");
 // Control Keyboard On Card Number Section
 for (const el of document.querySelectorAll("#card-numbers input")) {
   el.addEventListener("keydown", function (event) {
