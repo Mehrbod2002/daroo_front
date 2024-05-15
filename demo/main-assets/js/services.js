@@ -746,7 +746,7 @@ function validate(event) {
     } else if (act == "nfcbalance") {
       nfcbalance();
     } else if (act == "login") {
-      login();
+      login(event);
     } else if (act == "loan") {
       loan();
     } else if (act == "sms") {
@@ -1140,7 +1140,8 @@ function register() {
   }
 }
 // **************************** login
-function login() {
+function login(event) {
+  event.preventDefault();
   var url = urldemo + `/api/login/`;
   try {
     const formData = new FormData();
