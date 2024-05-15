@@ -26,7 +26,6 @@ function getUser() {
           document.querySelector(
             "#wallet-number-wrapper #wallet-number"
           ).value = response[0].wallet_address;
-          
         } catch {}
         try {
           if (response[0].role != "(پذیرنده) مراکز") {
@@ -73,6 +72,7 @@ function getUser() {
   }
 }
 getUser();
+
 function getWalletInfo(id) {
   var url = urldemo + `/api/wallet/info/${id}/`;
   try {
@@ -82,8 +82,8 @@ function getWalletInfo(id) {
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
         console.log(response);
-        document.getElementById("mobile").value = response.phone_number
-        document.getElementById("target-name").value = response.name
+        document.getElementById("mobile").value = response.phone_number;
+        document.getElementById("target-name").value = response.name;
       }
     };
 
@@ -147,15 +147,18 @@ if (document.getElementsByClassName("target-choice").length !== 0) {
 //     document.getElementById("target-wallet-number").value
 //   );
 // }
+try {
+  document
+    .getElementById("target-wallet-number")
+    .addEventListener("keyup", function (event) {
+      console.log(event.target.value.length);
+      if (event.target.value.length == 36) {
+        getWalletInfo(event.target.value);
+      }
+    });
+} catch {}
 
-document.getElementById("target-wallet-number").addEventListener("keyup", function (event) {
-  console.log(event.target.value.length)
-  if(event.target.value.length==36){
-  
-   
-    getWalletInfo(event.target.value);
-  }
-});
+alert("lkflf");
 // Control Keyboard On Card Number Section
 for (const el of document.querySelectorAll("#card-numbers input")) {
   el.addEventListener("keydown", function (event) {
@@ -2223,7 +2226,6 @@ function cardInfo() {
   }
 }
 function changeOption(senderEl, parentClass) {
- 
   try {
     if (document.getElementById("shaba-radio").checked) {
       document
