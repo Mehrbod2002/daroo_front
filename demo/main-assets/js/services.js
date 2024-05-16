@@ -2564,7 +2564,7 @@ function transfer() {
               class="mb-3 item w-100 d-flex justify-content-between align-items-center position-relative bg-white shadow rounded-3 py-2 px-3 mb-2"
             >
               <span class="label">${key} </span>
-              <span class="value ltr"> ${value} </span>
+              <span class="value ltr" style="direction: ltr;"> ${value} </span>
             </div>`;
         }
         document.querySelector("#modalResponseTransferBox").innerHTML = html;
