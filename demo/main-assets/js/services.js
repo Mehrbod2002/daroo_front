@@ -20,7 +20,13 @@ function getUser() {
     request.onloadend = function () {
       console.log(request.status);
       if (request.status == 200 || request.status == 201) {
+        try {
+          document
+            .querySelectorAll(".serviceLogin")
+            .forEach((e) => e.classList.replace("d-none", "d-block"));
+        } catch {}
         var response = JSON.parse(this.responseText);
+
         console.log(response[0].wallet_address);
         try {
           document.querySelector(
