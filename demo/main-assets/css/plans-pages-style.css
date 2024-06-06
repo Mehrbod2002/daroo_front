@@ -79,7 +79,77 @@ body {
 .logo img {
   height: 130px;
 }
-
+.center_item_table * {
+  color: #00746a;
+}
+.center_header_table {
+  background: #e8f5fd;
+  border-radius: 10px;
+  color: hsl(175, 98%, 23%);
+}
+.center_item_top {
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  margin: 20px 0;
+}
+.center_item_top h2 {
+  margin-left: 10px;
+  font-weight: bold;
+}
+.center_item_top {
+  font-size: 16px;
+}
+.center_item_address {
+  margin: 20px 0;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+.center_item_address img {
+  width: 35px;
+  margin-left: 10px;
+}
+.qrlinkBox{
+  width: max-content;
+  transition: 0.5s;
+  display: inline-block;
+  box-shadow: 0 0 5px 2px #00746a47;
+  height: 155px;
+}
+.qrlinkBox:hover{
+  transform: scale(1.08);
+}
+.center_item_table {
+  display: flex;
+  justify-content: space-between;
+  color: #00746a;
+  background: #ffffff96;
+  border-radius: 18px;
+  text-align: right;
+  align-items: center;
+  padding: 14px 24px;
+  box-shadow: 0 0 6px 2px #2dade185;
+}
+.center_photo_table {
+  width: 250px;
+  height: auto;
+  border-radius: 10px;
+  padding: 4px;
+  background-image: url("../img/qrsite.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 250px;
+  padding: 10px 10px 15px 22px;
+}
+.center_photo_table img {
+  width: 100px;
+  height: auto;
+}
 main {
   width: 40%;
   background-color: rgba(var(--dark-blue-color), 0.3);

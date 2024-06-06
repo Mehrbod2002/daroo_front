@@ -24,6 +24,7 @@ function getUser() {
           document
             .querySelectorAll(".serviceLogin")
             .forEach((e) => e.classList.replace("d-none", "d-block"));
+          document.querySelector(".servicenotLogin").classList.add("d-none");
         } catch {}
         var response = JSON.parse(this.responseText);
 
