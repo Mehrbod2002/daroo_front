@@ -257,16 +257,18 @@ if(eventTarget.value.length > 0 ){
               console.log(response);
               var html = "";
               response.forEach((key, index) => {
-                var item = `<div class="col-12 col-lg-6 mb-4">
+                var item = `<div class="col-12 col-lg-6 col-xl-4 mb-4">
             <div class="center_item_table ">
-               <div>
-                  <div class="center_item_top">
+              <div class="center_item_top">
                     <h2>${key.center_name} </h2>
                     <span>${key.center_type}</span></div>
+               <div class="center_detail_table">
+                  
                      <a href="${key.qr_link}" imgid="${key.center_photo}" qrid="${key.qr_link}" class="qrlinkBox">  </a>
-                    <div class="center_item_address "><img src="main-assets/img/qrsite(1).png" /> ${key.address}</div>
+                   
                 </div>
                 <div class="center_photo_table"> <img  src='${key.center_photo}'> </div>
+                <div class="center_item_address "><img src="main-assets/img/qrsite(1).png" /> ${key.address}</div>
             </div>
             
         </div>`;
@@ -314,8 +316,8 @@ if(eventTarget.value.length > 0 ){
               for (const el of document.querySelectorAll(".qrlinkBox")) {
                 var qrcode = new QRCode(el, {
                   text: el.getAttribute("qrid"),
-                  width: 155,
-                  height: 155,
+                  width: 130,
+                  height: 130,
                   logo: el.getAttribute("imgid"),
                   colorDark: "#000000",
                   colorLight: "#e8f5fd",
@@ -384,16 +386,18 @@ if(eventTarget.value.length > 0 ){
               console.log(response);
               var html = "";
               response.results.forEach((key, index) => {
-                var item = `<div class="col-12 col-lg-6 mb-4">
+                var item = `<div class="col-12 col-lg-6 col-xl-4 mb-4">
             <div class="center_item_table ">
-               <div>
-                  <div class="center_item_top">
+              <div class="center_item_top">
                     <h2>${key.center_name} </h2>
                     <span>${key.center_type}</span></div>
-                    <a href="${key.qr_link}" imgid="${key.center_photo}" qrid="${key.qr_link}" class="qrlinkBox">  </a>
-                    <div class="center_item_address "><img src="main-assets/img/qrsite(1).png" /> ${key.address}</div>
+               <div class="center_detail_table">
+                  
+                     <a href="${key.qr_link}" imgid="${key.center_photo}" qrid="${key.qr_link}" class="qrlinkBox">  </a>
+                   
                 </div>
                 <div class="center_photo_table"> <img  src='${key.center_photo}'> </div>
+                <div class="center_item_address "><img src="main-assets/img/qrsite(1).png" /> ${key.address}</div>
             </div>
             
         </div>`;
@@ -438,8 +442,8 @@ if(eventTarget.value.length > 0 ){
               for (const el of document.querySelectorAll(".qrlinkBox")) {
                 var qrcode = new QRCode(el, {
                   text: el.getAttribute("qrid"),
-                  width: 155,
-                  height: 155,
+                  width: 130,
+                  height: 130,
                   logo: el.getAttribute("imgid"),
                   colorDark: "#000000",
                   colorLight: "#e8f5fd",
