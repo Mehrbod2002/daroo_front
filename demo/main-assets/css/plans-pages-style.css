@@ -134,6 +134,7 @@ body {
   padding: 8px 14px;
   box-shadow: 0 0 6px 2px #2dade185;
   flex-wrap: wrap;
+  min-height: 100%;
 }
 .center_detail_table{
 width: calc( 100% - 220px);
