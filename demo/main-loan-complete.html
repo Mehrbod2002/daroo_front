@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fa">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>دارو کارت | پروفایل</title>
+    <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css" />
+    <link rel="stylesheet" href="main-assets/css/plans-pages-style.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/img/daroo-card.png"
+      type="image/x-icon"
+    />
+    <style>
+      main {
+        width: 30%;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="container-fluid d-flex flex-column justify-content-between align-items-center"
+    >
+      <button
+        class="menu-toggler border-0 bg-transparent"
+        data-bs-toggle="offcanvas"
+        data-bs-target="#menu"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="43"
+          height="43"
+          fill="#2dacdf"
+          class="bi bi-list"
+          viewBox="0 0 16 16"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+          />
+        </svg>
+      </button>
+      <section
+        class="offcanvas offcanvas-start menu my-sm-1 overflow-hidden"
+        id="menu"
+      >
+        <div class="offcanvas-header text-light">
+          <div class="d-flex align-items-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="28"
+              height="28"
+              fill="white"
+              class="bi bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+              />
+            </svg>
+            <h5 class="offcanvas-title ms-2 text-light">
+              خوش آمدید <span id="userName_box" class="text-light"></span> !
+            </h5>
+          </div>
+          <button
+            class="btn-close"
+            data-bs-target="#menu"
+            data-bs-toggle="offcanvas"
+          ></button>
+        </div>
+        <div
+          class="offcanvas-body d-flex flex-column justify-content-between mx-auto"
+        >
+          <nav>
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="main-profile.html"> پروفایل </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-reports.html">گزارش کارت</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-wallet.html"> کیف پول </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-daroo-cards.html"> کارت ها </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="main-facilities.html"> تسهیلات </a>
+              </li>
+              <li class="nav-item rm_li1">
+                <a class="nav-link" href="main-reception-requests.html">
+                  پذیرش / دریافت
+                </a>
+              </li>
+              <li class="nav-item rm_li2">
+                <a class="nav-link" href="main-create-service.html">
+                  افزودن خدمت
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="main-support.html">
+                  تیکت / پشتیبانی
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="Rulle_043650.pdf"> قوانین و ضوابط </a>
+              </li>
+
+              <li class="nav-item" id="meniadmin">
+                <a class="nav-link" href="main-list-of-centers.html">
+                  مراکز پذیرش
+                </a>
+              </li>
+              <li class="nav-item" id="meniadmin">
+                <a class="nav-link" href="admin.html"> پنل ادمین </a>
+              </li>
+            </ul>
+          </nav>
+          <button
+            onclick="logout()"
+            class="btn btn-danger mx-auto p-2"
+            style="width: max-content"
+          >
+            خروج از حساب کاربری
+          </button>
+        </div>
+      </section>
+      <header class="w-100 text-center py-3">
+        <a href="main-index.html" class="logo d-inline-block">
+          <img src="assets/img/daroo-card.gif" alt="daroo-card" />
+        </a>
+      </header>
+      <main class="rounded-4 pb-4 mb-5 text-center overflow-hidden shadow-lg">
+        <h1 class="title fs-4 w-100 py-3 border-bottom border-1 border-primary">
+          تکمیل اطلاعات
+        </h1>
+
+        <form
+          onsubmit="return  patchCompeleteData(event)"
+          class="w-100 px-4 profileForm mt-3 text-end"
+        >
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3"
+          >
+            <label
+              for="national_code"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              کد ملی
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="national_code"
+              value=""
+            />
+          </section>
+
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+          >
+            <label
+              for="national_cartd_serial"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              سریال کارت ملی
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="national_cartd_serial"
+              value=""
+              dir="ltr"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+          >
+            <label
+              for="id_number"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              شماره شناسنامه
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="id_number"
+              value=""
+              dir="ltr"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+          >
+            <label
+              for="identityـserialـnumber"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              شماره سریال شناسنامه
+            </label>
+            <input
+              type="tel"
+              class="form-control"
+              id="identityـserialـnumber"
+              value=""
+              dir="ltr"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+          >
+            <label
+              for="national_card_back"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              عکس پشت کارت ملی
+            </label>
+            <input type="file" class="form-control" id="national_card_back" />
+          </section>
+
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+          >
+            <label
+              for="national_cartd_front"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              عکس کارت ملی
+            </label>
+            <input
+              type="file"
+              class="form-control rounded-end-0"
+              id="national_cartd_front"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+          >
+            <label
+              for="organizational_letter_of_introduction"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              معرفی نامه سازمانی
+            </label>
+            <input
+              type="file"
+              class="form-control"
+              id="organizational_letter_of_introduction"
+            />
+          </section>
+          <section
+            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+          >
+            <label
+              for="promissory_note"
+              class="form-label text-sm-end text-start pe-3"
+            >
+              سفته
+            </label>
+            <input type="file" class="form-control" id="promissory_note" />
+          </section>
+
+          <!-- +++++++++++++++ -->
+          <input type="submit" value="ویرایش اطلاعات" class="btn btn-light" />
+          <p
+            class="form-text text-danger text-center fw-bolder mb-5"
+            id="errors3"
+          ></p>
+        </form>
+      </main>
+
+      <footer class="info text-center mb-2">
+        <div class="footer_logo_box">
+          <a href=" https://bpi.ir/">
+            <img src="assets/img/logo/default(1).png" />
+          </a>
+          <a href="https://ecunion.ir/">
+            <img
+              src="assets/img/logo/etehadiekeshvaripng.parspng.com_(1).png"
+            />
+          </a>
+          <a href="https://samandehi.ir">
+            <img src="assets/img/logo/samandehipng.parspng.com_.png" />
+          </a>
+          <a
+            referrerpolicy="origin"
+            target="_blank"
+            href="https://trustseal.enamad.ir/?id=431112&Code=EryczptAK4YZwPN9DUssvpdKYhQiJDyF"
+            ><img
+              referrerpolicy="origin"
+              src="https://trustseal.enamad.ir/logo.aspx?id=431112&Code=EryczptAK4YZwPN9DUssvpdKYhQiJDyF"
+              alt=""
+              style="cursor: pointer"
+              Code="EryczptAK4YZwPN9DUssvpdKYhQiJDyF"
+          /></a>
+        </div>
+        <br />
+        <span> 021-91002044 </span> <br />
+        <span>
+          کپی رایت © 2023
+          <strong>
+            <a
+              style="
+                color: rgba(var(--dark-blue-color), 1) !important;
+                text-decoration: none !important;
+              "
+            >
+              آبتین سلامت ایرانیان
+            </a>
+          </strong>
+          تمامی حقوق محفوظ است
+        </span>
+      </footer>
+      <div class="messagewrapper">
+        <div>
+          <div class="messageBox">
+            <p></p>
+            <button class="messageBtn btn btn-success">تایید</button>
+          </div>
+        </div>
+      </div>
+      <div class="loader">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div id="mask"></div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="main-assets/js/services.js"></script>
+    <script>
+      function patchCompeleteData(event) {
+        const searchparams = new URLSearchParams(window.location.search);
+        var urlpath = searchparams.get("id");
+
+        var url = `https://api.daroocard.com/api/loan/complete/docs/${urlpath}/`;
+
+        event.preventDefault();
+
+        try {
+          const formData = new FormData();
+          formData.append(
+            "national_code",
+            document.getElementById("national_code").value.length
+              ? document.getElementById("national_code").value
+              : " "
+          );
+          formData.append(
+            "national_cartd_serial",
+            document.getElementById("national_cartd_serial").value.length
+              ? document.getElementById("national_cartd_serial").value
+              : " "
+          );
+          formData.append(
+            "id_number",
+            document.getElementById("id_number").value.length
+              ? document.getElementById("id_number").value
+              : " "
+          );
+          formData.append(
+            "identityـserialـnumber",
+            document.getElementById("identityـserialـnumber").value.length > 0
+              ? document.getElementById("identityـserialـnumber").value
+              : " "
+          );
+          formData.append(
+            "national_card_back",
+            document.getElementById("national_card_back").files[0]
+              ? document.getElementById("national_card_back").files[0]
+              : " "
+          );
+          formData.append(
+            "national_cartd_front",
+            document.getElementById("national_cartd_front").files[0]
+              ? document.getElementById("national_cartd_front").files[0]
+              : " "
+          );
+          formData.append(
+            "organizational_letter_of_introduction",
+            document.getElementById("organizational_letter_of_introduction")
+              .files[0]
+              ? document.getElementById("organizational_letter_of_introduction")
+                  .files[0]
+              : " "
+          );
+
+          formData.append(
+            "promissory_note",
+            document.getElementById("promissory_note").files[0]
+              ? document.getElementById("promissory_note").files[0]
+              : " "
+          );
+
+          const request = new XMLHttpRequest();
+          request.onloadend = function () {
+            if (request.status == 200 || request.status == 201) {
+              var response = JSON.parse(this.responseText);
+
+              console.log(response);
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML = `<span class='text-sm text-success'>درخواست شما با موفقیت انجام شد</span>`;
+            } else if (request.status == 401) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML =
+                "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
+            } else if (request.status == 400 || request.status == 403) {
+              const res = JSON.parse(request.response);
+              console.log(res);
+              const keys = Object.keys(res);
+              let msg = "";
+              keys.forEach((key, index) => {
+                var keyf = "";
+                if (key == "error") {
+                  keyf = "ارور";
+                } else if (key == "national_code") {
+                  keyf = "کد ملی ";
+                } else if (key == "national_cartd_serial") {
+                  keyf = " سریال کارت ملی";
+                } else if (key == "id_number") {
+                  keyf = " شماره شناسنامه ";
+                } else if (key == "identityـserialـnumber") {
+                  keyf = "شماره سریال شناسنامه ";
+                } else if (key == "national_card_back") {
+                  keyf = "عکس پشت کارت ملی";
+                } else if (key == "national_cartd_front") {
+                  keyf = " عکس  کارت ملی";
+                } else if (key == "organizational_letter_of_introduction") {
+                  keyf = "معرفی نامه سازمانی";
+                } else if (key == "promissory_note") {
+                  keyf = " سفته";
+                } else {
+                  keyf = key;
+                }
+                msg = msg + `${keyf} : ${res[key]}<br>`;
+              });
+              if (msg) {
+                const errors = document.getElementById("errors3");
+                errors.innerHTML = msg;
+                errors.className = errors.className.replace(
+                  "text-success",
+                  "text-danger"
+                );
+              }
+            } else {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML =
+                "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+            }
+            setTimeout(clearMessageBox, 1000);
+          };
+
+          request.onloadstart = function () {
+            $(".loader").fadeIn();
+          };
+          request.open("PATCH", url);
+          //   Content-Type: multipart/form-data;
+          //   request.setRequestHeader("Content-Type", "multipart/form-data");
+          request.setRequestHeader(
+            "Authorization",
+            `Token ${localStorage.getItem("token")}`
+          );
+          request.send(formData);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+    </script>
+  </body>
+</html>
