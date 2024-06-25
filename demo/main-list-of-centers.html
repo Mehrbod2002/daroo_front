@@ -7,7 +7,7 @@
       content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
     />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>دارو کارت | لیست مراکز پذیرش </title>
+    <title>دارو کارت | لیست مراکز پذیرش</title>
     <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css" />
     <link rel="stylesheet" href="main-assets/css/plans-pages-style.css" />
     <link
@@ -154,16 +154,16 @@
         <h1 class="center_header_table mb-4 mt-5 fs-4 w-100 py-3">
           لیست مراکز پذیرش
         </h1>
-<div>
-  <input
-  type="search"
-  placeholder="جستجو در جدول ..."
-  id="searchbox"
-  class="searchable form-control mb-3"
-  style="width: 200px !important"
-  data-is-second-box="true"
-/>
-</div>
+        <div>
+          <input
+            type="search"
+            placeholder="جستجو در جدول ..."
+            id="searchbox"
+            class="searchable form-control mb-3"
+            style="width: 200px !important"
+            data-is-second-box="true"
+          />
+        </div>
         <div class="d-flex align-items-center mb-4">
           <button class="btn btn-light d-flex align-items-center" id="nextpage">
             <span class="text-dark fs-5"> بعدی </span>
@@ -174,7 +174,6 @@
           >
             <span class="text-dark fs-5"> قبلی </span>
           </button>
-          <div class="btn btn-info">تعداد : <span id="cointReq"></span></div>
         </div>
         <div class="row" id="centersList"></div>
       </section>
@@ -243,21 +242,23 @@
     <script src="main-assets/js/qrcode.js"></script>
     <script>
       // *************** loan
-    let  eventTarget =  document.querySelector("#searchbox")
+      let eventTarget = document.querySelector("#searchbox");
       eventTarget.addEventListener("keyup", (event) => {
-       
-        var url = urldemo + `/api/center/info/search/?search=${eventTarget.value}`;
-        console.log(eventTarget.value.length)
-if(eventTarget.value.length > 0 ){
-        try {
-          const request = new XMLHttpRequest();
-          request.onloadend = function () {
-            if (request.status == 200 || request.status == 201) {
-              var response = JSON.parse(request.response);
-              console.log(response);
-              var html = "";
-              response.forEach((key, index) => {
-                var item = `<div class="col-12 col-lg-6 col-xl-4 mb-4">
+        var url =
+          urldemo + `/api/center/info/search/?search=${eventTarget.value}`;
+
+        console.log(eventTarget.value.length);
+        if (eventTarget.value.length > 0) {
+          try {
+            const request = new XMLHttpRequest();
+            request.onloadend = function () {
+              if (request.status == 200 || request.status == 201) {
+                var response = JSON.parse(request.response);
+                console.log(response);
+
+                var html = "";
+                response.forEach((key, index) => {
+                  var item = `<div class="col-12 col-lg-6 col-xl-4 mb-4">
             <div class="center_item_table ">
               <div class="center_item_top">
                     <h2>${key.center_name} </h2>
@@ -272,102 +273,105 @@ if(eventTarget.value.length > 0 ){
             </div>
             
         </div>`;
-                html = html + item;
-              });
-              if(response.length == 0){
-                html = `<div class="col-12 mb-4"><div class="center_item_table ">موردی یافت نشد</div></div>`;
-              }
-              document.querySelector("#centersList").innerHTML = html;
-              document.querySelector("#cointReq").innerHTML = response.length;
-              if (response.next) {
-                console.log(response.next);
-
-                document
-                  .querySelector("#nextpage")
-                  .addEventListener("click", function () {
-                    let arry = response.next.split("/?page=");
-                    let lastElement = arry[arry.length - 1];
-                    window.location.href = `https://daroocard.com/admin-requests-user.html?id=${urlpath}&page=${lastElement}`;
-                  });
-                document.querySelector("#nextpage").removeAttribute("disabled");
-              } else {
-                document
-                  .querySelector("#nextpage")
-                  .setAttribute("disabled", "true");
-              }
-              if (response.previous) {
-                document
-                  .querySelector("#prevpage")
-                  .addEventListener("click", function () {
-                    let arry = response.previous.split("/?page=");
-                    let lastElement = arry[arry.length - 1];
-                    if (arry.length > 1) {
-                      window.location.href = `https://api.daroocard.com/api/center/info/page=${lastElement}`;
-                    } else {
-                      window.location.href = `https://api.daroocard.com/api/center/info/`;
-                    }
-                  });
-                document.querySelector("#prevpage").removeAttribute("disabled");
-              } else {
-                document
-                  .querySelector("#prevpage")
-                  .setAttribute("disabled", "true");
-              }
-              for (const el of document.querySelectorAll(".qrlinkBox")) {
-                var qrcode = new QRCode(el, {
-                  text: el.getAttribute("qrid"),
-                  width: 130,
-                  height: 130,
-                  logo: el.getAttribute("imgid"),
-                  colorDark: "#000000",
-                  colorLight: "#e8f5fd",
-                  logoWidth: undefined,
-                  logoHeight: undefined,
-                  logoBackgroundColor: "#e8f5fd",
-                  logoBackgroundTransparent: false,
+                  html = html + item;
                 });
-                // window.open(
-                //   `./main-facility-report.html?q=${el.getAttribute("id")}`
-                // );
-              }
-            } else if (request.status == 400 || request.status == 403) {
-              const res = JSON.parse(request.response);
-              console.log(res);
-              const keys = Object.keys(res);
-              let msg = "";
-              keys.forEach((key, index) => {
-                console.log(`${res[key]}`);
-                msg = msg + `${res[key]}<br>`;
-              });
-              if (msg) {
+                if (response.length == 0) {
+                  html = `<div class="col-12 mb-4"><div class="center_item_table ">موردی یافت نشد</div></div>`;
+                }
+                document.querySelector("#centersList").innerHTML = html;
+
+                if (response.next) {
+                  console.log(response.next);
+
+                  document
+                    .querySelector("#nextpage")
+                    .addEventListener("click", function () {
+                      let arry = response.next.split("/?pagesearch=");
+                      let lastElement = arry[arry.length - 1];
+                      window.location.href = `https://daroocard.com/main-list-of-centers.html?pagesearch=${lastElement}`;
+                    });
+                  document
+                    .querySelector("#nextpage")
+                    .removeAttribute("disabled");
+                } else {
+                  document
+                    .querySelector("#nextpage")
+                    .setAttribute("disabled", "true");
+                }
+                if (response.previous) {
+                  document
+                    .querySelector("#prevpage")
+                    .addEventListener("click", function () {
+                      let arry = response.previous.split("/?pagesearch=");
+                      let lastElement = arry[arry.length - 1];
+                      if (arry.length > 1) {
+                        window.location.href = `https://daroocard.com/main-list-of-centers.html?pagesearch=${lastElement}`;
+                      } else {
+                        window.location.href = `https://daroocard.com/main-list-of-centers.html`;
+                      }
+                    });
+                  document
+                    .querySelector("#prevpage")
+                    .removeAttribute("disabled");
+                } else {
+                  document
+                    .querySelector("#prevpage")
+                    .setAttribute("disabled", "true");
+                }
+                for (const el of document.querySelectorAll(".qrlinkBox")) {
+                  var qrcode = new QRCode(el, {
+                    text: el.getAttribute("qrid"),
+                    width: 130,
+                    height: 130,
+                    logo: el.getAttribute("imgid"),
+                    colorDark: "#000000",
+                    colorLight: "#e8f5fd",
+                    logoWidth: undefined,
+                    logoHeight: undefined,
+                    logoBackgroundColor: "#e8f5fd",
+                    logoBackgroundTransparent: false,
+                  });
+                  // window.open(
+                  //   `./main-facility-report.html?q=${el.getAttribute("id")}`
+                  // );
+                }
+              } else if (request.status == 400 || request.status == 403) {
+                const res = JSON.parse(request.response);
+                console.log(res);
+                const keys = Object.keys(res);
+                let msg = "";
+                keys.forEach((key, index) => {
+                  console.log(`${res[key]}`);
+                  msg = msg + `${res[key]}<br>`;
+                });
+                if (msg) {
+                  $(".messagewrapper").fadeIn();
+                  messageBox.innerHTML = msg;
+                }
+              } else {
                 $(".messagewrapper").fadeIn();
-                messageBox.innerHTML = msg;
+                messageBox.innerHTML =
+                  "<span class='text-sm text-danger'> متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
               }
-            } else {
-              $(".messagewrapper").fadeIn();
-              messageBox.innerHTML =
-                "<span class='text-sm text-danger'> متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
-            }
-            setTimeout(clearMessageBox, 1000);
-          };
+              setTimeout(clearMessageBox, 1000);
+            };
 
-          request.onloadstart = function () {
-            $(".loader").fadeIn();
-          };
-          request.open("GET", url);
+            request.onloadstart = function () {
+              $(".loader").fadeIn();
+            };
+            request.open("GET", url);
 
-          request.send();
-        } catch (error) {
-          console.error(error);
+            request.send();
+          } catch (error) {
+            console.error(error);
+          }
+        } else {
+          getLoan();
         }
-      }else{
-        getLoan();
-      }
-  // if (event.isComposing || event.keyCode === 229) {
-  //   return;
-  // }
-
-});
+        // if (event.isComposing || event.keyCode === 229) {
+        //   return;
+        // }
+      });
       //////
       function getLoan() {
         const searchparams = new URLSearchParams(window.location.search);
@@ -404,7 +408,7 @@ if(eventTarget.value.length > 0 ){
                 html = html + item;
               });
               document.querySelector("#centersList").innerHTML = html;
-              document.querySelector("#cointReq").innerHTML = response.count;
+
               if (response.next) {
                 console.log(response.next);
 
@@ -413,7 +417,7 @@ if(eventTarget.value.length > 0 ){
                   .addEventListener("click", function () {
                     let arry = response.next.split("/?page=");
                     let lastElement = arry[arry.length - 1];
-                    window.location.href = `https://daroocard.com/admin-requests-user.html?id=${urlpath}&page=${lastElement}`;
+                    window.location.href = `https://daroocard.com/main-list-of-centers.html?page=${lastElement}`;
                   });
                 document.querySelector("#nextpage").removeAttribute("disabled");
               } else {
@@ -428,9 +432,9 @@ if(eventTarget.value.length > 0 ){
                     let arry = response.previous.split("/?page=");
                     let lastElement = arry[arry.length - 1];
                     if (arry.length > 1) {
-                      window.location.href = `https://api.daroocard.com/api/center/info/page=${lastElement}`;
+                      window.location.href = `https://daroocard.com/main-list-of-centers.html?page=${lastElement}`;
                     } else {
-                      window.location.href = `https://api.daroocard.com/api/center/info/`;
+                      window.location.href = `https://daroocard.com/main-list-of-centers.html`;
                     }
                   });
                 document.querySelector("#prevpage").removeAttribute("disabled");
