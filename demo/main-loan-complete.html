@@ -216,32 +216,33 @@
             />
           </section>
           <section
+          class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
+        >
+          <label
+            for="national_cartd_front"
+            class="form-label text-sm-end text-start pe-3"
+          >
+            بارگذاری روی کارت ملی
+          </label>
+          <input
+            type="file"
+            class="form-control rounded-end-0"
+            id="national_cartd_front"
+          />
+        </section>
+          <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
           >
             <label
               for="national_card_back"
               class="form-label text-sm-end text-start pe-3"
             >
-              عکس پشت کارت ملی
+              بارگذاری پشت کارت ملی
             </label>
             <input type="file" class="form-control" id="national_card_back" />
           </section>
 
-          <section
-            class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
-          >
-            <label
-              for="national_cartd_front"
-              class="form-label text-sm-end text-start pe-3"
-            >
-              عکس کارت ملی
-            </label>
-            <input
-              type="file"
-              class="form-control rounded-end-0"
-              id="national_cartd_front"
-            />
-          </section>
+    
           <section
             class="d-flex flex-sm-row flex-column justify-content-center align-items-sm-center align-items-start mb-3 type3"
           >
@@ -249,7 +250,7 @@
               for="organizational_letter_of_introduction"
               class="form-label text-sm-end text-start pe-3"
             >
-              معرفی نامه سازمانی
+             بارگذاری معرفی نامه سازمانی 
             </label>
             <input
               type="file"
@@ -264,22 +265,23 @@
               for="promissory_note"
               class="form-label text-sm-end text-start pe-3"
             >
-              سفته
+            بارگذاری سفته
             </label>
             <input type="file" class="form-control" id="promissory_note" />
+            
           </section>
-
-          <div>
+          <div class=" mb-5">
             <a
-              class="get-data-link btn btn-success p-2 mb-3"
+              class="get-data-link  text-success p-2 mb-3"
               href="https://icup.ir/%D8%B3%D9%81%D8%AA%D9%87-%D8%A7%D9%84%DA%A9%D8%AA%D8%B1%D9%88%D9%86%DB%8C%DA%A9%DB%8C-%DA%86%DB%8C%D8%B3%D8%AA/"
             >
               راهنمای دریافت سفته الکترونیکی
             </a>
           </div>
+         
 
           <!-- +++++++++++++++ -->
-          <input type="submit" value="ویرایش اطلاعات" class="btn btn-light" />
+          <input type="submit" value="ارسال اطلاعات" class="btn btn-light" />
           <p
             class="form-text text-danger text-center fw-bolder mb-5"
             id="errors3"
