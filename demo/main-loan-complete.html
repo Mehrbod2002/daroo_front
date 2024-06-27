@@ -17,7 +17,8 @@
     />
     <style>
       main {
-        width: 30%;
+        /* width: 50%; */
+        max-width: 500px;
       }
     </style>
   </head>
@@ -152,9 +153,12 @@
           >
             <label
               for="national_code"
-              class="form-label text-sm-end text-start pe-3"
+              class="form-label text-start  pe-3"
             >
               کد ملی
+              <span class=" text-danger">
+                *
+              </span>
             </label>
             <input
               type="text"
@@ -169,9 +173,12 @@
           >
             <label
               for="national_cartd_serial"
-              class="form-label text-sm-end text-start pe-3"
+              class="form-label text-start  pe-3"
             >
               سریال کارت ملی
+              <span class=" text-danger">
+                *
+              </span>
             </label>
             <input
               type="text"
@@ -186,9 +193,12 @@
           >
             <label
               for="id_number"
-              class="form-label text-sm-end text-start pe-3"
+              class="form-label text-start  pe-3"
             >
               شماره شناسنامه
+              <span class=" text-danger">
+                *
+              </span>
             </label>
             <input
               type="text"
@@ -203,9 +213,12 @@
           >
             <label
               for="identityـserialـnumber"
-              class="form-label text-sm-end text-start pe-3"
+              class="form-label text-start  pe-3"
             >
               شماره سریال شناسنامه
+              <span class=" text-danger">
+                *
+              </span>
             </label>
             <input
               type="tel"
@@ -220,9 +233,12 @@
         >
           <label
             for="national_cartd_front"
-            class="form-label text-sm-end text-start pe-3"
+            class="form-label text-start  pe-3"
           >
             بارگذاری روی کارت ملی
+            <span class=" text-danger">
+              *
+            </span>
           </label>
           <input
             type="file"
@@ -235,9 +251,12 @@
           >
             <label
               for="national_card_back"
-              class="form-label text-sm-end text-start pe-3"
+              class="form-label text-start  pe-3"
             >
               بارگذاری پشت کارت ملی
+              <span class=" text-danger">
+                *
+              </span>
             </label>
             <input type="file" class="form-control" id="national_card_back" />
           </section>
@@ -248,9 +267,10 @@
           >
             <label
               for="organizational_letter_of_introduction"
-              class="form-label text-sm-end text-start pe-3"
+              class="form-label text-start  pe-3"
             >
              بارگذاری معرفی نامه سازمانی 
+             
             </label>
             <input
               type="file"
@@ -263,16 +283,20 @@
           >
             <label
               for="promissory_note"
-              class="form-label text-sm-end text-start pe-3"
+              class="form-label text-start  pe-3"
             >
+          
             بارگذاری سفته
+            <span class=" text-danger">
+              *
+            </span>
             </label>
             <input type="file" class="form-control" id="promissory_note" />
             
           </section>
-          <div class=" mb-5">
+          <div class=" mb-3 flex d-flex flex-row-reverse">
             <a
-              class="get-data-link  text-success p-2 mb-3"
+              class="get-data-link d-inline-block mx-auto  text-success py-2 mb-3"
               href="https://icup.ir/%D8%B3%D9%81%D8%AA%D9%87-%D8%A7%D9%84%DA%A9%D8%AA%D8%B1%D9%88%D9%86%DB%8C%DA%A9%DB%8C-%DA%86%DB%8C%D8%B3%D8%AA/"
             >
               راهنمای دریافت سفته الکترونیکی
