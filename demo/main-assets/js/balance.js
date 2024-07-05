@@ -9,8 +9,15 @@ function getBalanec() {
 
         console.log(response[0]);
         document.querySelector("#balanceId").innerHTML = response[0].id;
+
         document.querySelector("#balanceAmount").innerHTML =
           response[0].balance;
+        if (response[0].blocked_balance) {
+          document.querySelector(
+            "#blockAmount"
+          ).innerHTML = `( موجودی مسدود شده : ${response[0].blocked_balance} ریال)`;
+        }
+
         response[0].balance;
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);

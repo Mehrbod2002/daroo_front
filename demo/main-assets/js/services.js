@@ -28,7 +28,7 @@ function getUser() {
         } catch {}
         var response = JSON.parse(this.responseText);
 
-        console.log(response[0].wallet_address);
+        console.log(response[0]);
         try {
           document.querySelector(
             "#wallet-number-wrapper #wallet-number"
@@ -40,8 +40,11 @@ function getUser() {
             document.querySelector(".rm_li2").remove();
           }
 
-          if (response[0].is_staff != true) {
-            document.querySelector("#meniadmin").remove();
+          if (!response[0].is_staff) {
+            const accs = document.querySelectorAll(".meniadmin");
+            for (const el of accs) {
+              el.remove();
+            }
           }
           document.querySelector("#userName_box").innerHTML =
             response[0].username;
