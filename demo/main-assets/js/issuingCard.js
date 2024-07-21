@@ -21,11 +21,11 @@ function getLoan() {
           </span>
           <ul class="border-top mt-3 text-start" style="list-style: none;padding: 10px;min-width: 220px;">
           ${
-            key.per_year == "۰"
-              ? ""
-              : `<li class="text-dark my-1">
-                تا سقف ${key.per_month} میلیون تومان خرید ماهانه
-              </li>`
+            key.per_month 
+              ? `<li class="text-dark my-1">
+              تا سقف ${key.per_month} میلیون تومان خرید ماهانه
+            </li>`
+              : ""
           }
             
             ${
