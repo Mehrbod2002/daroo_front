@@ -22,6 +22,64 @@ if (urlpath) {
   getProfile();
   getData();
 }
+function getGuildsData(id) {
+  var url = urldemo + `/api/center/profile/guilds/`;
+  try {
+    const request = new XMLHttpRequest();
+    request.onloadend = function () {
+      if (request.status == 200 || request.status == 201) {
+        var response = JSON.parse(this.responseText);
+        console.log("ldlllllllllllllllllll");
+        console.log(response);
+        console.log(id);
+        var numberguilds = 1;
+        var html = "<option value=''>انتخاب کنید</option>";
+        response.forEach((key, index) => {
+          if (id == key) {
+            console.log("lsllllllllllllllllll");
+
+            numberguilds = index;
+          }
+
+          html += `<option value="${key}">${key}</option>`;
+        });
+        document.getElementById("user-guilds").innerHTML = html;
+        document.getElementById("user-guilds").selectedIndex = numberguilds + 1;
+      } else if (request.status == 400 || request.status == 403) {
+        const res = JSON.parse(request.response);
+        console.log(res);
+        const keys = Object.keys(res);
+        let msg = "";
+        keys.forEach((key, index) => {
+          console.log(`${res[key]}`);
+          msg = msg + `${res[key]}<br>`;
+        });
+        if (msg) {
+          $(".messagewrapper").fadeIn();
+          messageBox.innerHTML = msg;
+        }
+      } else {
+        $(".messagewrapper").fadeIn();
+        messageBox.innerHTML =
+          "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+      }
+      setTimeout(clearMessageBox, 1000);
+    };
+
+    request.onloadstart = function () {
+      $(".loader").fadeIn();
+    };
+    request.open("GET", url);
+    request.setRequestHeader(
+      "Authorization",
+      `Token ${localStorage.getItem("token")}`
+    );
+    request.send();
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function getData() {
   var url = urldemo + `/api/support/add/doc/`;
   try {
@@ -244,6 +302,7 @@ function getCenterProfile() {
         } else {
           var data = response[0];
         }
+        console.log("ggggggggggggggg");
         console.log(response);
         document.querySelector("#profile2").setAttribute("formid", data.id);
         if (urlpath3) {
@@ -259,6 +318,13 @@ function getCenterProfile() {
             .getElementById("profile")
             .classList.replace("d-block", "d-none");
           document.getElementById("user-type").selectedIndex = 1;
+          console.log(response.guild);
+          if (response.guild) {
+            getGuildsData(data.guild);
+          } else {
+            document.getElementById("user-type").selectedIndex = 1;
+            getGuildsData(data.guild);
+          }
         } else {
           if (!urlpath3) {
             document

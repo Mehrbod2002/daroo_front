@@ -1603,6 +1603,12 @@ function patchCenterProfile(event) {
         : " "
     );
     formData.append(
+      "guild",
+      document.getElementById("user-guilds").value.length
+        ? document.getElementById("user-guilds").value
+        : " "
+    );
+    formData.append(
       "phone",
       document.getElementById("phone2").value.length
         ? document.getElementById("phone2").value
