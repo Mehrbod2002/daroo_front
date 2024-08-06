@@ -326,6 +326,9 @@ function getCenterProfile() {
             getGuildsData(data.guild);
           }
         } else {
+          try {
+            getGuildsData();
+          } catch {}
           if (!urlpath3) {
             document
               .getElementById("profile")
