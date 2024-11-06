@@ -1,6 +1,6 @@
 function getAdminUser() {
   var url = urldemo + `/api/admin/requests/`;
-  let front = "http://127.0.0.1:8080"; // "https://daroocard.com";
+  let front = "https://testfront.daroocard.com"; // "https://daroocard.com";
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {

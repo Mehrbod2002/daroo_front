@@ -1,8 +1,8 @@
 // //////////////////////////////////////////////////
 // **************************** global
 // let urldemo = "https://api.daroocard.com";
-let urldemo = "http://127.0.0.1:8000";
-let front = "http://127.0.0.1:8080"; // "https://daroocard.com";
+let urldemo = "https://testbackend.daroocard.com";
+let front = "https://testfront.daroocard.com"; // "https://daroocard.com";
 
 let messageBox = document.querySelector(".messageBox p");
 let fetchHeader = {
@@ -17,6 +17,7 @@ function clearMessageBox() {
 }
 
 function getUser() {
+  console.log("calling user info")
   var url = urldemo + `/api/user/info/`;
   try {
     const request = new XMLHttpRequest();
@@ -75,6 +76,7 @@ function getUser() {
       $(".loader").fadeIn();
     };
     request.open("GET", url);
+    console.log(localStorage)
     request.setRequestHeader(
       "Authorization",
       `Token ${localStorage.getItem("token")}`

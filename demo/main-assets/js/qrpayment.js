@@ -1,6 +1,6 @@
 // let urldemo = "https://api.daroocard.com";
-let urldemo = "http://127.0.0.1:8000";
-let front = "http://127.0.0.1:8080"; // "https://daroocard.com";
+let urldemo = "https://testbackend.daroocard.com";
+let front = "https://testfront.daroocard.com"; // "https://daroocard.com";
 let messageBox = document.querySelector(".messageBox p");
 let fetchHeader = {
   "Content-Type": "application/json; charset=utf-8",

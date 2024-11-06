@@ -18,6 +18,7 @@ function getCards() {
             <td> ${key.discription}</td>
             <td>
                 <a href="#" class="btn btn-danger"> تمدید </a>
+                <a href="#" class="btn btn-danger"> فعال سازی </a>
                 <a href="main-issuing-daroo-card.html" class="btn btn-success"> ارتقا </a>
                 <a href="main-daroo-card-info.html?q=${
                   key.id
