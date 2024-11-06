@@ -347,8 +347,8 @@
       function patchCompeleteData(event) {
         const searchparams = new URLSearchParams(window.location.search);
         var urlpath = searchparams.get("id");
-
-        var url = `https://api.daroocard.com/api/loan/complete/docs/${urlpath}/`;
+        let front = "http://127.0.0.1:8080"; // "https://daroocard.com";
+        var url = `${front}/api/loan/complete/docs/${urlpath}/`;
 
         event.preventDefault();
 

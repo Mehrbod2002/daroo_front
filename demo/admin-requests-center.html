@@ -136,7 +136,7 @@
       const searchparams = new URLSearchParams(window.location.search);
       var urlpath = searchparams.get("centerid");
       var pagepath = searchparams.get("page");
-
+      let front = "http://127.0.0.1:8080"; // "https://daroocard.com";
       function GetData() {
         if (urlpath) {
           if (pagepath) {
@@ -192,7 +192,7 @@
                     .addEventListener("click", function () {
                       let arry = response.next.split("/?page=");
                       let lastElement = arry[arry.length - 1];
-                      window.location.href = `https://daroocard.com/admin-requests-center.html?centerid=${urlpath}&page=${lastElement}`;
+                      window.location.href = `${front}/admin-requests-center.html?centerid=${urlpath}&page=${lastElement}`;
                     });
                   document
                     .querySelector("#nextpage")
@@ -209,9 +209,9 @@
                       let arry = response.previous.split("/?page=");
                       let lastElement = arry[arry.length - 1];
                       if (arry.length > 1) {
-                        window.location.href = `https://daroocard.com/admin-requests-center.html?centerid=${urlpath}&page=${lastElement}`;
+                        window.location.href = `${front}/admin-requests-center.html?centerid=${urlpath}&page=${lastElement}`;
                       } else {
-                        window.location.href = `https://daroocard.com/admin-requests-center.html?centerid=${urlpath}`;
+                        window.location.href = `${front}/admin-requests-center.html?centerid=${urlpath}`;
                       }
                     });
                   document
@@ -226,7 +226,7 @@
                 for (const el of report) {
                   el.addEventListener("click", function () {
                     window.open(
-                      `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
+                      `${front}/admin-request-report.html?requestid=${el.getAttribute(
                         "id"
                       )}`,
                       "_blank"

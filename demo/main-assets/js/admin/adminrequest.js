@@ -1,5 +1,6 @@
 function getAdminUser() {
   var url = urldemo + `/api/admin/requests/`;
+  let front = "http://127.0.0.1:8080"; // "https://daroocard.com";
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
@@ -49,7 +50,7 @@ function getAdminUser() {
         for (const el of report) {
           el.addEventListener("click", function () {
             window.open(
-              `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
+              `${front}/admin-request-report.html?requestid=${el.getAttribute(
                 "id"
               )}`,
               "_blank"
@@ -143,7 +144,7 @@ function getAdminUser() {
             .addEventListener("click", function () {
               let arry = response.next.split("/?page=");
               let lastElement = arry[arry.length - 1];
-              window.location.href = `https://daroocard.com/admin-requests.html?page=${lastElement}`;
+              window.location.href = `${front}/admin-requests.html?page=${lastElement}`;
             });
           document.querySelector("#nextpage").removeAttribute("disabled");
         } else {
@@ -156,9 +157,9 @@ function getAdminUser() {
               let arry = response.previous.split("/?page=");
               let lastElement = arry[arry.length - 1];
               if (arry.length > 1) {
-                window.location.href = `https://daroocard.com/admin-requests.html?page=${lastElement}`;
+                window.location.href = `${front}/admin-requests.html?page=${lastElement}`;
               } else {
-                window.location.href = `https://daroocard.com/admin-requests.html`;
+                window.location.href = `${front}/admin-requests.html`;
               }
             });
           document.querySelector("#prevpage").removeAttribute("disabled");
@@ -169,7 +170,7 @@ function getAdminUser() {
         for (const el of report) {
           el.addEventListener("click", function () {
             window.open(
-              `https://daroocard.com/admin-request-report.html?requestid=${el.getAttribute(
+              `${front}/admin-request-report.html?requestid=${el.getAttribute(
                 "id"
               )}`,
               "_blank"

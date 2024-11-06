@@ -243,6 +243,7 @@
     <script src="main-assets/js/qrcode.js"></script>
     <script>
       // *************** loan
+      let front = "http://127.0.0.1:8080"; // "https://daroocard.com";
       let eventTarget = document.querySelector("#searchbox");
       eventTarget.addEventListener("keyup", (event) => {
         var url =
@@ -289,7 +290,7 @@
                     .addEventListener("click", function () {
                       let arry = response.next.split("/?pagesearch=");
                       let lastElement = arry[arry.length - 1];
-                      window.location.href = `https://daroocard.com/main-list-of-centers.html?pagesearch=${lastElement}`;
+                      window.location.href = `${front}main-list-of-centers.html?pagesearch=${lastElement}`;
                     });
                   document
                     .querySelector("#nextpage")
@@ -306,9 +307,9 @@
                       let arry = response.previous.split("/?pagesearch=");
                       let lastElement = arry[arry.length - 1];
                       if (arry.length > 1) {
-                        window.location.href = `https://daroocard.com/main-list-of-centers.html?pagesearch=${lastElement}`;
+                        window.location.href = `${front}/main-list-of-centers.html?pagesearch=${lastElement}`;
                       } else {
-                        window.location.href = `https://daroocard.com/main-list-of-centers.html`;
+                        window.location.href = `${front}/main-list-of-centers.html`;
                       }
                     });
                   document
@@ -418,7 +419,7 @@
                   .addEventListener("click", function () {
                     let arry = response.next.split("/?page=");
                     let lastElement = arry[arry.length - 1];
-                    window.location.href = `https://daroocard.com/main-list-of-centers.html?page=${lastElement}`;
+                    window.location.href = `${front}/main-list-of-centers.html?page=${lastElement}`;
                   });
                 document.querySelector("#nextpage").removeAttribute("disabled");
               } else {
@@ -433,9 +434,9 @@
                     let arry = response.previous.split("/?page=");
                     let lastElement = arry[arry.length - 1];
                     if (arry.length > 1) {
-                      window.location.href = `https://daroocard.com/main-list-of-centers.html?page=${lastElement}`;
+                      window.location.href = `${front}/main-list-of-centers.html?page=${lastElement}`;
                     } else {
-                      window.location.href = `https://daroocard.com/main-list-of-centers.html`;
+                      window.location.href = `${front}/main-list-of-centers.html`;
                     }
                   });
                 document.querySelector("#prevpage").removeAttribute("disabled");
