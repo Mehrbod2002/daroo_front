@@ -6,7 +6,6 @@ function getLoan() {
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
         var response = JSON.parse(this.responseText);
-        console.log(response);
         var html = "";
         response.forEach((key, index) => {
           var item = `
@@ -211,7 +210,6 @@ ${
                     "<span class='text-sm text-success'>  لطفا ابتدا وارد سایت شوید   </span>";
                 } else if (request.status == 400 || request.status == 403) {
                   const res = JSON.parse(request.response);
-                  console.log(res);
                   const keys = Object.keys(res);
                   let msg = "";
                   keys.forEach((key, index) => {
@@ -227,6 +225,13 @@ ${
                   });
                   if (msg) {
                     const errors = document.getElementById("errors");
+                    if (errors == null) {
+                      let dataError = res.length == 1 ? res[0] : msg;
+                      $(".messagewrapper").fadeIn();
+                      messageBox.innerHTML =
+                        `<span class='text-sm text-danger'>${dataError}</span>`;
+                      return;
+                    }
                     errors.innerHTML = msg;
                     errors.className = errors.className.replace(
                       "text-success",
@@ -258,12 +263,10 @@ ${
         }
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
-        console.log(res);
 
         const keys = Object.keys(res);
         let msg = "";
         keys.forEach((key, index) => {
-          console.log(`${res[key]}`);
           msg = msg + `${res[key]}<br>`;
         });
         if (msg) {

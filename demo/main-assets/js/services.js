@@ -17,7 +17,6 @@ function clearMessageBox() {
 }
 
 function getUser() {
-  console.log("calling user info")
   var url = urldemo + `/api/user/info/`;
   try {
     const request = new XMLHttpRequest();

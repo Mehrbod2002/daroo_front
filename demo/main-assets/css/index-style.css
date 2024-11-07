@@ -195,7 +195,7 @@ address {
   width: 60%;
 }
 
-.messagewrapper {
+.overlay {
   z-index: 999;
   position: fixed;
   left: 0;
@@ -205,6 +205,40 @@ address {
   background: #000000c7;
   padding: 20px;
   display: none;
+}
+
+.messagewrapper {
+  z-index: 999;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+  display: none;
+}
+
+.overlay > div {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.messageBox {
+  position: relative;
+}
+
+.btn-close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #000;
+}
+
+.btn-close:hover {
+  color: #ff0000;
 }
 
 .messagewrapper > div {
