@@ -87,11 +87,11 @@ function sendotp() {
         }
       } else {
         const errors = document.getElementById("errors");
-          errors.innerHTML = msg;
-          errors.className = errors.className.replace(
-            "text-success",
-            "text-danger"
-          );
+        errors.innerHTML = msg;
+        errors.className = errors.className.replace(
+          "text-success",
+          "text-danger"
+        );
       }
       setTimeout(clearMessageBox, 1000);
     };

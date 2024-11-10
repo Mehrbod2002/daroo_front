@@ -21,7 +21,6 @@ function getUser() {
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
-      console.log(request.status);
       if (request.status == 200 || request.status == 201) {
         try {
           document
@@ -30,8 +29,6 @@ function getUser() {
           document.querySelector(".servicenotLogin").classList.add("d-none");
         } catch {}
         var response = JSON.parse(this.responseText);
-
-        console.log(response[0]);
         try {
           document.querySelector(
             "#wallet-number-wrapper #wallet-number"
@@ -41,8 +38,8 @@ function getUser() {
           if (response[0].role != "(پذیرنده) مراکز") {
             document.querySelector(".rm_li1").remove();
             document.querySelector(".rm_li2").remove();
+            document.getElementById("devices").style = "display: none"
           }
-
           if (!response[0].is_staff) {
             const accs = document.querySelectorAll(".meniadmin");
             for (const el of accs) {
