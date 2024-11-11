@@ -1,3 +1,31 @@
+function getDevicesRules() {
+    var url = urldemo + `/api/rules/`;
+    try {
+        const request = new XMLHttpRequest();
+        request.onloadend = function () {
+            if (request.status == 200 || request.status == 201) {
+                let datas = JSON.stringify(request.response);
+                localStorage.setItem("rules", datas);
+                let resp = JSON.parse(request.response);
+                document.getElementById("rulesBox").innerText = resp[0].rules;
+            }
+            setTimeout(clearMessageBox, 1000);
+        };
+
+        request.onloadstart = function () {
+            $(".loader").fadeIn();
+        };
+        request.open("GET", url);
+        request.setRequestHeader(
+            "Authorization",
+            `Token ${localStorage.getItem("token")}`
+        );
+        request.send();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
 function getDevicesTypes() {
     var url = urldemo + `/api/devices_types/`;
     try {
@@ -42,7 +70,7 @@ function getDevices() {
                 var html = "";
                 response.forEach((key, index) => {
                     const is_document = key.status == "آپلود مدارک" ? "" : "none";
-                    const is_active = key.is_active ? "" : "none";
+                    const is_active = key.status == "صادر شده فعال" ? "" : "none";
                     const is_payment = key.status == "آماده پرداخت" ? "" : "none";
                     var item = `<tr>
                         <td> ${index + 1} </td>
@@ -54,9 +82,9 @@ function getDevices() {
                         <td sorttable_customkey="14020216"> ${key.activation_date ?? ""} </td>
                         <td sorttable_customkey="14030216">${key.expiration_date ?? ""} </td>
                         <td>
-                            <button class="btn btn-warning" onclick="navigateTo('#')" style="display: ${is_payment}"> پرداخت مستقیم </button>
+                            <button class="btn btn-warning" onclick="wallet_payment_direct('${key.device_id}')" style="display: ${is_payment}"> پرداخت مستقیم </button>
                             <button class="btn btn-danger" onclick="wallet_payment('${key.device_id}')" style="display: ${is_payment}"> پرداخت از کیف پول </button>
-                            <button class="btn btn-danger" onclick="navigateTo('#')" style="display: ${is_active}"> تمدید </button>
+                            <button class="btn btn-danger" onclick="generate_deal('${key.device_id}')" style="display: ${is_active}"> قرارداد </button>
                             <button onclick="open_document('${key.device_id}');" class="btn btn-warning" style="display: ${is_document}" onclick="navigateTo('#')"> آپلود مدارک </button>
                         </td>
                         </tr>`;
@@ -97,6 +125,7 @@ function getDevices() {
 }
 
 getDevicesTypes();
+getDevicesRules()
 getDevices();
 
 document.getElementById('acceptRules').addEventListener('change', function () {
@@ -325,6 +354,91 @@ function wallet_payment(id) {
             $(".loader").fadeIn();
         };
         request.open('PATCH', `${urldemo}/api/devices_payment/${id}/process_payment/`);
+        request.setRequestHeader(
+            "Authorization",
+            `Token ${localStorage.getItem("token")}`
+        );
+        request.send(formData);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function wallet_payment_direct(id) {
+    try {
+        const request = new XMLHttpRequest();
+        request.onloadend = function () {
+            if (request.status == 200 || request.status == 201) {
+                const data = JSON.parse(request.response);
+                if (data) {
+                    window.location = data;
+                }
+            } else if (request.status == 400 || request.status == 403) {
+                const res = JSON.parse(request.response);
+                const keys = Object.keys(res);
+                let msg = "";
+                keys.forEach((key, index) => {
+                    msg = msg + `${res[key]}<br>`;
+                });
+                if (msg) {
+                    $(".messagewrapper").fadeIn();
+                    messageBox.innerHTML = msg;
+                }
+            } else {
+                $(".messagewrapper").fadeIn();
+                messageBox.innerHTML =
+                    "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+            }
+            setTimeout(clearMessageBox, 1000);
+        };
+
+        const formData = new FormData();
+        formData.append("device_id", id);
+        request.onloadstart = function () {
+            $(".loader").fadeIn();
+        };
+        request.open('PATCH', `${urldemo}/api/devices_payment/${id}/process_payment_direct/`);
+        request.setRequestHeader(
+            "Authorization",
+            `Token ${localStorage.getItem("token")}`
+        );
+        request.send(formData);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+function generate_deal(id) {
+    try {
+        const request = new XMLHttpRequest();
+        request.onloadend = function () {
+            if (request.status == 200 || request.status == 201) {
+                window.open(`https://testbackend.daroocard.com/${request.response}`, "_blank");
+            } else if (request.status == 400 || request.status == 403) {
+                const res = JSON.parse(request.response);
+                const keys = Object.keys(res);
+                let msg = "";
+                keys.forEach((key, index) => {
+                    msg = msg + `${res[key]}<br>`;
+                });
+                if (msg) {
+                    $(".messagewrapper").fadeIn();
+                    messageBox.innerHTML = msg;
+                }
+            } else {
+                $(".messagewrapper").fadeIn();
+                messageBox.innerHTML =
+                    "<span class='text-sm text-danger'>متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+            }
+            setTimeout(clearMessageBox, 1000);
+        };
+
+        const formData = new FormData();
+        formData.append("device_id", id);
+        request.onloadstart = function () {
+            $(".loader").fadeIn();
+        };
+        request.open('PATCH', `${urldemo}/api/contracts/${id}/contract/`);
         request.setRequestHeader(
             "Authorization",
             `Token ${localStorage.getItem("token")}`
