@@ -157,11 +157,10 @@
             <div class="d-flex justify-content-between px-3 mb-3">
                 <input type="search" placeholder="جستجو در جدول ..." class="searchable form-control"
                     style="width: 200px !important" />
-                <a href="#" onclick='$("#request_device").fadeIn();'
+                <a href="#" onclick='$("#request_device").fadeIn(); sendotp_center()'
                     class="btn btn-success me-3 d-flex align-items-center ms-auto">
                     درخواست دستگاه
                 </a>
-                <!-- sendotp_center(); -->
                 <button class="print btn btn-light d-flex align-items-center">
                     <span class="me-2 text-dark fs-5"> پرینت </span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="black" class="bi bi-printer"
@@ -276,7 +275,7 @@
                     </div>
 
                     <div class="d-flex justify-content-center align-items-center pb-2">
-                        <a class="me-2" onclick="sendotp_center()" id="resendOtpBtn">ارسال مجدد
+                        <a style="cursor: pointer;" class="me-2" onclick="sendotp_center()" id="resendOtpBtn">ارسال مجدد
                             کد</a>
                     </div>
 
@@ -321,7 +320,11 @@
                                 accept="image/*" required>
                         </div>
                     </form>
-
+                    <div class="loaderside">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                     <button class="btn btn-success" onclick="send_document()" id="confirmButton">تایید</button>
 
                     <p class="form-text text-danger text-center fw-bolder" id="errors_document"></p>

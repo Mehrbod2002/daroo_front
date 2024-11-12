@@ -273,7 +273,8 @@ function send_document() {
         const request = new XMLHttpRequest();
 
         request.onloadend = function () {
-            $(".loader").fadeOut();
+            $(".loaderside").fadeOut();
+            $("#confirmButton").prop("disabled", false);
 
             if (request.status === 200 || request.status === 201) {
                 const errors = document.getElementById("errors_document");
@@ -305,7 +306,8 @@ function send_document() {
         };
 
         request.onloadstart = function () {
-            $(".loader").fadeIn();
+            $(".loaderside").fadeIn();
+            $("#confirmButton").prop("disabled", true);
         };
 
         let device_id = localStorage.getItem("device_id");
@@ -415,7 +417,7 @@ function generate_deal(id) {
         const request = new XMLHttpRequest();
         request.onloadend = function () {
             if (request.status == 200 || request.status == 201) {
-                window.open(`https://testbackend.daroocard.com/${request.response}`, "_blank");
+                window.open(`https://api.daroocard.com/${request.response}`, "_blank");
             } else if (request.status == 400 || request.status == 403) {
                 const res = JSON.parse(request.response);
                 const keys = Object.keys(res);

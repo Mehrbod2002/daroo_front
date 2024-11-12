@@ -350,7 +350,7 @@
       function patchCompeleteData(event) {
         const searchparams = new URLSearchParams(window.location.search);
         var urlpath = searchparams.get("id");
-        let front = "https://testfront.daroocard.com"; // "https://daroocard.com";
+        let front = "https://daroocard.com"; // "https://daroocard.com";
         var url = `${front}/api/loan/complete/docs/${urlpath}/`;
 
         event.preventDefault();

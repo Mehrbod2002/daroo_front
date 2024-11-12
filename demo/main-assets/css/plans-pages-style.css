@@ -600,6 +600,39 @@ th.sorttable_sorted_reverse::after {
   animation: opacitychange 1s ease-in-out 0.66s infinite;
 }
 
+.loaderside {
+  width: 128px;
+  height: 128px;
+  position: fixed;
+  left: calc(50% - 80px);
+  top: calc(50% - 80px);
+  z-index: 50;
+
+  display: none;
+}
+
+.loaderside span {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  background-color: #13607f;
+  margin: 35px 5px;
+  opacity: 0;
+}
+
+.loaderside span:nth-child(1) {
+  animation: opacitychange 1s ease-in-out infinite;
+}
+
+.loaderside span:nth-child(2) {
+  animation: opacitychange 1s ease-in-out 0.33s infinite;
+}
+
+.loaderside span:nth-child(3) {
+  animation: opacitychange 1s ease-in-out 0.66s infinite;
+}
+
 @keyframes opacitychange {
   0%,
   100% {

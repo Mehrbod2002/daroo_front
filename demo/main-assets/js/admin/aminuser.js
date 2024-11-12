@@ -1,6 +1,6 @@
 function getAdminUser() {
   var url = urldemo + `/api/admin/users/first/page/`;
-  let front = "https://testfront.daroocard.com"; // "https://daroocard.com";
+  let front = "https://daroocard.com"; // "https://daroocard.com";
   try {
     const request = new XMLHttpRequest();
     request.onloadend = function () {
