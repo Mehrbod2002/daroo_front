@@ -254,9 +254,10 @@ function send_document() {
 
         const businessLicense = document.getElementById("businessLicense").files[0];
         const nationalCard = document.getElementById("nationalCard").files[0];
+        const backnationalCard = document.getElementById("backnationalCard").files[0];
         const birthCertificate = document.getElementById("birthCertificate").files[0];
 
-        if (!businessLicense || !nationalCard || !birthCertificate) {
+        if (!businessLicense || !nationalCard || !birthCertificate || !backnationalCard) {
             const errors = document.getElementById("errors_document");
             errors.innerHTML = "لطفاً تمام مدارک را آپلود کنید.";
             errors.className = errors.className.replace("text-success", "text-danger");
@@ -265,6 +266,7 @@ function send_document() {
 
         formData.append("device_id", localStorage.getItem("device_id"));
         formData.append("business_license", businessLicense);
+        formData.append("back_national_card", backnationalCard);
         formData.append("national_card", nationalCard);
         formData.append("birth_certificate", birthCertificate);
 

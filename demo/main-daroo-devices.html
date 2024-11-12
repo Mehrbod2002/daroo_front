@@ -157,10 +157,11 @@
             <div class="d-flex justify-content-between px-3 mb-3">
                 <input type="search" placeholder="جستجو در جدول ..." class="searchable form-control"
                     style="width: 200px !important" />
-                <a href="#" onclick='$("#request_device").fadeIn(); sendotp_center();'
+                <a href="#" onclick='$("#request_device").fadeIn();'
                     class="btn btn-success me-3 d-flex align-items-center ms-auto">
                     درخواست دستگاه
                 </a>
+                <!-- sendotp_center(); -->
                 <button class="print btn btn-light d-flex align-items-center">
                     <span class="me-2 text-dark fs-5"> پرینت </span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="black" class="bi bi-printer"
@@ -241,8 +242,8 @@
             </div>
         </div>
         <div class="boxrequests" id="request_device">
-            <div>
-                <div class="messageBox border p-3">
+            <div class="flex">
+                <div class="flex-column messageBox border p-3">
                     <div class="mb-3">
                         <button class="btn-close" onclick='$("#request_device").fadeOut()'></button>
                         <label for="rulesBox" class="form-label fw-bold">قوانین</label>
@@ -250,10 +251,12 @@
                         </div>
                     </div>
 
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="checkbox" id="acceptRules"
-                            onchange="toggleConfirmButton()">
-                        <label class="form-check-label" for="acceptRules">قوانین را قبول دارم</label>
+                    <div class="d-flex justify-content-end mb-3" style="padding-left: 12rem;" dir="rtl">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="acceptRules"
+                                onchange="toggleConfirmButton()">
+                            <label class="form-check-label" for="acceptRules">قوانین را مطالعه کردم و قبول میکنم</label>
+                        </div>
                     </div>
 
                     <div class="mb-3">
@@ -262,22 +265,23 @@
                         </select>
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-3 text-center">
                         <label for="userInput" class="form-label fw-bold">امضای دیجیتالی</label>
                         <input type="text" class="form-control" id="userInput" placeholder="">
                     </div>
 
-                    <div class="d-flex justify-content-center align-items-center mb-3">
-                        <label for="otp_code" class="fw-bold me-2">کد تایید:</label>
-                        <input type="text" id="otp_code" class="form-control w-50" placeholder="کد تایید را وارد کنید">
+                    <div class="flex-column justify-content-center align-items-center mb-3 text-center">
+                        <label for="otp_code" class="text-centerfw-bold form-label me-2">کد تایید</label>
+                        <input type="text" id="otp_code" class="form-control" placeholder="کد تایید را وارد کنید">
                     </div>
 
                     <div class="d-flex justify-content-center align-items-center pb-2">
-                        <button class="btn btn-secondary me-2" onclick="sendotp_center()" id="resendOtpBtn">ارسال مجدد
-                            کد</button>
+                        <a class="me-2" onclick="sendotp_center()" id="resendOtpBtn">ارسال مجدد
+                            کد</a>
                     </div>
 
-                    <button class="btn btn-success" onclick="createDevice()" id="confirmButton" disabled>تایید</button>
+                    <button class="btn btn-success" style="margin-right: 22rem ;padding-left: 25px; padding-right: 25px;"
+                        onclick="createDevice()" id="confirmButton" disabled>تایید</button>
 
                     <p class="form-text text-danger text-center fw-bolder" id="errors"></p>
                 </div>
@@ -302,6 +306,12 @@
                         <div class="mb-3">
                             <label for="nationalCard" class="form-label">کارت ملی</label>
                             <input type="file" class="form-control" id="nationalCard" name="national_card"
+                                accept="image/*" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="backnationalCard" class="form-label">پشت کارت ملی</label>
+                            <input type="file" class="form-control" id="backnationalCard" name="back_national_card"
                                 accept="image/*" required>
                         </div>
 

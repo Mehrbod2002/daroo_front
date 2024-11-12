@@ -132,10 +132,19 @@ function validateotp() {
   var url = urldemo + `/api/validate/otpcode/`;
   try {
     const formData = new FormData();
+    formData.append("otp", otpValue);
     const request = new XMLHttpRequest();
     request.onloadend = function () {
       if (request.status == 200 || request.status == 201) {
-        location.reload();
+        const errors = document.getElementById("errors");
+        errors.innerHTML = "کارت شما با موفقیت فعال شد";
+        errors.className = errors.className.replace(
+          "text-danger",
+          "text-success"
+        );
+        setTimeout(() => {
+          location.reload();
+        }, 1000);
       } else if (request.status == 400 || request.status == 403) {
         const res = JSON.parse(request.response);
         const keys = Object.keys(res);
