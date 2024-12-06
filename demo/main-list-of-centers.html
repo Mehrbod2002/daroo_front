@@ -1,400 +1,206 @@
 <!DOCTYPE html>
 <html lang="fa">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
-    />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>دارو کارت | لیست مراکز پذیرش</title>
-    <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css" />
-    <link rel="stylesheet" href="main-assets/css/plans-pages-style.css" />
-    <link
-      rel="shortcut icon"
-      href="assets/img/daroo-card.png"
-      type="image/x-icon"
-    />
-    <style>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>دارو کارت | لیست مراکز پذیرش</title>
+  <link rel="stylesheet" href="assets/bootstrap/bootstrap.rtl.min.css" />
+  <link rel="stylesheet" href="main-assets/css/plans-pages-style.css" />
+  <link rel="shortcut icon" href="assets/img/daroo-card.png" type="image/x-icon" />
+  <style>
+    main {
+      width: 70% !important;
+    }
+
+    @media (max-width: 1200px) {
       main {
-        width: 70% !important;
+        width: 85% !important;
       }
-      @media (max-width: 1200px) {
-        main {
-          width: 85% !important;
-        }
-      }
-      @media (max-width: 992px) {
-        main {
-          width: 95% !important;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <div
-      class="container-fluid d-flex flex-column justify-content-between align-items-center"
-    >
-      <button
-        class="menu-toggler border-0 bg-transparent"
-        data-bs-toggle="offcanvas"
-        data-bs-target="#menu"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="43"
-          height="43"
-          fill="#2dacdf"
-          class="bi bi-list"
-          viewBox="0 0 16 16"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-          />
-        </svg>
-      </button>
-      <section
-        class="offcanvas offcanvas-start menu my-sm-1 overflow-hidden"
-        id="menu"
-      >
-        <div class="offcanvas-header text-light">
-          <div class="d-flex align-items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="28"
-              height="28"
-              fill="white"
-              class="bi bi-person-circle"
-              viewBox="0 0 16 16"
-            >
-              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-              <path
-                fill-rule="evenodd"
-                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
-              />
-            </svg>
-            <h5 class="offcanvas-title ms-2 text-light">
-              خوش آمدید <span id="userName_box" class="text-light"></span> !
-            </h5>
-          </div>
-          <button
-            class="btn-close"
-            data-bs-target="#menu"
-            data-bs-toggle="offcanvas"
-          ></button>
-        </div>
-        <div
-          class="offcanvas-body d-flex flex-column justify-content-between mx-auto"
-        >
-          <nav>
-            <ul class="nav">
-              <li class="nav-item">
-                <a class="nav-link" href="main-profile.html"> پروفایل </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="main-reports.html">گزارش کارت</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="main-wallet.html"> کیف پول </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="main-daroo-cards.html"> کارت ها </a>
-              </li>
-              <li class="nav-item" id="devices">
-                <a class="nav-link" href="main-daroo-devices.html"> دستگاه ها </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="main-facilities.html"> تسهیلات </a>
-              </li>
-              <li class="nav-item rm_li1">
-                <a class="nav-link" href="main-reception-requests.html">
-                  پذیرش / دریافت
-                </a>
-              </li>
-              <li class="nav-item rm_li2">
-                <a class="nav-link" href="main-create-service.html">
-                  افزودن خدمت
-                </a>
-              </li>
+    }
 
-              <li class="nav-item">
-                <a class="nav-link" href="main-support.html">
-                  تیکت / پشتیبانی
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="Rulle_043650.pdf"> قوانین و ضوابط </a>
-              </li>
+    @media (max-width: 992px) {
+      main {
+        width: 95% !important;
+      }
+    }
+  </style>
+</head>
 
-              <li class="nav-item meniadmin">
-                <a class="nav-link" href="main-list-of-centers.html">
-                  مراکز پذیرش
-                </a>
-              </li>
-              <li class="nav-item meniadmin">
-                <a class="nav-link" href="admin.html"> پنل ادمین </a>
-              </li>
-            </ul>
-          </nav>
-          <button
-            onclick="logout()"
-            class="btn btn-danger mx-auto p-2"
-            style="width: max-content"
-          >
-            خروج از حساب کاربری
-          </button>
+<body>
+  <div class="container-fluid d-flex flex-column justify-content-between align-items-center">
+    <button class="menu-toggler border-0 bg-transparent" data-bs-toggle="offcanvas" data-bs-target="#menu">
+      <svg xmlns="http://www.w3.org/2000/svg" width="43" height="43" fill="#2dacdf" class="bi bi-list"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+      </svg>
+    </button>
+    <section class="offcanvas offcanvas-start menu my-sm-1 overflow-hidden" id="menu">
+      <div class="offcanvas-header text-light">
+        <div class="d-flex align-items-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="white" class="bi bi-person-circle"
+            viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+            <path fill-rule="evenodd"
+              d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+          </svg>
+          <h5 class="offcanvas-title ms-2 text-light">
+            خوش آمدید <span id="userName_box" class="text-light"></span> !
+          </h5>
         </div>
-      </section>
-      <header class="w-100 text-center py-3">
-        <a href="main-index.html" class="logo d-inline-block">
-          <img src="assets/img/daroo-card.gif" alt="daroo-card" />
+        <button class="btn-close" data-bs-target="#menu" data-bs-toggle="offcanvas"></button>
+      </div>
+      <div class="offcanvas-body d-flex flex-column justify-content-between mx-auto">
+        <nav>
+          <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link" href="main-profile.html"> پروفایل </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="main-reports.html">گزارش کارت</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="main-wallet.html"> کیف پول </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="main-daroo-cards.html"> کارت ها </a>
+            </li>
+            <li class="nav-item" id="devices">
+              <a class="nav-link" href="main-daroo-devices.html"> دستگاه ها </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="main-facilities.html"> تسهیلات </a>
+            </li>
+            <li class="nav-item rm_li1">
+              <a class="nav-link" href="main-reception-requests.html">
+                پذیرش / دریافت
+              </a>
+            </li>
+            <li class="nav-item rm_li2">
+              <a class="nav-link" href="main-create-service.html">
+                افزودن خدمت
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="main-support.html">
+                تیکت / پشتیبانی
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Rulle_043650.pdf"> قوانین و ضوابط </a>
+            </li>
+
+            <li class="nav-item meniadmin">
+              <a class="nav-link" href="main-list-of-centers.html">
+                مراکز پذیرش
+              </a>
+            </li>
+            <li class="nav-item meniadmin">
+              <a class="nav-link" href="admin.html"> پنل ادمین </a>
+            </li>
+          </ul>
+        </nav>
+        <button onclick="logout()" class="btn btn-danger mx-auto p-2" style="width: max-content">
+          خروج از حساب کاربری
+        </button>
+      </div>
+    </section>
+    <header class="w-100 text-center py-3">
+      <a href="main-index.html" class="logo d-inline-block">
+        <img src="assets/img/daroo-card.gif" alt="daroo-card" />
+      </a>
+    </header>
+    <section class="container rounded-4 pb-4 mb-5 text-center overflow-hidden">
+      <h1 class="center_header_table mb-4 mt-5 fs-4 w-100 py-3">
+        لیست مراکز پذیرش
+      </h1>
+      <div>
+        <input type="search" placeholder="جستجو در جدول ..." id="searchbox" class="searchable form-control mb-3"
+          style="width: 200px !important" data-is-second-box="true" />
+      </div>
+      <div class="d-flex align-items-center mb-4">
+        <button class="btn btn-light d-flex align-items-center" id="nextpage">
+          <span class="text-dark fs-5"> بعدی </span>
+        </button>
+        <button class="btn btn-light d-flex align-items-center mx-4" id="prevpage">
+          <span class="text-dark fs-5"> قبلی </span>
+        </button>
+      </div>
+      <div class="row" id="centersList"></div>
+    </section>
+    <footer class="info text-center mb-2">
+      <div class="footer_logo_box">
+        <a href=" https://bpi.ir/">
+          <img src="assets/img/logo/default(1).png" />
         </a>
-      </header>
-      <section
-        class="container rounded-4 pb-4 mb-5 text-center overflow-hidden"
-      >
-        <h1 class="center_header_table mb-4 mt-5 fs-4 w-100 py-3">
-          لیست مراکز پذیرش
-        </h1>
-        <div>
-          <input
-            type="search"
-            placeholder="جستجو در جدول ..."
-            id="searchbox"
-            class="searchable form-control mb-3"
-            style="width: 200px !important"
-            data-is-second-box="true"
-          />
-        </div>
-        <div class="d-flex align-items-center mb-4">
-          <button class="btn btn-light d-flex align-items-center" id="nextpage">
-            <span class="text-dark fs-5"> بعدی </span>
-          </button>
-          <button
-            class="btn btn-light d-flex align-items-center mx-4"
-            id="prevpage"
-          >
-            <span class="text-dark fs-5"> قبلی </span>
-          </button>
-        </div>
-        <div class="row" id="centersList"></div>
-      </section>
-      <footer class="info text-center mb-2">
-        <div class="footer_logo_box">
-          <a href=" https://bpi.ir/">
-            <img src="assets/img/logo/default(1).png" />
-          </a>
-          <a href="https://ecunion.ir/">
-            <img
-              src="assets/img/logo/etehadiekeshvaripng.parspng.com_(1).png"
-            />
-          </a>
-          <a href="https://samandehi.ir">
-            <img src="assets/img/logo/samandehipng.parspng.com_.png" />
-          </a>
-          <a
+        <a href="https://ecunion.ir/">
+          <img src="assets/img/logo/etehadiekeshvaripng.parspng.com_(1).png" />
+        </a>
+        <a href="https://samandehi.ir">
+          <img src="assets/img/logo/samandehipng.parspng.com_.png" />
+        </a>
+        <a referrerpolicy="origin" target="_blank"
+          href="https://trustseal.enamad.ir/?id=431112&Code=EryczptAK4YZwPN9DUssvpdKYhQiJDyF"><img
             referrerpolicy="origin"
-            target="_blank"
-            href="https://trustseal.enamad.ir/?id=431112&Code=EryczptAK4YZwPN9DUssvpdKYhQiJDyF"
-            ><img
-              referrerpolicy="origin"
-              src="https://trustseal.enamad.ir/logo.aspx?id=431112&Code=EryczptAK4YZwPN9DUssvpdKYhQiJDyF"
-              alt=""
-              style="cursor: pointer"
-              Code="EryczptAK4YZwPN9DUssvpdKYhQiJDyF"
-          /></a>
-        </div>
-        <br />
-        <span> 021-91002044 </span> <br />
-        <span>
-          کپی رایت © 2023
-          <strong>
-            <a
-              style="
+            src="https://trustseal.enamad.ir/logo.aspx?id=431112&Code=EryczptAK4YZwPN9DUssvpdKYhQiJDyF" alt=""
+            style="cursor: pointer" Code="EryczptAK4YZwPN9DUssvpdKYhQiJDyF" /></a>
+      </div>
+      <br />
+      <span> 021-91002044 </span> <br />
+      <span>
+        کپی رایت © 2023
+        <strong>
+          <a style="
                 color: rgba(var(--dark-blue-color), 1) !important;
                 text-decoration: none !important;
-              "
-              href="https://kavoshpay.com/"
-            >
+              " href="https://kavoshpay.com/">
             کاوش یار ایمن ایرانیان (کاوش پی)
-            </a>
-          </strong>
-          تمامی حقوق محفوظ است
-        </span>
-      </footer>
-      <div class="messagewrapper">
-        <div>
-          <div class="messageBox">
-            <p></p>
-            <button class="messageBtn btn btn-success">تایید</button>
-          </div>
+          </a>
+        </strong>
+        تمامی حقوق محفوظ است
+      </span>
+    </footer>
+    <div class="messagewrapper">
+      <div>
+        <div class="messageBox">
+          <p></p>
+          <button class="messageBtn btn btn-success">تایید</button>
         </div>
       </div>
-      <div class="loader">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <div id="mask"></div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
-    <script src="main-assets/js/sorttable.js"></script>
-    <script src="main-assets/js/services.js"></script>
-    <script src="main-assets/js/tables.js"></script>
-    <script src="main-assets/js/qrcode.js"></script>
-    <script>
-      // *************** loan
-      let front = "https://daroocard.com"; // "https://daroocard.com";
-      let eventTarget = document.querySelector("#searchbox");
-      eventTarget.addEventListener("keyup", (event) => {
-        var url =
-          urldemo + `/api/center/info/search/?search=${eventTarget.value}`;
+    <div class="loader">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div id="mask"></div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <script src="assets/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="main-assets/js/sorttable.js"></script>
+  <script src="main-assets/js/services.js"></script>
+  <script src="main-assets/js/tables.js"></script>
+  <script src="main-assets/js/qrcode.js"></script>
+  <script>
+    // *************** loan
+    let eventTarget = document.querySelector("#searchbox");
+    eventTarget.addEventListener("keyup", (event) => {
+      var url =
+        urldemo + `/api/center/info/search/?search=${eventTarget.value}`;
 
-        console.log(eventTarget.value.length);
-        if (eventTarget.value.length > 0) {
-          try {
-            const request = new XMLHttpRequest();
-            request.onloadend = function () {
-              if (request.status == 200 || request.status == 201) {
-                var response = JSON.parse(request.response);
-                console.log(response);
-
-                var html = "";
-                response.forEach((key, index) => {
-                  var item = `<div class="col-12 col-lg-6 col-xl-4 mb-4">
-            <div class="center_item_table ">
-              <div class="center_item_top">
-                    <h2>${key.center_name} </h2>
-                    <span>${key.center_type}</span></div>
-               <div class="center_detail_table">
-                  
-                     <a href="${key.qr_link}" imgid="${key.center_photo}" qrid="${key.qr_link}" class="qrlinkBox">  </a>
-                   
-                </div>
-                <div class="center_photo_table"> <img  src='${key.center_photo}'> </div>
-                <div class="center_item_address "><img src="main-assets/img/qrsite(1).png" /> ${key.address}</div>
-            </div>
-            
-        </div>`;
-                  html = html + item;
-                });
-                if (response.length == 0) {
-                  html = `<div class="col-12 mb-4"><div class="center_item_table ">موردی یافت نشد</div></div>`;
-                }
-                document.querySelector("#centersList").innerHTML = html;
-
-                if (response.next) {
-                  console.log(response.next);
-
-                  document
-                    .querySelector("#nextpage")
-                    .addEventListener("click", function () {
-                      let arry = response.next.split("/?pagesearch=");
-                      let lastElement = arry[arry.length - 1];
-                      window.location.href = `${front}main-list-of-centers.html?pagesearch=${lastElement}`;
-                    });
-                  document
-                    .querySelector("#nextpage")
-                    .removeAttribute("disabled");
-                } else {
-                  document
-                    .querySelector("#nextpage")
-                    .setAttribute("disabled", "true");
-                }
-                if (response.previous) {
-                  document
-                    .querySelector("#prevpage")
-                    .addEventListener("click", function () {
-                      let arry = response.previous.split("/?pagesearch=");
-                      let lastElement = arry[arry.length - 1];
-                      if (arry.length > 1) {
-                        window.location.href = `${front}/main-list-of-centers.html?pagesearch=${lastElement}`;
-                      } else {
-                        window.location.href = `${front}/main-list-of-centers.html`;
-                      }
-                    });
-                  document
-                    .querySelector("#prevpage")
-                    .removeAttribute("disabled");
-                } else {
-                  document
-                    .querySelector("#prevpage")
-                    .setAttribute("disabled", "true");
-                }
-                for (const el of document.querySelectorAll(".qrlinkBox")) {
-                  var qrcode = new QRCode(el, {
-                    text: el.getAttribute("qrid"),
-                    width: 130,
-                    height: 130,
-                    logo: el.getAttribute("imgid"),
-                    colorDark: "#000000",
-                    colorLight: "#e8f5fd",
-                    logoWidth: undefined,
-                    logoHeight: undefined,
-                    logoBackgroundColor: "#e8f5fd",
-                    logoBackgroundTransparent: false,
-                  });
-                  // window.open(
-                  //   `./main-facility-report.html?q=${el.getAttribute("id")}`
-                  // );
-                }
-              } else if (request.status == 400 || request.status == 403) {
-                const res = JSON.parse(request.response);
-                console.log(res);
-                const keys = Object.keys(res);
-                let msg = "";
-                keys.forEach((key, index) => {
-                  console.log(`${res[key]}`);
-                  msg = msg + `${res[key]}<br>`;
-                });
-                if (msg) {
-                  $(".messagewrapper").fadeIn();
-                  messageBox.innerHTML = msg;
-                }
-              } else {
-                $(".messagewrapper").fadeIn();
-                messageBox.innerHTML =
-                  "<span class='text-sm text-danger'> متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
-              }
-              setTimeout(clearMessageBox, 1000);
-            };
-
-            request.onloadstart = function () {
-              $(".loader").fadeIn();
-            };
-            request.open("GET", url);
-
-            request.send();
-          } catch (error) {
-            console.error(error);
-          }
-        } else {
-          getLoan();
-        }
-        // if (event.isComposing || event.keyCode === 229) {
-        //   return;
-        // }
-      });
-      //////
-      function getLoan() {
-        const searchparams = new URLSearchParams(window.location.search);
-        var pagepath = searchparams.get("page");
-        if (pagepath) {
-          var url = urldemo + `/api/center/info/?page=${pagepath}`;
-        } else {
-          var url = urldemo + `/api/center/info/`;
-        }
-
+      if (eventTarget.value.length > 0) {
         try {
           const request = new XMLHttpRequest();
           request.onloadend = function () {
             if (request.status == 200 || request.status == 201) {
               var response = JSON.parse(request.response);
-              console.log(response);
+
               var html = "";
-              response.results.forEach((key, index) => {
+              response.forEach((key, index) => {
                 var item = `<div class="col-12 col-lg-6 col-xl-4 mb-4">
             <div class="center_item_table ">
               <div class="center_item_top">
@@ -412,19 +218,23 @@
         </div>`;
                 html = html + item;
               });
+              if (response.length == 0) {
+                html = `<div class="col-12 mb-4"><div class="center_item_table ">موردی یافت نشد</div></div>`;
+              }
               document.querySelector("#centersList").innerHTML = html;
 
               if (response.next) {
-                console.log(response.next);
 
                 document
                   .querySelector("#nextpage")
                   .addEventListener("click", function () {
-                    let arry = response.next.split("/?page=");
+                    let arry = response.next.split("/?pagesearch=");
                     let lastElement = arry[arry.length - 1];
-                    window.location.href = `${front}/main-list-of-centers.html?page=${lastElement}`;
+                    window.location.href = `${front}main-list-of-centers.html?pagesearch=${lastElement}`;
                   });
-                document.querySelector("#nextpage").removeAttribute("disabled");
+                document
+                  .querySelector("#nextpage")
+                  .removeAttribute("disabled");
               } else {
                 document
                   .querySelector("#nextpage")
@@ -434,15 +244,17 @@
                 document
                   .querySelector("#prevpage")
                   .addEventListener("click", function () {
-                    let arry = response.previous.split("/?page=");
+                    let arry = response.previous.split("/?pagesearch=");
                     let lastElement = arry[arry.length - 1];
                     if (arry.length > 1) {
-                      window.location.href = `${front}/main-list-of-centers.html?page=${lastElement}`;
+                      window.location.href = `${front}/main-list-of-centers.html?pagesearch=${lastElement}`;
                     } else {
                       window.location.href = `${front}/main-list-of-centers.html`;
                     }
                   });
-                document.querySelector("#prevpage").removeAttribute("disabled");
+                document
+                  .querySelector("#prevpage")
+                  .removeAttribute("disabled");
               } else {
                 document
                   .querySelector("#prevpage")
@@ -467,11 +279,9 @@
               }
             } else if (request.status == 400 || request.status == 403) {
               const res = JSON.parse(request.response);
-              console.log(res);
               const keys = Object.keys(res);
               let msg = "";
               keys.forEach((key, index) => {
-                console.log(`${res[key]}`);
                 msg = msg + `${res[key]}<br>`;
               });
               if (msg) {
@@ -495,8 +305,131 @@
         } catch (error) {
           console.error(error);
         }
+      } else {
+        getLoan();
       }
+      // if (event.isComposing || event.keyCode === 229) {
+      //   return;
+      // }
+    });
+    //////
+    function getLoan() {
+      const searchparams = new URLSearchParams(window.location.search);
+      var pagepath = searchparams.get("page");
+      if (pagepath) {
+        var url = urldemo + `/api/center/info/?page=${pagepath}`;
+      } else {
+        var url = urldemo + `/api/center/info/`;
+      }
+
+      try {
+        const request = new XMLHttpRequest();
+        request.onloadend = function () {
+          if (request.status == 200 || request.status == 201) {
+            var response = JSON.parse(request.response);
+            var html = "";
+            response.results.forEach((key, index) => {
+              var item = `<div class="col-12 col-lg-6 col-xl-4 mb-4">
+            <div class="center_item_table ">
+              <div class="center_item_top">
+                    <h2>${key.center_name} </h2>
+                    <span>${key.center_type}</span></div>
+               <div class="center_detail_table">
+                  
+                     <a href="${key.qr_link}" imgid="${key.center_photo}" qrid="${key.qr_link}" class="qrlinkBox">  </a>
+                   
+                </div>
+                <div class="center_photo_table"> <img  src='${key.center_photo}'> </div>
+                <div class="center_item_address "><img src="main-assets/img/qrsite(1).png" /> ${key.address}</div>
+            </div>
+            
+        </div>`;
+              html = html + item;
+            });
+            document.querySelector("#centersList").innerHTML = html;
+
+            if (response.next) {
+              document
+                .querySelector("#nextpage")
+                .addEventListener("click", function () {
+                  let arry = response.next.split("/?page=");
+                  let lastElement = arry[arry.length - 1];
+                  window.location.href = `${front}/main-list-of-centers.html?page=${lastElement}`;
+                });
+              document.querySelector("#nextpage").removeAttribute("disabled");
+            } else {
+              document
+                .querySelector("#nextpage")
+                .setAttribute("disabled", "true");
+            }
+            if (response.previous) {
+              document
+                .querySelector("#prevpage")
+                .addEventListener("click", function () {
+                  let arry = response.previous.split("/?page=");
+                  let lastElement = arry[arry.length - 1];
+                  if (arry.length > 1) {
+                    window.location.href = `${front}/main-list-of-centers.html?page=${lastElement}`;
+                  } else {
+                    window.location.href = `${front}/main-list-of-centers.html`;
+                  }
+                });
+              document.querySelector("#prevpage").removeAttribute("disabled");
+            } else {
+              document
+                .querySelector("#prevpage")
+                .setAttribute("disabled", "true");
+            }
+            for (const el of document.querySelectorAll(".qrlinkBox")) {
+              var qrcode = new QRCode(el, {
+                text: el.getAttribute("qrid"),
+                width: 130,
+                height: 130,
+                logo: el.getAttribute("imgid"),
+                colorDark: "#000000",
+                colorLight: "#e8f5fd",
+                logoWidth: undefined,
+                logoHeight: undefined,
+                logoBackgroundColor: "#e8f5fd",
+                logoBackgroundTransparent: false,
+              });
+              // window.open(
+              //   `./main-facility-report.html?q=${el.getAttribute("id")}`
+              // );
+            }
+          } else if (request.status == 400 || request.status == 403) {
+            const res = JSON.parse(request.response);
+            const keys = Object.keys(res);
+            let msg = "";
+            keys.forEach((key, index) => {
+              msg = msg + `${res[key]}<br>`;
+            });
+            if (msg) {
+              $(".messagewrapper").fadeIn();
+              messageBox.innerHTML = msg;
+            }
+          } else {
+            $(".messagewrapper").fadeIn();
+            messageBox.innerHTML =
+              "<span class='text-sm text-danger'> متاسفانه مشکلی در سایت پیش آمده است لطفا بعدا تلاش کنید </span>";
+          }
+          setTimeout(clearMessageBox, 1000);
+        };
+
+        request.onloadstart = function () {
+          $(".loader").fadeIn();
+        };
+        request.open("GET", url);
+
+        request.send();
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    document.addEventListener("DOMContentLoaded", () => {
       getLoan();
-    </script>
-  </body>
+    });
+  </script>
+</body>
+
 </html>

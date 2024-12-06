@@ -2030,7 +2030,7 @@ function visitReq() {
         messageBox.innerHTML =
           "<span class='text-sm text-success'>درخواست شما با موفقیت ارسال شد</span>";
         window.location.replace(
-          `${front}/main-reception-requests.html}`
+          `${front}/main-reception-requests.html`
         );
       } else if (request.status == 401) {
         $(".messagewrapper").fadeIn();
